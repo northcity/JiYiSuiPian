@@ -23,6 +23,7 @@
 #import <AudioToolbox/AudioToolbox.h>
 #import <Foundation/Foundation.h>
 #import <WebKit/WebKit.h>
+#import <StoreKit/StoreKit.h>
 
 
 #define SPEAKVIEW_HEIZGHT   kAUTOHEIGHT(170)
@@ -63,7 +64,8 @@
 @property (nonatomic, strong) UIButton *setBtn;//跳转设置页面
 @property (nonatomic, strong) UIVisualEffectView *effectView;//模糊视图
 @property (nonatomic, strong) UIBlurEffect *effect;//模糊视图
-
+@property (nonatomic, strong) WaveView *miniWaveView;//波纹动画
+@property (nonatomic,strong) UIButton *playBtn;
 @end
 
 @implementation ShanNianViewController
@@ -118,7 +120,7 @@
     [self.view insertSubview:_titleView atIndex:99];
     
     _navTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(ScreenWidth/2 - kAUTOWIDTH(150)/2, kAUTOHEIGHT(5), kAUTOWIDTH(150), kAUTOHEIGHT(66))];
-    _navTitleLabel.text = @"记忆碎片";
+    _navTitleLabel.text = @"闪念碎片";
     _navTitleLabel.font = [UIFont fontWithName:@"HeiTi SC" size:18];
     _navTitleLabel.textColor = [UIColor blackColor];
     _navTitleLabel.textAlignment = NSTextAlignmentCenter;
@@ -205,13 +207,13 @@
     self.sloginLabel = [[UILabel alloc]initWithFrame:CGRectMake(kAUTOWIDTH(20), ScreenHeight/2 - kAUTOHEIGHT(20), ScreenWidth - kAUTOWIDTH(40), kAUTOHEIGHT(100))];
     self.sloginLabel.font = [UIFont fontWithName:@"FZSKBXKFW--GB1-0" size:15];
     self.sloginLabel.textColor = [UIColor grayColor];
-    self.sloginLabel.text = @"长按开始说出你的记忆碎片，松手即可保存以及编辑。";
+    self.sloginLabel.text = @"长按开始说出你的闪念碎片，松手即可保存以及编辑。";
     self.sloginLabel.numberOfLines = 0;
     [self.view addSubview:self.sloginLabel];
 }
 
 - (void)setDefaultConfig{
-    self.nowColor = [BCShanNianKaPianManager toStrByUIColor:[UIColor blackColor]];
+    self.nowColor = @"52";
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationController.navigationBar.hidden = YES;
     self.volumArray = [[NSMutableArray alloc]init];
@@ -883,6 +885,14 @@
     return _waveView;
 }
 
+- (WaveView *)miniWaveView{
+    if (!_miniWaveView) {
+        _miniWaveView = [[WaveView alloc]initWithFrame:CGRectMake(0, SPEAKVIEW_HEIZGHT - kAUTOHEIGHT(100), self.view.bounds.size.width, 40)];
+        _miniWaveView.backgroundColor = [UIColor clearColor];
+        _miniWaveView.targetWaveHeight = 0;
+    }
+    return _miniWaveView;
+}
 
 #pragma mark ========== 上面显示的SpeakView的动画
 - (void)createDismissSpeakViewAnimation{
@@ -1002,6 +1012,8 @@
     
     [self.view addSubview:self.speakView];
     [self.speakView addSubview:self.speakTextView];
+    
+    self.playBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     
     for (int i = 0 ; i < 5; i ++) {
         
@@ -1317,6 +1329,20 @@
 /**
  start speech recognition
  **/
+//弹出星星评论
+- (void)showAppStoreReView{
+    NSString *systemVersion = [UIDevice currentDevice].systemVersion;
+    //仅支持iOS10.3+（需要做校验） 且每个APP内每年最多弹出3次评分alart
+    if ([systemVersion doubleValue] > 10.3) {
+        if (@available(iOS 10.3, *)) {
+            if([SKStoreReviewController respondsToSelector:@selector(requestReview)]) {
+                //防止键盘遮挡
+                [[UIApplication sharedApplication].keyWindow endEditing:YES];
+                [SKStoreReviewController requestReview];
+            }
+        }
+    }
+}
 
 - (void)XiaYiPaiButtonClick:(UIButton *)button{
     switch (button.tag) {
@@ -1324,6 +1350,15 @@
             [self createDismissSpeakViewAnimation];
             break;
         case XiaYiPaiClickActionBaoCun:
+            
+            if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstText"]){
+                [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstText"];
+                //第一次启动
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self showAppStoreReView];
+                });
+            }
+            
             [self createDismissSpeakViewAnimation];
             [self saveDataToiCloud];
             break;
@@ -1453,13 +1488,13 @@
     
     LZDataModel *model3 = [[LZDataModel alloc]init];
     model3.userName = @"";
-    model3.nickName = @"";
+    model3.nickName = @"0";
     model3.password = @"";
     model3.urlString = @"";
     model3.groupName = @"";
     //    model3.groupID = group.identifier;
     model3.titleString = _speakTextView.text;
-    model3.contentString = _speakTextView.text;
+    model3.contentString = [ShanNianViewController getCurrentTimes];
     model3.colorString = self.nowColor;
     
     NSData * compressCardBackStrData = [BCShanNianKaPianManager gzipData:data];
@@ -1472,6 +1507,28 @@
     //                                     content:_speakTextView.text
     //                                  photoImage:data];
     //
+}
+
++(NSString*)getCurrentTimes{
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    
+    // ----------设置你想要的格式,hh与HH的区别:分别表示12小时制,24小时制
+    
+    [formatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
+    
+    //现在时间,你可以输出来看下是什么格式
+    
+    NSDate *datenow = [NSDate date];
+    
+    //----------将nsdate按formatter格式转成nsstring
+    
+    NSString *currentTimeString = [formatter stringFromDate:datenow];
+    
+    NSLog(@"currentTimeString =  %@",currentTimeString);
+    
+    return currentTimeString;
+    
 }
 
 - (void)playPcmWith:(NSData *)pcmData{

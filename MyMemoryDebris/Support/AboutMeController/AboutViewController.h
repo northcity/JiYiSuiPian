@@ -10,4 +10,9 @@
 
 @interface AboutViewController : UIViewController
 
+@property(nonatomic,strong)UIButton *shiJianJiaoNangBtn;
+@property(nonatomic,strong)UIButton *jiuGongGeBtn;
+@property(nonatomic,strong)UIButton *selfBtn;
+
+
 @end

@@ -178,9 +178,9 @@ const CGFloat kStatusBarHeight = 20;
     
     self.desginLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, ScreenHeight - kAUTOHEIGHT(60), ScreenWidth - 40, 44)];
     self.desginLabel.text = @"- - Create By NorthCity - -";
-    self.desginLabel.textColor = [UIColor blackColor];
+    self.desginLabel.textColor = PNCColorWithHex(0xdcdcdc);
     self.desginLabel.textAlignment = NSTextAlignmentCenter;
-    self.desginLabel.font = [UIFont fontWithName:@"HeiTi SC" size:8];
+    self.desginLabel.font = [UIFont fontWithName:@"HeiTi SC" size:9];
     self.desginLabel.alpha = 0.9;
     [self.view addSubview:self.desginLabel];
     
@@ -230,10 +230,24 @@ const CGFloat kStatusBarHeight = 20;
     if (section == 0) {
         return 4;
     }else{
-        return 3;
+        return 4;
     }
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (indexPath.row == 4 && indexPath.section == 1) {
+        NSString *statusString = [[NSUserDefaults standardUserDefaults] objectForKey:@"KaiGuanShiFouDaKai"];
+        if ([statusString isEqualToString:@"关"]) {
+            return 1;
+            
+        }else if ([statusString isEqualToString:@"开"]){
+            return 62;
+        }else{
+            return 1;
+        }
+    }
+    
+    
     return 62;
 }
 
@@ -321,7 +335,19 @@ const CGFloat kStatusBarHeight = 20;
         cell.textLabel.text = @"给个小心心";
     }
     if (indexPath.section == 1 && indexPath.row == 3) {
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        
+        NSString *statusString = [[NSUserDefaults standardUserDefaults] objectForKey:@"KaiGuanShiFouDaKai"];
+        if ([statusString isEqualToString:@"开"]) {
+            cell.contentView.hidden = NO;
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }else if ([statusString isEqualToString:@"关"]){
+            cell.contentView.hidden = YES;
+            cell.accessoryType = UITableViewCellAccessoryNone;
+        }else{
+            cell.contentView.hidden = YES;
+            cell.accessoryType = UITableViewCellAccessoryNone;
+        }
+        
         cell.imageView.image = [UIImage imageNamed:@"个人111"];
         cell.textLabel.text = @"关于";
     }
@@ -392,12 +418,20 @@ const CGFloat kStatusBarHeight = 20;
         NSString *itunesurl = @"itms-apps://itunes.apple.com/cn/app/id1397149726?mt=8&action=write-review";
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:itunesurl]];
     }
+    
+    if (indexPath.section == 1 && indexPath.row == 3){
+        NSString *statusString = [[NSUserDefaults standardUserDefaults] objectForKey:@"KaiGuanShiFouDaKai"];
+        if ([statusString isEqualToString:@"开"]) {
+            AboutViewController * ab = [[AboutViewController alloc]init];
+            [self presentViewController:ab animated:YES completion:nil];
+        }
+    }
 }
 
 
 - (void)shareImage{
     
-    NSString *text = @"记忆碎片";
+    NSString *text = @"闪念碎片";
    
     NSURL *urlToShare = [NSURL URLWithString:@"https://itunes.apple.com/cn/app/id1397149726?mt=8"];
     NSArray *activityItems = @[text,urlToShare];
@@ -432,7 +466,7 @@ const CGFloat kStatusBarHeight = 20;
         NSLog(@"设备还没有添加邮件账户");
     }else{
         controller.mailComposeDelegate = self;
-        [controller setSubject:@"记忆碎片(iOS版)反馈"];
+        [controller setSubject:@"闪念碎片(iOS版)反馈"];
         NSString * device = [[UIDevice currentDevice] model];
         NSString * ios = [[UIDevice currentDevice] systemVersion];
         NSString *body = [NSString stringWithFormat:@"请留下您的宝贵建议和意见：\n\n\n以下信息有助于我们确认您的问题，建议保留。\nDevice: %@\nOS Version: %@\n", device, ios];

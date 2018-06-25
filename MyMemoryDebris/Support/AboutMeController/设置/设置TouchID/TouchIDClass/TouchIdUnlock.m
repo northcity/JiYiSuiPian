@@ -121,6 +121,7 @@
         
         if (isEnabled) {
             
+            
         /** 可以进行 验证指纹*/
             return YES;
             

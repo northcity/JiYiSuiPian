@@ -224,15 +224,15 @@
     
     //
     
-    CGSize size = [content sizeWithFont:[UIFont systemFontOfSize:15] constrainedToSize:CGSizeMake(ScreenWidth - 60, 1000.0f) lineBreakMode:UILineBreakModeWordWrap];
+    CGSize size = [content sizeWithFont:[UIFont systemFontOfSize:13] constrainedToSize:CGSizeMake(ScreenWidth - 60, 1000.0f) lineBreakMode:UILineBreakModeWordWrap];
     
     NSLog(@"3");
     
     //
     if (size.height > 50) {
-        return size.height+32;
+        return size.height+36;
     }else{
-        return 62;
+        return 66;
     }
     
     
@@ -252,8 +252,11 @@
 //    cell.textLabel.text = model.titleString;
     NSData *pcmData =  [self decodeEchoImageBaseWith:model.pcmData];
     if (model.colorString.length > 0) {
-        cell.label.backgroundColor = [BCShanNianKaPianManager yingSheFromCOlorString:model.colorString];
-
+        if ([model.nickName isEqualToString:@"0"]) {
+            cell.label.backgroundColor = [BCShanNianKaPianManager yingSheFromCOlorString:model.colorString];
+        }else{
+            cell.label.backgroundColor = [UIColor whiteColor];
+        }
     }else{
         cell.label.backgroundColor = [UIColor whiteColor];
     }
@@ -317,35 +320,114 @@
 
 
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"数据删除后,不可恢复,是否确定删除?" preferredStyle:UIAlertControllerStyleAlert];
-    
-    LZWeakSelf(ws)
-    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+//
+//    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"数据删除后,不可恢复,是否确定删除?" preferredStyle:UIAlertControllerStyleAlert];
+//
+//    LZWeakSelf(ws)
+//    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//
+//        [LZSqliteTool LZDeleteFromTable:LZSqliteDataTableName element:[ws.dataSourceArray objectAtIndex:indexPath.row]];
+//        [ws.dataSourceArray removeObjectAtIndex:indexPath.row];
+//
+//        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+//
+//        // 当为0时 删除分组?
+//        //        if (self.dataArray == 0) {
+//        //
+//        //            [LZSqliteTool LZDeleteFromGroupTable:LZSqliteGroupTableName element:self.groupModel];
+//        //        }
+//    }];
+//
+//    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+//    [alert addAction:ok];
+//    [alert addAction:cancel];
+//    [self presentViewController:alert animated:YES completion:nil];
+//}
+//
+//- (nullable NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
+//
+//    return @"删除";
+//}
+//
+////让tableView可编辑
+//- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return YES;
+//}
+
+- (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+//    //删除
+//    UITableViewRowAction *deleteRowAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+//
+//        NSLog(@"点击了删除");
+//    }];
+//    deleteRowAction.backgroundColor = [UIColor greenColor];
+    //置顶
+    UITableViewRowAction *topRowAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
         
-        [LZSqliteTool LZDeleteFromTable:LZSqliteDataTableName element:[ws.dataSourceArray objectAtIndex:indexPath.row]];
-        [ws.dataSourceArray removeObjectAtIndex:indexPath.row];
+        NSLog(@"点击了删除置顶");
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"数据删除后,不可恢复,是否确定删除?" preferredStyle:UIAlertControllerStyleAlert];
         
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            LZWeakSelf(ws)
+            UIAlertAction *ok = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
-        // 当为0时 删除分组?
-        //        if (self.dataArray == 0) {
-        //
-        //            [LZSqliteTool LZDeleteFromGroupTable:LZSqliteGroupTableName element:self.groupModel];
-        //        }
+                [LZSqliteTool LZDeleteFromTable:LZSqliteDataTableName element:[ws.dataSourceArray objectAtIndex:indexPath.row]];
+                [ws.dataSourceArray removeObjectAtIndex:indexPath.row];
+        
+                [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
+                // 当为0时 删除分组?
+                //        if (self.dataArray == 0) {
+                //
+                //            [LZSqliteTool LZDeleteFromGroupTable:LZSqliteGroupTableName element:self.groupModel];
+                //        }
+            }];
+        
+            UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+            [alert addAction:ok];
+            [alert addAction:cancel];
+            [self presentViewController:alert animated:YES completion:nil];
     }];
-    
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-    [alert addAction:ok];
-    [alert addAction:cancel];
-    [self presentViewController:alert animated:YES completion:nil];
+        topRowAction.backgroundColor = [UIColor redColor];
+    //标记为已读
+    UITableViewRowAction *readedRowAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"切换完成状态" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+        
+        NSLog(@"点击了标记为已读");
+        LZDataModel *model = self.dataSourceArray[indexPath.row];
+        if ([model.nickName isEqualToString:@"0"]) {
+            model.nickName = @"1";
+        }else if ([model.nickName isEqualToString:@"1"]){
+        model.nickName = @"0";
+        }else{
+            model.nickName = @"1";
+        }
+        
+        [LZSqliteTool LZUpdateTable:LZSqliteDataTableName model:model];
+        [self loadData];
+        [self.tableView reloadData];
+    }];
+    readedRowAction.backgroundColor = PNCColorWithHex(0xdcdcdc);
+
+//    if(indexPath.section == 0 && indexPath.row == 0)
+//    {
+//        return @[deleteRowAction];
+//    }
+//    else if(indexPath.section == 0 && indexPath.row == 1)
+//    {
+//        return @[deleteRowAction, readedRowAction];
+//    }
+//    else if (indexPath.section == 1 && indexPath.row == 0)
+//    {
+//        return @[topRowAction];
+//    }
+//    else
+//    {
+        return @[ topRowAction, readedRowAction];
+//    }
 }
 
-- (nullable NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    return @"删除";
-}
 
 -(NSData *)decodeEchoImageBaseWith:(NSString *)str{
     //先解base64

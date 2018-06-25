@@ -27,7 +27,13 @@
     _label.layer.borderWidth = 2;
     [self.contentView addSubview:_label];
     _label.alpha = 0.8;
-    self.textLabel.font = [UIFont fontWithName:@"Heiti SC" size:13.f];
+//    self.textLabel.font = [UIFont fontWithName:@"Heiti SC" size:13.f];
+    
+    _dateLabel = [[UILabel alloc]initWithFrame:CGRectMake(ScreenWidth - 90, CGRectGetMaxY(_label.frame) + 4, 70, 5)];
+    _dateLabel.textColor = [UIColor grayColor];
+    _dateLabel.font = [UIFont fontWithName:@"HeiTi SC" size:6];
+    _dateLabel.textAlignment = NSTextAlignmentRight;
+    [self.contentView addSubview:_dateLabel];
     
     self.playBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     self.playBtn.frame = CGRectMake(ScreenWidth - 40, self.contentView.frame.size.height - 35, 30, 30);
@@ -40,25 +46,35 @@
     
     self.titleLabel = [[UILabel alloc]initWithFrame:CGRectZero];
     [_label addSubview:self.titleLabel];
-    self.titleLabel.font = [UIFont systemFontOfSize:15];
+    self.titleLabel.textColor = [UIColor blackColor];
+    self.titleLabel.font =  [UIFont fontWithName:@"FZSKBXKFW--GB1-0" size:13];
     self.titleLabel.numberOfLines = 0;
 }
 
 - (void)setContentModel:(LZDataModel *)model{
     self.model = model;
     
+    self.dateLabel.text = self.model.contentString;
+    
     self.titleLabel.text = self.model.titleString;
-    CGSize size = [self.model.titleString sizeWithFont:[UIFont systemFontOfSize:15] constrainedToSize:CGSizeMake(ScreenWidth-30, 1000.0f) lineBreakMode:UILineBreakModeWordWrap];
+    CGSize size = [self.model.titleString sizeWithFont:[UIFont systemFontOfSize:13] constrainedToSize:CGSizeMake(ScreenWidth-70, 1000.0f) lineBreakMode:UILineBreakModeWordWrap];
     
     if (size.height > 50) {
         self.label.frame = CGRectMake(10, 5 , ScreenWidth - 20, size.height  + 20);
-        self.titleLabel.frame = CGRectMake(5, 10 , ScreenWidth - 60, size.height);
+        self.titleLabel.frame = CGRectMake(15, 10 , ScreenWidth - 70, size.height);
     }else{
         self.label.frame = CGRectMake(10, 5 , ScreenWidth - 20, 50);
-        self.titleLabel.frame = CGRectMake(5, 0 , ScreenWidth - 60, 50);
+        self.titleLabel.frame = CGRectMake(15, 0 , ScreenWidth - 70, 50);
     }
-    self.playBtn.frame = CGRectMake(ScreenWidth - 50,5, 30, 30);
+    self.playBtn.frame = CGRectMake(ScreenWidth - 50,_label.frame.size.height/2 - 15, 30, 30);
 
+    _dateLabel.frame = CGRectMake(ScreenWidth - 90, CGRectGetMaxY(_label.frame) + 4, 70, 5);
+
+    if ([model.nickName isEqualToString:@"1"]) {
+        self.titleLabel.textColor = PNCColorWithHex(0xdcdcdc);
+    }else{
+        self.titleLabel.textColor = [UIColor blackColor];
+    }
 }
 
 - (WaveView *)waveView{

@@ -352,15 +352,28 @@
     }
     
     if (indexPath.row == 5) {
-        UIButton *Button = [UIButton buttonWithType:UIButtonTypeCustom];
-        Button = [self CellContentViewwWithBtnNormalString:@"打开" WithBtnSelectedString:@"获取" WithAppUrlSecheme:@"chenxishijianjiaonang://" WithImageName:@"zuizhongIcon.png" WithTitleString:@"时间胶囊" WithDetailString:@"乘时间之海" WithCell:cell];
-        [Button addTarget:self action:@selector(awakeShiJianJiaoNangApp) forControlEvents:UIControlEventTouchUpInside];
+        if (!self.shiJianJiaoNangBtn) {
+            self.shiJianJiaoNangBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+            self.shiJianJiaoNangBtn = [self CellContentViewwWithBtnNormalString:@"打开" WithBtnSelectedString:@"获取" WithAppUrlSecheme:@"chenxishijianjiaonang://" WithImageName:@"zuizhongIcon.png" WithTitleString:@"时间胶囊" WithDetailString:@"乘时间之海" WithCell:cell];
+            [self.shiJianJiaoNangBtn addTarget:self action:@selector(awakeShiJianJiaoNangApp) forControlEvents:UIControlEventTouchUpInside];
+        }
+
     }
     
     if (indexPath.row == 6) {
-        UIButton *Button = [UIButton buttonWithType:UIButtonTypeCustom];
-        Button = [self CellContentViewwWithBtnNormalString:@"去评价" WithBtnSelectedString:@"获取" WithAppUrlSecheme:@"comchenxijiugongge://" WithImageName:@"iconJiu.png" WithTitleString:@"Version:1.0" WithDetailString:@"极简主义" WithCell:cell];
-        [Button addTarget:self action:@selector(awakeSelfApp) forControlEvents:UIControlEventTouchUpInside];
+        if (!self.jiuGongGeBtn) {
+            self.jiuGongGeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+            self.jiuGongGeBtn = [self CellContentViewwWithBtnNormalString:@"打开" WithBtnSelectedString:@"获取" WithAppUrlSecheme:@"comchenxijiugongge://" WithImageName:@"iconJiu.png" WithTitleString:@"九宫格切图" WithDetailString:@"一键切图" WithCell:cell];
+            [self.jiuGongGeBtn addTarget:self action:@selector(awakeJiuGongGeApp) forControlEvents:UIControlEventTouchUpInside];
+        }
+    }
+    
+    if (indexPath.row == 7) {
+        if (!self.selfBtn) {
+            self.selfBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+            self.selfBtn = [self CellContentViewwWithBtnNormalString:@"去评价" WithBtnSelectedString:@"获取" WithAppUrlSecheme:@"comchenxijiyisuipian://" WithImageName:@"icon.png" WithTitleString:@"Version:1.1" WithDetailString:@"记录灵感" WithCell:cell];
+            [self.selfBtn addTarget:self action:@selector(awakeSelfApp) forControlEvents:UIControlEventTouchUpInside];
+        }
     }
     
     return  cell;
@@ -432,7 +445,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 7;
+    return 8;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
@@ -470,19 +483,27 @@
 - (void)awakeSelfApp
 {
 
-    NSString *itunesurl = @"itms-apps://itunes.apple.com/cn/app/id1383797480?mt=8&action=write-review";
+    NSString *itunesurl = @"itms-apps://itunes.apple.com/cn/app/id1397149726?mt=8&action=write-review";
     
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:itunesurl]];
     
-//    NSString *urlStr = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=%@", @"1383797480"];
-//    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr]];
     
- 
+}
+
+- (void)awakeJiuGongGeApp
+{
+    NSString *customURL = @"comchenxijiugongge://";
     
-//        NSString * url = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=%@",@"1383797480"];
-//
-//        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
-    
+    if ([[UIApplication sharedApplication]
+         canOpenURL:[NSURL URLWithString:customURL]])
+    {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:customURL]];
+    }
+    else
+    {
+        
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://itunes.apple.com/cn/app/%E5%9F%8E%E6%B1%A0-%E8%BF%99%E5%BA%A7%E5%9F%8E%E5%86%B7%E6%B8%85%E9%99%8C%E7%94%9F/id1383797480?mt=8"]];
+    }
 }
 
 - (void)awakeZhiHuApp

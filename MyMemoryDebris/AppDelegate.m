@@ -26,9 +26,81 @@
 @implementation AppDelegate
 
 
+#pragma mark —页面跳转
+
+- (UIViewController *)getCurrentVC
+{
+    UIViewController *result = nil;
+    
+    UIWindow * window = [[UIApplication sharedApplication] keyWindow];
+    if (window.windowLevel != UIWindowLevelNormal)
+    {
+        NSArray *windows = [[UIApplication sharedApplication] windows];
+        for(UIWindow * tmpWin in windows)
+        {
+            if (tmpWin.windowLevel == UIWindowLevelNormal)
+            {
+                window = tmpWin;
+                break;
+            }
+        }
+    }
+    
+    UIView *frontView = [[window subviews] objectAtIndex:0];
+    id nextResponder = [frontView nextResponder];
+    
+    if ([nextResponder isKindOfClass:[UIViewController class]])
+        result = nextResponder;
+    else
+        result = window.rootViewController;
+    
+    return result;
+}
+- (void)jumpViewController:(NSDictionary*)tfdic
+{
+    if (@available(iOS 9.0, *)) {
+        UIApplicationShortcutItem *cameraItem = [tfdic objectForKey:UIApplicationLaunchOptionsShortcutItemKey];
+        if ([cameraItem.type isEqualToString:@"typeOne"]){
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+               
+                ShanNianViewController *mainTextVc = [[ShanNianViewController alloc] init];
+//                UINavigationController *rootVC = (UINavigationController *)[UIApplication sharedApplication].delegate.window.rootViewController;
+                UINavigationController *navigationVC = (UINavigationController *)[UIApplication sharedApplication].delegate.window.rootViewController;
+                NSMutableArray *navContollers=[NSMutableArray arrayWithArray:navigationVC.viewControllers];
+                
+                mainTextVc = [navContollers firstObject];
+                [mainTextVc startBtnHandler:nil];
+            });
+        }
+    } else {
+        // Fallback on earlier versions
+    }
+}
+
+- (void)setup3DTouch:(UIApplication *)application{
+    /**
+     type 该item 唯一标识符
+     localizedTitle ：标题
+     localizedSubtitle：副标题
+     icon：icon图标 可以使用系统类型 也可以使用自定义的图片
+     userInfo：用户信息字典 自定义参数，完成具体功能需求
+     */
+    
+    //    UIApplicationShortcutIcon *icon1 = [UIApplicationShortcutIcon iconWithTemplateImageName:@"标签.png"];
+    
+//    UIApplicationShortcutIcon * icon3 = [UIApplicationShortcutIcon iconWithTemplateImageName:@"反馈11"];
+    UIApplicationShortcutIcon *cameraIcon = [UIApplicationShortcutIcon iconWithType:UIApplicationShortcutIconTypeAdd];
+    UIApplicationShortcutItem *cameraItem = [[UIApplicationShortcutItem alloc] initWithType:@"typeOne" localizedTitle:@"我有一个新灵感" localizedSubtitle:@"" icon:cameraIcon userInfo:nil];
+    application.shortcutItems = @[cameraItem];
+    
+}
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    [self setup3DTouch:application];
+    [self jumpViewController:launchOptions];
+    [self chuShiHuaBomb];
     [self verifyPassword];
+    
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     ShanNianViewController *Lvc = [[ShanNianViewController alloc]init];
     UINavigationController*nav = [[UINavigationController alloc]initWithRootViewController:Lvc];
@@ -186,6 +258,45 @@
     }
 }
 
+
+- (void)chuShiHuaBomb{
+    
+    [Bmob registerWithAppKey:@"075c9e426a01a48a81aa12305924e532"];
+//    
+//                //往GameScore表添加一条playerName为小明，分数为78的数据
+//                BmobObject *gameScore = [BmobObject objectWithClassName:@"appKaiGuan"];
+//                [gameScore setObject:@"1" forKey:@"ShanNian"];
+//                [gameScore saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+//    
+//                }];
+    
+    
+    NSString *nowStatus = [[NSUserDefaults standardUserDefaults] objectForKey:@"KaiGuanShiFouDaKai"];
+    
+    if ([nowStatus isEqualToString:@"开"]) {
+        
+    }else{
+        //查找GameScore表
+        BmobQuery   *bquery = [BmobQuery queryWithClassName:@"appKaiGuan"];
+        //查找GameScore表里面id为0c6db13c的数据
+        [bquery getObjectInBackgroundWithId:@"4975313599" block:^(BmobObject *object,NSError *error){
+            if (error){
+                //进行错误处理
+            }else{
+                //表里有id为0c6db13c的数据
+                if (object) {
+                    //得到playerName和cheatMode
+                    NSString *KaiGuanStatus = [object objectForKey:@"ShanNian"];
+                    NSLog(@"%@=========",KaiGuanStatus);
+                    [[NSUserDefaults standardUserDefaults] setObject:KaiGuanStatus forKey:@"KaiGuanShiFouDaKai"];
+                    [[NSUserDefaults standardUserDefaults] synchronize];
+                }
+            }
+        }];
+    }
+    
+    
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

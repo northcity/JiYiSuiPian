@@ -59,7 +59,7 @@
 //
     UILabel * label = [Factory createLabelWithTitle:@"Create BY NorthCity" frame:CGRectMake(30, ScreenHeight - kAUTOHEIGHT(74), ScreenWidth - 60, 44)];
     [self.view addSubview:label];
-    label.textColor = [UIColor blackColor];
+    label.textColor = PNCColorWithHex(0xdcdcdc);
     label.textAlignment = NSTextAlignmentCenter;
     label.font = [UIFont fontWithName:@"Heiti SC" size:10.f];
 

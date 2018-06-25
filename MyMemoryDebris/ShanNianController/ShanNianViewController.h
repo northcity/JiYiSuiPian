@@ -47,6 +47,7 @@ typedef NS_ENUM(NSUInteger, ShangYiPaiClickActionTag) {
 @property(nonatomic,strong)UIView *titleView;
 @property(nonatomic,strong)UIButton *backBtn;
 
+- (void)startBtnHandler:(id)sender;
 
 @end
 

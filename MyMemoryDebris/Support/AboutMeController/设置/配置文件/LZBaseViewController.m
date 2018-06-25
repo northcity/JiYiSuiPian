@@ -48,7 +48,7 @@
     [self.view addSubview:_titleView];
     [self.view insertSubview:_titleView atIndex:99];
     
-     _navTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(ScreenWidth/2 - kAUTOWIDTH(150)/2, kAUTOHEIGHT(5), kAUTOWIDTH(150), kAUTOHEIGHT(66))];
+     _navTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(ScreenWidth/2 - kAUTOWIDTH(200)/2, kAUTOHEIGHT(5), kAUTOWIDTH(200), kAUTOHEIGHT(66))];
     _navTitleLabel.text = @"密码与解锁";
     _navTitleLabel.font = [UIFont fontWithName:@"HeiTi SC" size:18];
     _navTitleLabel.textColor = [UIColor blackColor];

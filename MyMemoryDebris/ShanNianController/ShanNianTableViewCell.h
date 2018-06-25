@@ -15,6 +15,7 @@
 
 @interface ShanNianTableViewCell : UITableViewCell<PcmPlayerDelegate>
 @property(nonatomic,strong)UIView * label;
+@property (nonatomic, strong) UILabel *dateLabel;
 
 @property(nonatomic,strong)UIButton *playBtn;
 

@@ -13,7 +13,7 @@
 //#import "YLImageView.h"
 #import "Factory.h"
 #import "UIImage+ImageEffects.h"
-//#import <BmobSDK/Bmob.h>
+#import <BmobSDK/Bmob.h>
 //#import <GTSDK/GeTuiSdk.h>
 #import "Masonry/Masonry.h"
 
