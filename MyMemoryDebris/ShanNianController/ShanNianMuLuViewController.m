@@ -108,8 +108,9 @@
     if (self.dataArr.count > 0) {
         [self.dataSourceArray removeAllObjects];
     }
-    
-    [self.dataSourceArray addObjectsFromArray:array];
+    self.dataSourceArray=(NSMutableArray *)[[array reverseObjectEnumerator] allObjects];
+
+//    [self.dataSourceArray addObjectsFromArray:array];
     
     [self.tableView reloadData];
 }
@@ -306,15 +307,15 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     LZDataModel *model = self.dataSourceArray[indexPath.row];
-    self.modalPresentationStyle = UIModalPresentationCustom;
-    self.transitioningDelegate = self;
+//    self.modalPresentationStyle = UIModalPresentationCustom;
+//    self.transitioningDelegate = self;
     
-//    ShanNianMuLuDetailViewController *mldVc = [[ShanNianMuLuDetailViewController alloc]init];
+    ShanNianMuLuDetailViewController *mldVc = [[ShanNianMuLuDetailViewController alloc]init];
 //    [self presentViewController:mldVc animated:YES completion:nil];
     
-    MainTextViewController *mldVc = [[MainTextViewController alloc]init];
+//    MainTextViewController *mldVc = [[MainTextViewController alloc]init];
     mldVc.model = model;
-    [self presentViewController:mldVc animated:YES completion:nil];
+    [self.navigationController pushViewController:mldVc animated:YES];
 }
 
 

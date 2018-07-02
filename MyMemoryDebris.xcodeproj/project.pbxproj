@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		153F9C4F20E0C90500B0F260 /* iconoldd.png in Resources */ = {isa = PBXBuildFile; fileRef = 153F9C4E20E0C90500B0F260 /* iconoldd.png */; };
 		153F9C5220E0FAE500B0F260 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 153F9C5120E0F99A00B0F260 /* icon.png */; };
+		154CFD1520EA23B000432A62 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 155845A520D3A8DA00A08DA8 /* CloudKit.framework */; };
 		155845A620D3A8DA00A08DA8 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 155845A520D3A8DA00A08DA8 /* CloudKit.framework */; };
 		155845A720D3AD6500A08DA8 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15619E5B20CF54CA00F80F69 /* Info.plist */; };
 		155D953820E08660002985D5 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 155D951F20E08660002985D5 /* NSLayoutConstraint+MASDebugAdditions.m */; };
@@ -275,6 +276,11 @@
 		1561A16420CF7C5C00F80F69 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1561A16320CF7C5C00F80F69 /* Social.framework */; };
 		1561A16720CF7D2C00F80F69 /* LaunchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1561A16520CF7D2B00F80F69 /* LaunchViewController.m */; };
 		1561A17420CFBBC700F80F69 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1561A17220CFBBC700F80F69 /* Localizable.strings */; };
+		157E469120E9F48C005836B7 /* ShanNianEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 157E469020E9F48C005836B7 /* ShanNianEditViewController.m */; };
+		157E469520E9F615005836B7 /* APLTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 157E469420E9F610005836B7 /* APLTextView.m */; };
+		157E469C20EA10F5005836B7 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 157E469B20EA10F5005836B7 /* NotificationCenter.framework */; };
+		157E46A020EA10F6005836B7 /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 157E469F20EA10F6005836B7 /* TodayViewController.m */; };
+		157E46A720EA10F7005836B7 /* Today.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 157E469A20EA10F4005836B7 /* Today.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -292,11 +298,33 @@
 			remoteGlobalIDString = 15619E4920CF54CA00F80F69;
 			remoteInfo = MyMemoryDebris;
 		};
+		157E46A520EA10F7005836B7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 15619E4220CF54C900F80F69 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 157E469920EA10F4005836B7;
+			remoteInfo = Today;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		157E46AB20EA10F7005836B7 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				157E46A720EA10F7005836B7 /* Today.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		153F9C4E20E0C90500B0F260 /* iconoldd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconoldd.png; sourceTree = "<group>"; };
 		153F9C5120E0F99A00B0F260 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		154CFD1420EA23AB00432A62 /* Today.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Today.entitlements; sourceTree = "<group>"; };
 		155845A520D3A8DA00A08DA8 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		155D951E20E08660002985D5 /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
 		155D951F20E08660002985D5 /* NSLayoutConstraint+MASDebugAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+MASDebugAdditions.m"; sourceTree = "<group>"; };
@@ -715,6 +743,15 @@
 		1561A16B20CFB86400F80F69 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		1561A17320CFBBC700F80F69 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1561A17520CFBBD500F80F69 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		157E468F20E9F48C005836B7 /* ShanNianEditViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShanNianEditViewController.h; sourceTree = "<group>"; };
+		157E469020E9F48C005836B7 /* ShanNianEditViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShanNianEditViewController.m; sourceTree = "<group>"; };
+		157E469320E9F610005836B7 /* APLTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APLTextView.h; sourceTree = "<group>"; };
+		157E469420E9F610005836B7 /* APLTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APLTextView.m; sourceTree = "<group>"; };
+		157E469A20EA10F4005836B7 /* Today.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Today.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		157E469B20EA10F5005836B7 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		157E469E20EA10F6005836B7 /* TodayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodayViewController.h; sourceTree = "<group>"; };
+		157E469F20EA10F6005836B7 /* TodayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TodayViewController.m; sourceTree = "<group>"; };
+		157E46A420EA10F7005836B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -763,6 +800,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		157E469720EA10F4005836B7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				157E469C20EA10F5005836B7 /* NotificationCenter.framework in Frameworks */,
+				154CFD1520EA23B000432A62 /* CloudKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -805,6 +851,7 @@
 				15619E4C20CF54CA00F80F69 /* MyMemoryDebris */,
 				15619E6520CF54CA00F80F69 /* MyMemoryDebrisTests */,
 				15619E7020CF54CA00F80F69 /* MyMemoryDebrisUITests */,
+				157E469D20EA10F6005836B7 /* Today */,
 				15619E4B20CF54CA00F80F69 /* Products */,
 				1561A13820CF563E00F80F69 /* Frameworks */,
 			);
@@ -816,6 +863,7 @@
 				15619E4A20CF54CA00F80F69 /* MyMemoryDebris.app */,
 				15619E6220CF54CA00F80F69 /* MyMemoryDebrisTests.xctest */,
 				15619E6D20CF54CA00F80F69 /* MyMemoryDebrisUITests.xctest */,
+				157E469A20EA10F4005836B7 /* Today.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -890,15 +938,19 @@
 		15619E8B20CF560200F80F69 /* ShanNianController */ = {
 			isa = PBXGroup;
 			children = (
+				157E469220E9F610005836B7 /* APLTextView */,
 				15619EA220CF560200F80F69 /* ShanNianSetVc */,
 				15619E9620CF560200F80F69 /* JXPopoverView */,
 				15619E9020CF560200F80F69 /* MSNumberScrollAnimatedView */,
 				15619E8C20CF560200F80F69 /* ShanNianViewController.h */,
 				15619EA120CF560200F80F69 /* ShanNianViewController.m */,
+				157E468F20E9F48C005836B7 /* ShanNianEditViewController.h */,
+				157E469020E9F48C005836B7 /* ShanNianEditViewController.m */,
 				15619E8D20CF560200F80F69 /* Definition.h */,
 				15619EBD20CF560200F80F69 /* MainTextViewController.h */,
 				15619E9320CF560200F80F69 /* MainTextViewController.m */,
 				15619EBC20CF560200F80F69 /* ShanNianMuLuDetailViewController.h */,
+				15619E9420CF560200F80F69 /* ShanNianMuLuDetailViewController.m */,
 				15619E8E20CF560200F80F69 /* ShanNianTableViewCell.h */,
 				15619EB920CF560200F80F69 /* ShanNianTableViewCell.m */,
 				15619E9D20CF560200F80F69 /* ShanNianTableViewCell.xib */,
@@ -911,7 +963,6 @@
 				15619E8F20CF560200F80F69 /* DatePickerView.h */,
 				15619EB820CF560200F80F69 /* DatePickerView.m */,
 				15619EBA20CF560200F80F69 /* 方正宋刻本秀楷繁体.ttf */,
-				15619E9420CF560200F80F69 /* ShanNianMuLuDetailViewController.m */,
 				15619E9520CF560200F80F69 /* UIImage+Gradient.h */,
 				15619EBB20CF560200F80F69 /* UIImage+Gradient.m */,
 				15619EBE20CF560200F80F69 /* ShanNianImageResource */,
@@ -1729,8 +1780,29 @@
 				1561A13D20CF565C00F80F69 /* libicucore.tbd */,
 				1561A13B20CF564900F80F69 /* AudioToolbox.framework */,
 				1561A13920CF563F00F80F69 /* AddressBook.framework */,
+				157E469B20EA10F5005836B7 /* NotificationCenter.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		157E469220E9F610005836B7 /* APLTextView */ = {
+			isa = PBXGroup;
+			children = (
+				157E469320E9F610005836B7 /* APLTextView.h */,
+				157E469420E9F610005836B7 /* APLTextView.m */,
+			);
+			path = APLTextView;
+			sourceTree = "<group>";
+		};
+		157E469D20EA10F6005836B7 /* Today */ = {
+			isa = PBXGroup;
+			children = (
+				154CFD1420EA23AB00432A62 /* Today.entitlements */,
+				157E469E20EA10F6005836B7 /* TodayViewController.h */,
+				157E469F20EA10F6005836B7 /* TodayViewController.m */,
+				157E46A420EA10F7005836B7 /* Info.plist */,
+			);
+			path = Today;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1743,10 +1815,12 @@
 				15619E4620CF54CA00F80F69 /* Sources */,
 				15619E4720CF54CA00F80F69 /* Frameworks */,
 				15619E4820CF54CA00F80F69 /* Resources */,
+				157E46AB20EA10F7005836B7 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				157E46A620EA10F7005836B7 /* PBXTargetDependency */,
 			);
 			name = MyMemoryDebris;
 			productName = MyMemoryDebris;
@@ -1789,6 +1863,23 @@
 			productReference = 15619E6D20CF54CA00F80F69 /* MyMemoryDebrisUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		157E469920EA10F4005836B7 /* Today */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 157E46A820EA10F7005836B7 /* Build configuration list for PBXNativeTarget "Today" */;
+			buildPhases = (
+				157E469620EA10F4005836B7 /* Sources */,
+				157E469720EA10F4005836B7 /* Frameworks */,
+				157E469820EA10F4005836B7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Today;
+			productName = Today;
+			productReference = 157E469A20EA10F4005836B7 /* Today.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1800,8 +1891,11 @@
 				TargetAttributes = {
 					15619E4920CF54CA00F80F69 = {
 						CreatedOnToolsVersion = 9.0;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
@@ -1819,6 +1913,21 @@
 						CreatedOnToolsVersion = 9.0;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 15619E4920CF54CA00F80F69;
+					};
+					157E469920EA10F4005836B7 = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 0;
+							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -1839,6 +1948,7 @@
 				15619E4920CF54CA00F80F69 /* MyMemoryDebris */,
 				15619E6120CF54CA00F80F69 /* MyMemoryDebrisTests */,
 				15619E6C20CF54CA00F80F69 /* MyMemoryDebrisUITests */,
+				157E469920EA10F4005836B7 /* Today */,
 			);
 		};
 /* End PBXProject section */
@@ -1979,6 +2089,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		157E469820EA10F4005836B7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -2042,6 +2159,7 @@
 				1561A0D420CF560300F80F69 /* DrawPatternLockViewController.m in Sources */,
 				1561A10620CF560300F80F69 /* LZiCloudDocument.m in Sources */,
 				1561A04920CF560300F80F69 /* MSNumberScrollAnimatedView.m in Sources */,
+				157E469120E9F48C005836B7 /* ShanNianEditViewController.m in Sources */,
 				1561A0B820CF560300F80F69 /* SVRadialGradientLayer.m in Sources */,
 				1561A04420CF560300F80F69 /* BCShanNianKaPianManager.m in Sources */,
 				155D953E20E08660002985D5 /* View+MASAdditions.m in Sources */,
@@ -2082,6 +2200,7 @@
 				155D954120E08660002985D5 /* MASViewAttribute.m in Sources */,
 				1561A11320CF560300F80F69 /* NSData+Base64.m in Sources */,
 				1561A0EE20CF560300F80F69 /* LZGestureTool.m in Sources */,
+				157E469520E9F615005836B7 /* APLTextView.m in Sources */,
 				1561A10720CF560300F80F69 /* LZiCloud.m in Sources */,
 				155D953A20E08660002985D5 /* MASCompositeConstraint.m in Sources */,
 				155D953D20E08660002985D5 /* NSArray+MASAdditions.m in Sources */,
@@ -2133,6 +2252,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		157E469620EA10F4005836B7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				157E46A020EA10F6005836B7 /* TodayViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -2145,6 +2272,11 @@
 			isa = PBXTargetDependency;
 			target = 15619E4920CF54CA00F80F69 /* MyMemoryDebris */;
 			targetProxy = 15619E6E20CF54CA00F80F69 /* PBXContainerItemProxy */;
+		};
+		157E46A620EA10F7005836B7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 157E469920EA10F4005836B7 /* Today */;
+			targetProxy = 157E46A520EA10F7005836B7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -2290,8 +2422,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MyMemoryDebris/MyMemoryDebris.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F7C352F4MW;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2304,8 +2436,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.chenxi.shanniankapian;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8b85f37c-9d3e-479a-a659-b09df87165ea";
-				PROVISIONING_PROFILE_SPECIFIER = newnewnewnenwenweewewewewew;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -2315,8 +2447,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MyMemoryDebris/MyMemoryDebris.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F7C352F4MW;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2329,8 +2461,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.chenxi.shanniankapian;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8b85f37c-9d3e-479a-a659-b09df87165ea";
-				PROVISIONING_PROFILE_SPECIFIER = newnewnewnenwenweewewewewew;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -2389,6 +2521,38 @@
 			};
 			name = Release;
 		};
+		157E46A920EA10F7005836B7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Today/Today.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = F7C352F4MW;
+				INFOPLIST_FILE = Today/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.chenxi.shanniankapian.Today;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		157E46AA20EA10F7005836B7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Today/Today.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = F7C352F4MW;
+				INFOPLIST_FILE = Today/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.chenxi.shanniankapian.Today;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -2424,6 +2588,15 @@
 			buildConfigurations = (
 				15619E7D20CF54CA00F80F69 /* Debug */,
 				15619E7E20CF54CA00F80F69 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		157E46A820EA10F7005836B7 /* Build configuration list for PBXNativeTarget "Today" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				157E46A920EA10F7005836B7 /* Debug */,
+				157E46AA20EA10F7005836B7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

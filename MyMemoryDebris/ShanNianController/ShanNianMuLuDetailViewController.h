@@ -19,5 +19,7 @@
 @property(nonatomic,strong)UIView *MbgView;
 @property(nonatomic,strong)UIView *bgViews;
 @property(nonatomic,strong)UIImageView *bgImageView;
+@property(nonatomic,strong)UIButton *doneBtn;
+
 
 @end
