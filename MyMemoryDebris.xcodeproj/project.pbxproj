@@ -152,8 +152,6 @@
 		1561A0C720CF560300F80F69 /* LZBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15619F5920CF560200F80F69 /* LZBaseTableViewCell.m */; };
 		1561A0C820CF560300F80F69 /* LZBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15619F5B20CF560200F80F69 /* LZBaseViewController.m */; };
 		1561A0C920CF560300F80F69 /* LZBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15619F5C20CF560200F80F69 /* LZBaseNavigationController.m */; };
-		1561A0CA20CF560300F80F69 /* gesture_unlock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 15619F6220CF560200F80F69 /* gesture_unlock@2x.png */; };
-		1561A0CB20CF560300F80F69 /* gesture_unlock.png in Resources */ = {isa = PBXBuildFile; fileRef = 15619F6320CF560200F80F69 /* gesture_unlock.png */; };
 		1561A0CC20CF560300F80F69 /* TouchIdUnlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 15619F6520CF560200F80F69 /* TouchIdUnlock.m */; };
 		1561A0CD20CF560300F80F69 /* LZTouchIDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15619F6720CF560200F80F69 /* LZTouchIDViewController.m */; };
 		1561A0CE20CF560300F80F69 /* GestureTool_Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 15619F6D20CF560200F80F69 /* GestureTool_Private.m */; };
@@ -281,6 +279,7 @@
 		157E469C20EA10F5005836B7 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 157E469B20EA10F5005836B7 /* NotificationCenter.framework */; };
 		157E46A020EA10F6005836B7 /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 157E469F20EA10F6005836B7 /* TodayViewController.m */; };
 		157E46A720EA10F7005836B7 /* Today.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 157E469A20EA10F4005836B7 /* Today.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		15B93E8D20EB152A0038FF32 /* 待完成.png in Resources */ = {isa = PBXBuildFile; fileRef = 15B93E8C20EB15220038FF32 /* 待完成.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -537,8 +536,6 @@
 		15619F5C20CF560200F80F69 /* LZBaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LZBaseNavigationController.m; sourceTree = "<group>"; };
 		15619F5D20CF560200F80F69 /* LZBaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LZBaseTableViewCell.h; sourceTree = "<group>"; };
 		15619F5E20CF560200F80F69 /* LZBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LZBaseViewController.h; sourceTree = "<group>"; };
-		15619F6220CF560200F80F69 /* gesture_unlock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gesture_unlock@2x.png"; sourceTree = "<group>"; };
-		15619F6320CF560200F80F69 /* gesture_unlock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gesture_unlock.png; sourceTree = "<group>"; };
 		15619F6420CF560200F80F69 /* TouchIdUnlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchIdUnlock.h; sourceTree = "<group>"; };
 		15619F6520CF560200F80F69 /* TouchIdUnlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchIdUnlock.m; sourceTree = "<group>"; };
 		15619F6620CF560200F80F69 /* LZTouchIDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LZTouchIDViewController.h; sourceTree = "<group>"; };
@@ -752,6 +749,7 @@
 		157E469E20EA10F6005836B7 /* TodayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodayViewController.h; sourceTree = "<group>"; };
 		157E469F20EA10F6005836B7 /* TodayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TodayViewController.m; sourceTree = "<group>"; };
 		157E46A420EA10F7005836B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		15B93E8C20EB15220038FF32 /* 待完成.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "待完成.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1286,22 +1284,12 @@
 		15619F6020CF560200F80F69 /* TouchIDClass */ = {
 			isa = PBXGroup;
 			children = (
-				15619F6120CF560200F80F69 /* images */,
 				15619F6420CF560200F80F69 /* TouchIdUnlock.h */,
 				15619F6520CF560200F80F69 /* TouchIdUnlock.m */,
 				15619FA220CF560200F80F69 /* TouchIDScreen.h */,
 				15619FA520CF560200F80F69 /* TouchIDScreen.m */,
 			);
 			path = TouchIDClass;
-			sourceTree = "<group>";
-		};
-		15619F6120CF560200F80F69 /* images */ = {
-			isa = PBXGroup;
-			children = (
-				15619F6220CF560200F80F69 /* gesture_unlock@2x.png */,
-				15619F6320CF560200F80F69 /* gesture_unlock.png */,
-			);
-			path = images;
 			sourceTree = "<group>";
 		};
 		15619F6820CF560200F80F69 /* 设置手势密码 */ = {
@@ -1797,6 +1785,7 @@
 		157E469D20EA10F6005836B7 /* Today */ = {
 			isa = PBXGroup;
 			children = (
+				15B93E8C20EB15220038FF32 /* 待完成.png */,
 				154CFD1420EA23AB00432A62 /* Today.entitlements */,
 				157E469E20EA10F6005836B7 /* TodayViewController.h */,
 				157E469F20EA10F6005836B7 /* TodayViewController.m */,
@@ -1891,7 +1880,7 @@
 				TargetAttributes = {
 					15619E4920CF54CA00F80F69 = {
 						CreatedOnToolsVersion = 9.0;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -1916,7 +1905,7 @@
 					};
 					157E469920EA10F4005836B7 = {
 						CreatedOnToolsVersion = 9.0;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -1976,7 +1965,6 @@
 				1561A12820CF560300F80F69 /* iconshoudiantong.png in Resources */,
 				1561A0B020CF560300F80F69 /* butt_18@3x.png in Resources */,
 				1561A12320CF560300F80F69 /* ico_分享1@3x.png in Resources */,
-				1561A0CB20CF560300F80F69 /* gesture_unlock.png in Resources */,
 				155845A720D3AD6500A08DA8 /* Info.plist in Resources */,
 				155D954220E08660002985D5 /* Info.plist in Resources */,
 				1561A0A920CF560300F80F69 /* houtui@3x.png in Resources */,
@@ -2041,7 +2029,6 @@
 				1561A11C20CF560300F80F69 /* iconcheng.png in Resources */,
 				1561A07D20CF560300F80F69 /* dkw_完成@3x.png in Resources */,
 				1561A09520CF560300F80F69 /* 主题前@3x.png in Resources */,
-				1561A0CA20CF560300F80F69 /* gesture_unlock@2x.png in Resources */,
 				1561A0E720CF560300F80F69 /* gesture_unlock@2x.png in Resources */,
 				1561A08720CF560300F80F69 /* 密码@3x.png in Resources */,
 				15619E5720CF54CA00F80F69 /* Assets.xcassets in Resources */,
@@ -2093,6 +2080,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15B93E8D20EB152A0038FF32 /* 待完成.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2422,8 +2410,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MyMemoryDebris/MyMemoryDebris.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = F7C352F4MW;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2436,8 +2424,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.chenxi.shanniankapian;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "8b85f37c-9d3e-479a-a659-b09df87165ea";
+				PROVISIONING_PROFILE_SPECIFIER = newnewnewnenwenweewewewewew;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -2447,8 +2435,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MyMemoryDebris/MyMemoryDebris.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = F7C352F4MW;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2461,8 +2449,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.chenxi.shanniankapian;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "8b85f37c-9d3e-479a-a659-b09df87165ea";
+				PROVISIONING_PROFILE_SPECIFIER = newnewnewnenwenweewewewewew;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -2525,13 +2513,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Today/Today.entitlements;
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = F7C352F4MW;
 				INFOPLIST_FILE = Today/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.chenxi.shanniankapian.Today;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "cbdc42bd-8157-45c7-ae73-300bebdf1b20";
+				PROVISIONING_PROFILE_SPECIFIER = xiaoshanniannewewewewewewewe;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2541,13 +2532,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Today/Today.entitlements;
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = F7C352F4MW;
 				INFOPLIST_FILE = Today/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.chenxi.shanniankapian.Today;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "cbdc42bd-8157-45c7-ae73-300bebdf1b20";
+				PROVISIONING_PROFILE_SPECIFIER = xiaoshanniannewewewewewewewe;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

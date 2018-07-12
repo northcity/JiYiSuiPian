@@ -18,6 +18,7 @@
 
 #import "TouchIDScreen.h"
 #import "BCShanNianKaPianManager.h"
+#import "ShanNianMuLuViewController.h"
 
 @interface AppDelegate ()
 
@@ -297,6 +298,24 @@
     
     
 }
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    if ([[url absoluteString] hasPrefix:@"comchenxijiyisuipian://red"])
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:[NSString stringWithFormat:@"你点击了%@按钮",[url host]] delegate:nil cancelButtonTitle:@"好的👌" otherButtonTitles:nil, nil];
+        
+        ShanNianMuLuViewController *mainTextVc = [[ShanNianMuLuViewController alloc] init];
+        //                UINavigationController *rootVC = (UINavigationController *)[UIApplication sharedApplication].delegate.window.rootViewController;
+        UINavigationController *navigationVC = (UINavigationController *)[UIApplication sharedApplication].delegate.window.rootViewController;
+        NSMutableArray *navContollers=[NSMutableArray arrayWithArray:navigationVC.viewControllers];
+
+        [navigationVC pushViewController:mainTextVc animated:YES];
+//        [alert show];
+    }
+    return  YES;
+}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

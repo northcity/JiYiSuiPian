@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMemoryDebris/ShanNianController/ShanNianViewController.m"
-            timestampString = "551616107.066981"
+            timestampString = "552276524.790843"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "101"
@@ -26,7 +26,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMemoryDebris/ShanNianController/ShanNianViewController.m"
-            timestampString = "551616107.067071"
+            timestampString = "552276524.791293"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1411"
@@ -42,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMemoryDebris/ShanNianController/ShanNianViewController.m"
-            timestampString = "551616107.067131"
+            timestampString = "552276524.7915601"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1417"
@@ -65,6 +65,70 @@
             endingLineNumber = "408"
             landmarkName = "-tableView:editActionsForRowAtIndexPath:"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Today/TodayViewController.m"
+            timestampString = "552280236.546687"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "-pushMatherApp"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Today/TodayViewController.m"
+            timestampString = "552280236.547153"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "-pushMatherApp"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[TodayViewController pushMatherApp]"
+                  moduleName = "Today"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chenxi/Desktop/%E6%88%91%E7%9A%84%E5%B7%A5%E7%A8%8BGIT/%E6%88%91%E7%9A%84%E5%9B%9E%E5%BF%86%E7%A2%8E%E7%89%87/JiYiSuiPian/Today/TodayViewController.m"
+                  timestampString = "552279142.482852"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "43"
+                  endingLineNumber = "43"
+                  offsetFromSymbolStart = "84">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__36-[TodayViewController pushMatherApp]_block_invoke"
+                  moduleName = "Today"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chenxi/Desktop/%E6%88%91%E7%9A%84%E5%B7%A5%E7%A8%8BGIT/%E6%88%91%E7%9A%84%E5%9B%9E%E5%BF%86%E7%A2%8E%E7%89%87/JiYiSuiPian/Today/TodayViewController.m"
+                  timestampString = "552279142.484889"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "45"
+                  endingLineNumber = "45"
+                  offsetFromSymbolStart = "24">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
