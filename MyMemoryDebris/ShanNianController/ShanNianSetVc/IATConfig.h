@@ -33,6 +33,8 @@
 @property (nonatomic, strong) NSString *accent;
 
 @property (nonatomic, copy) NSString *sousuoyinqin;
+@property (nonatomic, copy) NSString *icoloudShiJianChuo;
+@property (nonatomic, copy) NSString *laterIcoloudShiJianChuo;
 
 
 @property (nonatomic, strong) NSString *dot;

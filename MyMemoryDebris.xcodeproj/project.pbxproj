@@ -1431,8 +1431,8 @@
 		15619FAB20CF560200F80F69 /* iCloud设置 */ = {
 			isa = PBXGroup;
 			children = (
-				15619FAC20CF560200F80F69 /* LZiCloudViewController.m */,
 				15619FAD20CF560200F80F69 /* LZiCloudViewController.h */,
+				15619FAC20CF560200F80F69 /* LZiCloudViewController.m */,
 			);
 			path = "iCloud设置";
 			sourceTree = "<group>";

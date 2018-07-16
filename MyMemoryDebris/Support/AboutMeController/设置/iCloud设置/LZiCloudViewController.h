@@ -10,4 +10,5 @@
 
 @interface LZiCloudViewController : LZBaseViewController
 
+@property(nonatomic,strong)UILabel *shiJianChaLabel;
 @end

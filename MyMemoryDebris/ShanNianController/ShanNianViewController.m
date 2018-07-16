@@ -18,6 +18,8 @@
 #import "PopupView.h"
 #import "WaveView.h"
 #import "PcmPlayer.h"
+#import "LZSqliteTool.h"
+#import "LZiCloud.h"
 
 #import<AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
@@ -169,6 +171,47 @@
     });
 }
 
+- (void)tongBuiCloud{
+    
+    NSString *path = [LZSqliteTool LZCreateSqliteWithName:LZSqliteName];
+    NSLog(@"我是路径 === %@",path);
+    [LZiCloud uploadToiCloud:path resultBlock:^(NSError *error) {
+        if (error == nil) {
+//                        [SVProgressHUD showInfoWithStatus:@"同步成功"];
+            
+        } else {
+            
+//                        [SVProgressHUD showErrorWithStatus:@"同步出错"];
+        }
+        
+    }];
+    
+}
+
++(NSString *)getNowTimeTimestamp{
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init] ;
+    
+    [formatter setDateStyle:NSDateFormatterMediumStyle];
+    
+    [formatter setTimeStyle:NSDateFormatterShortStyle];
+    
+    [formatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"]; // ----------设置你想要的格式,hh与HH的区别:分别表示12小时制,24小时制
+    
+    //设置时区,这个对于时间的处理有时很重要
+    
+    NSTimeZone* timeZone = [NSTimeZone timeZoneWithName:@"Asia/Shanghai"];
+    
+    [formatter setTimeZone:timeZone];
+    
+    NSDate *datenow = [NSDate date];//现在时间,你可以输出来看下是什么格式
+    
+    NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)[datenow timeIntervalSince1970]];
+    
+    return timeSp;
+    
+}
+
 #pragma mark ========== 生命周期 ===========
 
 - (void)viewDidLoad {
@@ -177,6 +220,9 @@
     [self createBaseUI];
     [self createUI];
     [self initOtherUI];
+    [self tongBuiCloud];
+    IATConfig *config = [IATConfig sharedInstance];
+   config.icoloudShiJianChuo = [ShanNianViewController getNowTimeTimestamp];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -552,9 +598,28 @@
         
 //        https://cn.bing.com/search?q=%E4%BD%A0%E5%A5%BD&qs=n&form=QBLH&sp=-1&pq=%E4%BD%A0%E5%A5%BD&sc=8-6&sk=&cvid=E6B95787A8F7430BA283E4431CF77526
         
-         NSString *urlString = [NSString stringWithFormat:@"https://cn.bing.com/search?q=%@",_speakTextView.text];
+        NSString *urlString = @"";
         
-//        NSString *urlString = [NSString stringWithFormat:@"https://www.baidu.com/s?wd=%@",_speakTextView.text];
+
+        IATConfig *config = [IATConfig sharedInstance];
+        if ([config.sousuoyinqin isEqualToString:@"百度搜索"]) {
+                urlString = [NSString stringWithFormat:@"https://www.baidu.com/s?wd=%@",_speakTextView.text];
+        }
+        if ([config.sousuoyinqin isEqualToString:@"必应搜索"]) {
+                urlString = [NSString stringWithFormat:@"https://cn.bing.com/search?q=%@",_speakTextView.text];
+        }
+        
+        if ([config.sousuoyinqin isEqualToString:@"搜狗搜索"]) {
+            urlString = [NSString stringWithFormat:@"https://www.sogou.com/web?query=%@",_speakTextView.text];
+        }
+        
+        if ([config.sousuoyinqin isEqualToString:@"谷歌搜索"]) {
+            urlString = [NSString stringWithFormat:@"https://www.google.com.hk/search?safe=strict&source=hp&ei=QB1KW6LIK-rS0gLox5PgBg&q=%@",_speakTextView.text];
+            
+        }
+        
+        
+
         NSString *encoded=[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:encoded]]];
         NSLog(@"ISR Results(json)：%@",  self.result);
@@ -860,7 +925,25 @@
     UILabel *titleLabel = [[UILabel alloc]initWithFrame:titleView.bounds];
     titleLabel.textAlignment = NSTextAlignmentCenter;
     titleLabel.backgroundColor = [UIColor whiteColor];
-    titleLabel.text = @"百度搜索";
+    titleLabel.font = [UIFont fontWithName:@"HeiTi SC" size:13];
+    
+    UIImageView *iconImageView = [[UIImageView alloc]init];
+    iconImageView.frame = CGRectMake(kAUTOWIDTH(5), kAUTOHEIGHT(6), kAUTOWIDTH(22), kAUTOHEIGHT(22));
+    
+    IATConfig *config = [IATConfig sharedInstance];
+    if ([config.sousuoyinqin isEqualToString:@"百度搜索"]) {
+        titleLabel.text = @"百度搜索";
+        iconImageView.image = [UIImage imageNamed:@"百度搜索"];
+    }
+    if ([config.sousuoyinqin isEqualToString:@"必应搜索"]) {
+        titleLabel.text = @"必应搜索";
+    }
+    if ([config.sousuoyinqin isEqualToString:@"搜狗搜索"]) {
+        titleLabel.text = @"搜狗搜索";
+    }
+    if ([config.sousuoyinqin isEqualToString:@"谷歌搜索"]) {
+        titleLabel.text = @"谷歌搜索";
+    }
     
     titleView.layer.shadowColor=[UIColor grayColor].CGColor;
     titleView.layer.shadowOffset=CGSizeMake(0,0.5);
@@ -875,6 +958,8 @@
     self.webView.UIDelegate = self;
     
     [titleView addSubview:titleLabel];
+    [titleView addSubview:iconImageView];
+
     [self.webFatherView addSubview:titleView];
     [self.webFatherView sendSubviewToBack:self.webView];
     [self.webFatherView addSubview:self.webView];

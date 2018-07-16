@@ -96,6 +96,28 @@
     application.shortcutItems = @[cameraItem];
     
 }
+
+-(void)updateFromiCloud{
+    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstText"]){
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstText"];
+        //第一次启动
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1* NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [LZiCloud downloadFromiCloudWithBlock:^(id obj) {
+                
+                if (obj != nil) {
+                    
+                    NSData *data = (NSData *)obj;
+                    
+                    [data writeToFile:[LZSqliteTool LZCreateSqliteWithName:LZSqliteName] atomically:YES];
+                    [SVProgressHUD showInfoWithStatus:@"同步成功"];
+                } else {
+                    
+                    [SVProgressHUD showErrorWithStatus:@"同步出错"];
+                }
+            }];        });
+    }
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     [self setup3DTouch:application];
@@ -105,7 +127,7 @@
     
 //    dispatch_queue_t queue=dispatch_get_main_queue();
 //    dispatch_async(queue, ^{
-//        [self tongBuiCloud];
+        [self updateFromiCloud];
 //             });
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     LaunchViewController *Lvc = [[LaunchViewController alloc]init];
@@ -123,20 +145,7 @@
     return YES;
 }
 
-- (void)tongBuiCloud{
-    
-    NSString *path = [LZSqliteTool LZCreateSqliteWithName:LZSqliteName];
-    [LZiCloud uploadToiCloud:path resultBlock:^(NSError *error) {
-        if (error == nil) {
-//            [SVProgressHUD showInfoWithStatus:@"同步成功"];
-        } else {
-            
-//            [SVProgressHUD showErrorWithStatus:@"同步出错"];
-        }
-        
-    }];
-    
-}
+
 
 - (void)createSqlite {
     
