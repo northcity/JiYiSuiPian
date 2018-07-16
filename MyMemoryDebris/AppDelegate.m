@@ -15,6 +15,7 @@
 #import "LZGestureScreen.h"
 #import "TouchIdUnlock.h"
 #import "LZSqliteTool.h"
+#import "LZiCloud.h"
 
 #import "TouchIDScreen.h"
 #import "BCShanNianKaPianManager.h"
@@ -102,8 +103,12 @@
     [self chuShiHuaBomb];
     [self verifyPassword];
     
+//    dispatch_queue_t queue=dispatch_get_main_queue();
+//    dispatch_async(queue, ^{
+//        [self tongBuiCloud];
+//             });
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
-    ShanNianViewController *Lvc = [[ShanNianViewController alloc]init];
+    LaunchViewController *Lvc = [[LaunchViewController alloc]init];
     UINavigationController*nav = [[UINavigationController alloc]initWithRootViewController:Lvc];
     self.window.rootViewController = nav;
     
@@ -116,6 +121,21 @@
     [self createSqlite];
     
     return YES;
+}
+
+- (void)tongBuiCloud{
+    
+    NSString *path = [LZSqliteTool LZCreateSqliteWithName:LZSqliteName];
+    [LZiCloud uploadToiCloud:path resultBlock:^(NSError *error) {
+        if (error == nil) {
+//            [SVProgressHUD showInfoWithStatus:@"同步成功"];
+        } else {
+            
+//            [SVProgressHUD showErrorWithStatus:@"同步出错"];
+        }
+        
+    }];
+    
 }
 
 - (void)createSqlite {

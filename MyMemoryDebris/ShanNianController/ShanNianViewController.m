@@ -549,7 +549,12 @@
         [self.waveView stopAnimating];
         [self createWebView];
         [self createWebViewAnimation];
-        NSString *urlString = [NSString stringWithFormat:@"https://www.baidu.com/s?wd=%@",_speakTextView.text];
+        
+//        https://cn.bing.com/search?q=%E4%BD%A0%E5%A5%BD&qs=n&form=QBLH&sp=-1&pq=%E4%BD%A0%E5%A5%BD&sc=8-6&sk=&cvid=E6B95787A8F7430BA283E4431CF77526
+        
+         NSString *urlString = [NSString stringWithFormat:@"https://cn.bing.com/search?q=%@",_speakTextView.text];
+        
+//        NSString *urlString = [NSString stringWithFormat:@"https://www.baidu.com/s?wd=%@",_speakTextView.text];
         NSString *encoded=[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:encoded]]];
         NSLog(@"ISR Results(json)：%@",  self.result);
@@ -1126,6 +1131,7 @@
 }
 
 - (void)kaiShiAnXiaShiBieBtn{
+
     if ([[UIDevice currentDevice].systemVersion floatValue] >= 10.0) {
         if (@available(iOS 10.0, *)) {
             UIImpactFeedbackGenerator*impactLight = [[UIImpactFeedbackGenerator alloc]initWithStyle:UIImpactFeedbackStyleLight];
@@ -1133,6 +1139,7 @@
         }
     } else {
         AudioServicesPlaySystemSound(1519);
+
     }
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self startBtnHandler:nil];

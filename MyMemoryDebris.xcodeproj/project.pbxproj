@@ -280,6 +280,11 @@
 		157E46A020EA10F6005836B7 /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 157E469F20EA10F6005836B7 /* TodayViewController.m */; };
 		157E46A720EA10F7005836B7 /* Today.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 157E469A20EA10F4005836B7 /* Today.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		15B93E8D20EB152A0038FF32 /* 待完成.png in Resources */ = {isa = PBXBuildFile; fileRef = 15B93E8C20EB15220038FF32 /* 待完成.png */; };
+		F74C998A20FB462F000B794D /* SouSuoSheZhiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F74C998920FB462F000B794D /* SouSuoSheZhiViewController.m */; };
+		F74C998E20FB8C68000B794D /* 百度搜索@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F74C998D20FB8C68000B794D /* 百度搜索@3x.png */; };
+		F74C999020FB8CC1000B794D /* 必应@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F74C998F20FB8CC1000B794D /* 必应@3x.png */; };
+		F74C999220FB8CC8000B794D /* 谷歌搜索@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F74C999120FB8CC8000B794D /* 谷歌搜索@3x.png */; };
+		F74C999420FB8CCE000B794D /* 搜狗搜索@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F74C999320FB8CCE000B794D /* 搜狗搜索@3x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -750,6 +755,12 @@
 		157E469F20EA10F6005836B7 /* TodayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TodayViewController.m; sourceTree = "<group>"; };
 		157E46A420EA10F7005836B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15B93E8C20EB15220038FF32 /* 待完成.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "待完成.png"; sourceTree = "<group>"; };
+		F74C998820FB462F000B794D /* SouSuoSheZhiViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SouSuoSheZhiViewController.h; sourceTree = "<group>"; };
+		F74C998920FB462F000B794D /* SouSuoSheZhiViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SouSuoSheZhiViewController.m; sourceTree = "<group>"; };
+		F74C998D20FB8C68000B794D /* 百度搜索@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "百度搜索@3x.png"; sourceTree = "<group>"; };
+		F74C998F20FB8CC1000B794D /* 必应@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "必应@3x.png"; sourceTree = "<group>"; };
+		F74C999120FB8CC8000B794D /* 谷歌搜索@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "谷歌搜索@3x.png"; sourceTree = "<group>"; };
+		F74C999320FB8CCE000B794D /* 搜狗搜索@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "搜狗搜索@3x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -998,12 +1009,12 @@
 				15619EAB20CF560200F80F69 /* IATConfigViewController.m */,
 				15619EAC20CF560200F80F69 /* ISRDataHelper.m */,
 				15619EAD20CF560200F80F69 /* IATConfig.h */,
+				15619EB120CF560200F80F69 /* IATConfig.m */,
+				15619EB320CF560200F80F69 /* ShanNianVoiceSetViewController.h */,
 				15619EAE20CF560200F80F69 /* ShanNianVoiceSetViewController.m */,
 				15619EAF20CF560200F80F69 /* IATConfigViewController.h */,
 				15619EB020CF560200F80F69 /* ShanNianVoiceSetCell.m */,
-				15619EB120CF560200F80F69 /* IATConfig.m */,
 				15619EB220CF560200F80F69 /* ISRDataHelper.h */,
-				15619EB320CF560200F80F69 /* ShanNianVoiceSetViewController.h */,
 				15619EB420CF560200F80F69 /* ShanNianVoiceSetCell.xib */,
 				15619EB520CF560200F80F69 /* ShanNianMiMa */,
 			);
@@ -1126,6 +1137,7 @@
 		15619F1B20CF560200F80F69 /* AboutMeController */ = {
 			isa = PBXGroup;
 			children = (
+				F74C998720FB45F0000B794D /* 搜索设置 */,
 				1561A03120CF560200F80F69 /* newProgress */,
 				1561A02D20CF560200F80F69 /* Factory.h */,
 				1561A01420CF560200F80F69 /* Factory.m */,
@@ -1794,6 +1806,19 @@
 			path = Today;
 			sourceTree = "<group>";
 		};
+		F74C998720FB45F0000B794D /* 搜索设置 */ = {
+			isa = PBXGroup;
+			children = (
+				F74C998D20FB8C68000B794D /* 百度搜索@3x.png */,
+				F74C998F20FB8CC1000B794D /* 必应@3x.png */,
+				F74C999120FB8CC8000B794D /* 谷歌搜索@3x.png */,
+				F74C999320FB8CCE000B794D /* 搜狗搜索@3x.png */,
+				F74C998820FB462F000B794D /* SouSuoSheZhiViewController.h */,
+				F74C998920FB462F000B794D /* SouSuoSheZhiViewController.m */,
+			);
+			path = "搜索设置";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1880,7 +1905,7 @@
 				TargetAttributes = {
 					15619E4920CF54CA00F80F69 = {
 						CreatedOnToolsVersion = 9.0;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -1905,7 +1930,7 @@
 					};
 					157E469920EA10F4005836B7 = {
 						CreatedOnToolsVersion = 9.0;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -1965,6 +1990,7 @@
 				1561A12820CF560300F80F69 /* iconshoudiantong.png in Resources */,
 				1561A0B020CF560300F80F69 /* butt_18@3x.png in Resources */,
 				1561A12320CF560300F80F69 /* ico_分享1@3x.png in Resources */,
+				F74C999220FB8CC8000B794D /* 谷歌搜索@3x.png in Resources */,
 				155845A720D3AD6500A08DA8 /* Info.plist in Resources */,
 				155D954220E08660002985D5 /* Info.plist in Resources */,
 				1561A0A920CF560300F80F69 /* houtui@3x.png in Resources */,
@@ -1975,6 +2001,7 @@
 				1561A07C20CF560300F80F69 /* newbeginSpeakButton.png in Resources */,
 				1561A0A720CF560300F80F69 /* houtui@2x.png in Resources */,
 				1561A0AE20CF560300F80F69 /* home_@2x.png in Resources */,
+				F74C999020FB8CC1000B794D /* 必应@3x.png in Resources */,
 				1561A06820CF560300F80F69 /* 收藏.png in Resources */,
 				1561A07B20CF560300F80F69 /* 视频-开始-播放-2.png in Resources */,
 				1561A08920CF560300F80F69 /* 设置 (1).png in Resources */,
@@ -1983,6 +2010,7 @@
 				1561A0EA20CF560300F80F69 /* gesture_introduce@3x.png in Resources */,
 				1561A17420CFBBC700F80F69 /* Localizable.strings in Resources */,
 				1561A0BC20CF560300F80F69 /* SVProgressHUD.bundle in Resources */,
+				F74C998E20FB8C68000B794D /* 百度搜索@3x.png in Resources */,
 				1561A0B420CF560300F80F69 /* arrow_right@2x.png in Resources */,
 				155D954520E087B3002985D5 /* 人脸对比icon.png in Resources */,
 				1561A08D20CF560300F80F69 /* 女士.png in Resources */,
@@ -2002,6 +2030,7 @@
 				1561A08B20CF560300F80F69 /* 灵感.png in Resources */,
 				1561A06320CF560300F80F69 /* 指纹认证大.png in Resources */,
 				1561A11D20CF560300F80F69 /* zhihuIcon.jpg in Resources */,
+				F74C999420FB8CCE000B794D /* 搜狗搜索@3x.png in Resources */,
 				1561A0AA20CF560300F80F69 /* warn@2x.png in Resources */,
 				1561A08A20CF560300F80F69 /* newbeginButtonImage.png in Resources */,
 				1561A08320CF560300F80F69 /* 英语@3x.png in Resources */,
@@ -2174,6 +2203,7 @@
 				1561A0F520CF560300F80F69 /* IQTitleBarButtonItem.m in Sources */,
 				1561A05D20CF560300F80F69 /* DatePickerView.m in Sources */,
 				1561A04820CF560300F80F69 /* ZZRDocument.m in Sources */,
+				F74C998A20FB462F000B794D /* SouSuoSheZhiViewController.m in Sources */,
 				1561A0FF20CF560300F80F69 /* IQUIView+Hierarchy.m in Sources */,
 				1561A05720CF560300F80F69 /* ISRDataHelper.m in Sources */,
 				1561A0BD20CF560300F80F69 /* LZTabBarController.m in Sources */,
@@ -2410,8 +2440,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MyMemoryDebris/MyMemoryDebris.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F7C352F4MW;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2424,8 +2454,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.chenxi.shanniankapian;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8b85f37c-9d3e-479a-a659-b09df87165ea";
-				PROVISIONING_PROFILE_SPECIFIER = newnewnewnenwenweewewewewew;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -2435,8 +2465,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MyMemoryDebris/MyMemoryDebris.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F7C352F4MW;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2449,8 +2479,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.chenxi.shanniankapian;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8b85f37c-9d3e-479a-a659-b09df87165ea";
-				PROVISIONING_PROFILE_SPECIFIER = newnewnewnenwenweewewewewew;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -2513,16 +2543,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Today/Today.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F7C352F4MW;
 				INFOPLIST_FILE = Today/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.chenxi.shanniankapian.Today;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "cbdc42bd-8157-45c7-ae73-300bebdf1b20";
-				PROVISIONING_PROFILE_SPECIFIER = xiaoshanniannewewewewewewewe;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2532,16 +2562,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Today/Today.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F7C352F4MW;
 				INFOPLIST_FILE = Today/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.chenxi.shanniankapian.Today;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "cbdc42bd-8157-45c7-ae73-300bebdf1b20";
-				PROVISIONING_PROFILE_SPECIFIER = xiaoshanniannewewewewewewewe;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

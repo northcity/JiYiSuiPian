@@ -12,6 +12,13 @@
 #define CHINESE     @"zh_cn";
 #define SICHUANESE  @"lmz";
 
+
+#define BAIDU_SEARCH @"百度搜索";
+#define BIYING_SEARCH @"必应搜索";
+#define SOUGOU_SEARCH @"搜狗搜索";
+#define WEIJIBAIKE_SEARCH @"谷歌搜索";
+
+
 #import "IATConfig.h"
 
 @implementation IATConfig
@@ -43,6 +50,9 @@
     _dot = @"1";
     _sampleRate = @"16000";
     _language = CHINESE;
+    
+    _sousuoyinqin = BAIDU_SEARCH;
+    
     _accent = PUTONGHUA;
     _haveView = NO;
     _accentNickName = [[NSArray alloc] initWithObjects:NSLocalizedString(@"K_LangCant", nil), NSLocalizedString(@"K_LangChin", nil), NSLocalizedString(@"K_LangEng", nil), NSLocalizedString(@"K_LangSzec", nil), nil];

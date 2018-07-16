@@ -32,6 +32,9 @@
 @property (nonatomic, strong) NSString *language;
 @property (nonatomic, strong) NSString *accent;
 
+@property (nonatomic, copy) NSString *sousuoyinqin;
+
+
 @property (nonatomic, strong) NSString *dot;
 @property (nonatomic, strong) NSString *sampleRate;
 

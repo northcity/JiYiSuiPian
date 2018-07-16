@@ -11,7 +11,7 @@
 #import "LZDataModel.h"
 #import "PcmPlayer.h"
 #import "PcmPlayerDelegate.h"
-
+#import <AudioToolbox/AudioToolbox.h>
 
 @interface ShanNianTableViewCell : UITableViewCell<PcmPlayerDelegate>
 @property(nonatomic,strong)UIView * label;

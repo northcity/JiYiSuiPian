@@ -16,6 +16,8 @@
 #import "LZBaseNavigationController.h"
 #import "LZiCloudViewController.h"
 
+#import "SouSuoSheZhiViewController.h"
+
 const CGFloat kNavigationBarHeight = 44;
 const CGFloat kStatusBarHeight = 20;
 
@@ -196,7 +198,10 @@ const CGFloat kStatusBarHeight = 20;
     if (section == 0) {
         
         return @"基本通用设置";
-    } else {
+    }else if (section == 1){
+        return @"使用设置";
+    }
+    else {
         
         return @"更多设置";
     }
@@ -207,7 +212,7 @@ const CGFloat kStatusBarHeight = 20;
 //}
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 2;
+    return 3;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (PNCisIPHONEX) {
@@ -235,7 +240,7 @@ const CGFloat kStatusBarHeight = 20;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (indexPath.row == 4 && indexPath.section == 1) {
+    if (indexPath.row == 4 && indexPath.section == 2) {
         NSString *statusString = [[NSUserDefaults standardUserDefaults] objectForKey:@"KaiGuanShiFouDaKai"];
         if ([statusString isEqualToString:@"关"]) {
             return 1;
@@ -321,20 +326,26 @@ const CGFloat kStatusBarHeight = 20;
     
     if (indexPath.section == 1 && indexPath.row == 0) {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.imageView.image = [UIImage imageNamed:@"new搜索"];
+        cell.textLabel.text = @"搜索设置";
+    }
+    
+    if (indexPath.section == 2 && indexPath.row == 0) {
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.imageView.image = [UIImage imageNamed:@"反馈11"];
         cell.textLabel.text = @"发送反馈";
     }
-    if (indexPath.section == 1 && indexPath.row == 1) {
+    if (indexPath.section == 2 && indexPath.row == 1) {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.imageView.image = [UIImage imageNamed:@"发送11"];
         cell.textLabel.text = @"分享给朋友";
     }
-    if (indexPath.section == 1 && indexPath.row == 2) {
+    if (indexPath.section == 2 && indexPath.row == 2) {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.imageView.image = [UIImage imageNamed:@"点赞11"];
         cell.textLabel.text = @"给个小心心";
     }
-    if (indexPath.section == 1 && indexPath.row == 3) {
+    if (indexPath.section == 2 && indexPath.row == 3) {
         
         NSString *statusString = [[NSUserDefaults standardUserDefaults] objectForKey:@"KaiGuanShiFouDaKai"];
         if ([statusString isEqualToString:@"开"]) {
@@ -405,21 +416,28 @@ const CGFloat kStatusBarHeight = 20;
         LZBaseNavigationController *nav = [[LZBaseNavigationController alloc]initWithRootViewController:bvc];
         [self presentViewController:nav animated:YES completion:nil];
     }
-
+    
     if (indexPath.section == 1 && indexPath.row == 0) {
+        SouSuoSheZhiViewController *bvc = [[SouSuoSheZhiViewController alloc]init];
+        LZBaseNavigationController *nav = [[LZBaseNavigationController alloc]initWithRootViewController:bvc];
+        [self presentViewController:nav animated:YES completion:nil];
+    }
+    
+
+    if (indexPath.section == 2 && indexPath.row == 0) {
         [self pushEmail];
     }
     
-    if (indexPath.section == 1 && indexPath.row == 1) {
+    if (indexPath.section == 2 && indexPath.row == 1) {
         [self shareImage];
     }
     
-    if (indexPath.section == 1 && indexPath.row == 2) {
+    if (indexPath.section == 2 && indexPath.row == 2) {
         NSString *itunesurl = @"itms-apps://itunes.apple.com/cn/app/id1397149726?mt=8&action=write-review";
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:itunesurl]];
     }
     
-    if (indexPath.section == 1 && indexPath.row == 3){
+    if (indexPath.section == 2 && indexPath.row == 3){
         NSString *statusString = [[NSUserDefaults standardUserDefaults] objectForKey:@"KaiGuanShiFouDaKai"];
         if ([statusString isEqualToString:@"开"]) {
             AboutViewController * ab = [[AboutViewController alloc]init];
