@@ -185,6 +185,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 #define SOU_SUO  @"SOUSUO"
 
+#define current_ZHUTI   @"currentzhuti"
 
 
 

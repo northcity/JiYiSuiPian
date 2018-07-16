@@ -17,6 +17,7 @@
 #import "LZiCloudViewController.h"
 
 #import "SouSuoSheZhiViewController.h"
+#import "ZhuTiViewController.h"
 
 const CGFloat kNavigationBarHeight = 44;
 const CGFloat kStatusBarHeight = 20;
@@ -417,6 +418,11 @@ const CGFloat kStatusBarHeight = 20;
         [self presentViewController:nav animated:YES completion:nil];
     }
     
+    if (indexPath.section == 0 && indexPath.row == 3) {
+        ZhuTiViewController * zVc = [[ZhuTiViewController alloc]init];
+        [self presentViewController:zVc animated:YES completion:nil];
+
+    }
     if (indexPath.section == 1 && indexPath.row == 0) {
         SouSuoSheZhiViewController *bvc = [[SouSuoSheZhiViewController alloc]init];
         LZBaseNavigationController *nav = [[LZBaseNavigationController alloc]initWithRootViewController:bvc];

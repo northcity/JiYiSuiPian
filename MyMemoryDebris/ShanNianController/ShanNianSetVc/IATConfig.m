@@ -52,6 +52,7 @@
     _language = CHINESE;
     
     _sousuoyinqin = BAIDU_SEARCH;
+    _zhuTiSheZhi = @"白色主题";
     
     _accent = PUTONGHUA;
     _haveView = NO;

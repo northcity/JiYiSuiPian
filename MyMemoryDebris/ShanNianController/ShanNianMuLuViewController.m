@@ -263,9 +263,9 @@
     }
 
 
-    if (indexPath.row == 1) {
-        cell.label.backgroundColor  = PNCColor(164, 185, 277);
-    }
+//    if (indexPath.row == 1) {
+//        cell.label.backgroundColor  = PNCColor(164, 185, 277);
+//    }
     __weak typeof(self)weakSelf= self;
     [cell setContentModel:model];
   

@@ -1,24 +1,24 @@
 //
-//  SouSuoSheZhiViewController.m
+//  ZhuTiViewController.m
 //  MyMemoryDebris
 //
-//  Created by 北城 on 2018/7/15.
+//  Created by 北城 on 2018/7/16.
 //  Copyright © 2018年 chenxi. All rights reserved.
 //
 
-#import "SouSuoSheZhiViewController.h"
+#import "ZhuTiViewController.h"
 #import "ShanNianVoiceSetCell.h"
 #import "IATConfig.h"
 
 
-@interface SouSuoSheZhiViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface ZhuTiViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (strong, nonatomic)UITableView *tableView;
 
 @property(nonatomic,strong)UISwitch *zhuTiKaiGuanButon;
 
 @end
 
-@implementation SouSuoSheZhiViewController
+@implementation ZhuTiViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -26,7 +26,7 @@
     
     //    [self setupNaviBar];
     [self initOtherUI];
-    self.navTitleLabel.text = @"搜索设置";
+    self.navTitleLabel.text = @"主题设置";
     [self.backBtn setImage:[UIImage imageNamed:@"返回箭头2"] forState:UIControlStateNormal];
     
     [self tableView];
@@ -60,28 +60,28 @@
         
         [self.tableView registerNib:[UINib nibWithNibName:@"MainContentCell" bundle:nil] forCellReuseIdentifier:@"cellID"];
         [self.tableView registerNib:[UINib nibWithNibName:@"ShanNianVoiceSetCell" bundle:nil] forCellReuseIdentifier:@"cell"];
-
+        
         self.tableView.backgroundColor = [UIColor whiteColor];
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         
         IATConfig *instance = [IATConfig sharedInstance];
-        if ([instance.sousuoyinqin isEqualToString:@"百度搜索"]) {
-            [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]
+        if ([instance.zhuTiSheZhi isEqualToString:@"白色主题"]) {
+            [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]
                                         animated:YES
                                   scrollPosition:UITableViewScrollPositionNone];
         }
-        if ([instance.sousuoyinqin isEqualToString:@"必应搜索"]) {
-            [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1]
+        if ([instance.zhuTiSheZhi isEqualToString:@"黑色主题"]) {
+            [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]
                                         animated:YES
                                   scrollPosition:UITableViewScrollPositionNone];
         }
-        if ([instance.sousuoyinqin isEqualToString:@"搜狗搜索"]) {
-            [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:1]
+        if ([instance.zhuTiSheZhi isEqualToString:@"粉红主题"]) {
+            [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]
                                         animated:YES
                                   scrollPosition:UITableViewScrollPositionNone];
         }
-        if ([instance.sousuoyinqin isEqualToString:@"谷歌搜索"]) {
-            [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:1]
+        if ([instance.zhuTiSheZhi isEqualToString:@"情怀主题"]) {
+            [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]
                                         animated:YES
                                   scrollPosition:UITableViewScrollPositionNone];
         }
@@ -100,91 +100,41 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
-    if (section == 0) {
-        return 1;
-    }else{
-        return 5;
-    }
-    return 1;
+        return 4;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    
-    return 2;
+    return 1;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (indexPath.section == 0) {
-        
-        MainContentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellID" forIndexPath:indexPath];
-    
-            if (indexPath.row == 0) {
-//                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-                cell.imageView.image = [UIImage imageNamed:@"new搜索"];
-//                cell.textLabel.text = @"打开搜索";
-                
-                
-                if (!_zhuTiKaiGuanButon) {
-                    _zhuTiKaiGuanButon = [[UISwitch alloc]initWithFrame:CGRectMake(cell.bounds.size.width - kAUTOWIDTH(70), CGRectGetMinY(cell.label.frame) + 10, kAUTOWIDTH(50), 50)];
-                    if (PNCisIPAD) {
-                        _zhuTiKaiGuanButon.frame = CGRectMake(cell.bounds.size.width - 70, CGRectGetMinY(cell.label.frame) + 10, 50, 50);
-                    }
-                }
-                [cell.contentView addSubview:_zhuTiKaiGuanButon];
-                [_zhuTiKaiGuanButon addTarget:self action:@selector(qieHuanZhuTiAction:) forControlEvents:UIControlEventTouchUpInside];
-                _zhuTiKaiGuanButon.transform = CGAffineTransformMakeScale(0.8,0.8);
-                _zhuTiKaiGuanButon.tintColor = [UIColor blackColor];
-                _zhuTiKaiGuanButon.onTintColor = [UIColor blackColor];
-                
-                if ([[BCUserDeafaults objectForKey:SOU_SUO] isEqualToString:@"1"]) {
-                    _zhuTiKaiGuanButon.on = YES;
-                    cell.textLabel.text = NSLocalizedString(@"关闭搜索", nil) ;
-                    
-                }else if([[BCUserDeafaults objectForKey:SOU_SUO] isEqualToString:@"0"]){
-                    _zhuTiKaiGuanButon.on = NO;
-                    cell.textLabel.text = NSLocalizedString(@"打开搜索", nil) ;
-                    
-                }else{
-                    _zhuTiKaiGuanButon.on = YES;
-                    cell.textLabel.text = NSLocalizedString(@"关闭搜索", nil) ;
-                    
-                }
-                
-            
-            
-        }
-        return cell;
-    }else{
+ 
         ShanNianVoiceSetCell * cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
         
         cell.backgroundColor = [UIColor clearColor];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         if (indexPath.row == 0) {
-            cell.imageView.image = [UIImage imageNamed:@"百度搜索"];
-            cell.textLabel.text = @"百度搜索";
+            cell.imageView.image = [UIImage imageNamed:@"圆环白"];
+            cell.imageView.layer.shadowOffset = CGSizeMake(0, 0);
+            cell.imageView.layer.shadowColor = [UIColor grayColor].CGColor;
+            cell.imageView.layer.shadowRadius = 5;
+            cell.imageView.layer.shadowOpacity = 0.5;
+            cell.textLabel.text = @"纯白主题";
         }
         if (indexPath.row == 1) {
-            cell.imageView.image = [UIImage imageNamed:@"必应"];
-            cell.textLabel.text = @"必应搜索";
+            cell.imageView.image = [UIImage imageNamed:@"圆环黑"];
+            cell.textLabel.text = @"曜黑主题";
         }
         if (indexPath.row == 2) {
-            cell.imageView.image = [UIImage imageNamed:@"搜狗搜索"];
-            cell.textLabel.text = @"搜狗搜索";
+            cell.imageView.image = [UIImage imageNamed:@"圆环粉红"];
+            cell.textLabel.text = @"粉红主题";
         }
         if (indexPath.row == 3) {
-            cell.imageView.image = [UIImage imageNamed:@"谷歌搜索"];
-            cell.textLabel.text = @"谷歌搜索";
+            cell.imageView.image = [UIImage imageNamed:@"锤子情怀"];
+            cell.textLabel.text = @"情怀主题";
         }
         return cell;
-    }
-    
-
-    
-  
-    
-    return nil;
 }
 
 - (void)qieHuanZhuTiAction:(UISwitch *)kaiGuanBtn{
@@ -204,14 +154,14 @@
         [BCUserDeafaults setObject:@"1" forKey:SOU_SUO];
         [BCUserDeafaults synchronize];
         cell.textLabel.text =  NSLocalizedString(@"关闭搜索", nil) ;
-//        [[NSNotificationCenter defaultCenter ] postNotificationName:@"CHANGEZHUTIDEFAULT" object:self];
+        //        [[NSNotificationCenter defaultCenter ] postNotificationName:@"CHANGEZHUTIDEFAULT" object:self];
         
     }else{
         [BCUserDeafaults setObject:@"0" forKey:SOU_SUO];
         [BCUserDeafaults synchronize];
         
         cell.textLabel.text = NSLocalizedString(@"打开搜索", nil) ;
-//        [[NSNotificationCenter defaultCenter ] postNotificationName:@"CHANGEZHUTI" object:nil];
+        //        [[NSNotificationCenter defaultCenter ] postNotificationName:@"CHANGEZHUTI" object:nil];
         
     }
     
@@ -220,31 +170,43 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     IATConfig *instance = [IATConfig sharedInstance];
-
-    if (indexPath.section == 1) {
+    
+    if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-            instance.sousuoyinqin = @"百度搜索";
+            instance.zhuTiSheZhi = @"白色主题";
             
-            [[NSUserDefaults standardUserDefaults] setObject:@"百度搜索" forKey:current_SS];
+            [[NSUserDefaults standardUserDefaults] setObject:@"白色主题" forKey:current_ZHUTI];
             [[NSUserDefaults standardUserDefaults] synchronize];
+            
+            [[NSNotificationCenter defaultCenter ] postNotificationName:@"CHANGEZHUTIBAISE" object:self];
+
         }
         if (indexPath.row == 1) {
-            instance.sousuoyinqin = @"必应搜索";
+            instance.zhuTiSheZhi = @"黑色主题";
             
-            [[NSUserDefaults standardUserDefaults] setObject:@"必应搜索" forKey:current_SS];
+            [[NSUserDefaults standardUserDefaults] setObject:@"黑色主题" forKey:current_ZHUTI];
             [[NSUserDefaults standardUserDefaults] synchronize];
+            
+            [[NSNotificationCenter defaultCenter ] postNotificationName:@"CHANGEZHUTIHEISE" object:self];
+
         }
         if (indexPath.row == 2) {
-            instance.sousuoyinqin = @"搜狗搜索";
+            instance.zhuTiSheZhi = @"粉红主题";
             
-            [[NSUserDefaults standardUserDefaults] setObject:@"搜狗搜索" forKey:current_SS];
+            [[NSUserDefaults standardUserDefaults] setObject:@"粉红主题" forKey:current_ZHUTI];
             [[NSUserDefaults standardUserDefaults] synchronize];
+            
+            [[NSNotificationCenter defaultCenter ] postNotificationName:@"CHANGEZHUTIFENHONG" object:self];
+
         }
         if (indexPath.row == 3) {
-            instance.sousuoyinqin = @"谷歌搜索";
+            instance.zhuTiSheZhi = @"情怀主题";
             
-            [[NSUserDefaults standardUserDefaults] setObject:@"谷歌搜索" forKey:current_SS];
+            [[NSUserDefaults standardUserDefaults] setObject:@"情怀主题" forKey:current_ZHUTI];
             [[NSUserDefaults standardUserDefaults] synchronize];
+            
+            [[NSNotificationCenter defaultCenter ] postNotificationName:@"CHANGEZHUTIQINGHUAI" object:self];
+
         }
     }
     

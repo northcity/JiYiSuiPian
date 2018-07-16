@@ -289,6 +289,11 @@
 		F74C999020FB8CC1000B794D /* 必应@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F74C998F20FB8CC1000B794D /* 必应@3x.png */; };
 		F74C999220FB8CC8000B794D /* 谷歌搜索@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F74C999120FB8CC8000B794D /* 谷歌搜索@3x.png */; };
 		F74C999420FB8CCE000B794D /* 搜狗搜索@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F74C999320FB8CCE000B794D /* 搜狗搜索@3x.png */; };
+		F7FC9AE520FCE96D00D0F4A2 /* ZhuTiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7FC9AE420FCE96D00D0F4A2 /* ZhuTiViewController.m */; };
+		F7FC9AEA20FCEE2300D0F4A2 /* 圆环黑@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F7FC9AE620FCEE2200D0F4A2 /* 圆环黑@3x.png */; };
+		F7FC9AEB20FCEE2300D0F4A2 /* 锤子情怀@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F7FC9AE720FCEE2200D0F4A2 /* 锤子情怀@3x.png */; };
+		F7FC9AEC20FCEE2300D0F4A2 /* 圆环粉红@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F7FC9AE820FCEE2200D0F4A2 /* 圆环粉红@3x.png */; };
+		F7FC9AED20FCEE2300D0F4A2 /* 圆环白@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F7FC9AE920FCEE2300D0F4A2 /* 圆环白@3x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -780,6 +785,12 @@
 		F74C998F20FB8CC1000B794D /* 必应@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "必应@3x.png"; sourceTree = "<group>"; };
 		F74C999120FB8CC8000B794D /* 谷歌搜索@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "谷歌搜索@3x.png"; sourceTree = "<group>"; };
 		F74C999320FB8CCE000B794D /* 搜狗搜索@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "搜狗搜索@3x.png"; sourceTree = "<group>"; };
+		F7FC9AE320FCE96D00D0F4A2 /* ZhuTiViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZhuTiViewController.h; sourceTree = "<group>"; };
+		F7FC9AE420FCE96D00D0F4A2 /* ZhuTiViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZhuTiViewController.m; sourceTree = "<group>"; };
+		F7FC9AE620FCEE2200D0F4A2 /* 圆环黑@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "圆环黑@3x.png"; sourceTree = "<group>"; };
+		F7FC9AE720FCEE2200D0F4A2 /* 锤子情怀@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "锤子情怀@3x.png"; sourceTree = "<group>"; };
+		F7FC9AE820FCEE2200D0F4A2 /* 圆环粉红@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "圆环粉红@3x.png"; sourceTree = "<group>"; };
+		F7FC9AE920FCEE2300D0F4A2 /* 圆环白@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "圆环白@3x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1177,6 +1188,7 @@
 		15619F1B20CF560200F80F69 /* AboutMeController */ = {
 			isa = PBXGroup;
 			children = (
+				F7FC9AE220FCE89600D0F4A2 /* 主题设置 */,
 				F74C998720FB45F0000B794D /* 搜索设置 */,
 				1561A03120CF560200F80F69 /* newProgress */,
 				1561A02D20CF560200F80F69 /* Factory.h */,
@@ -1869,6 +1881,19 @@
 			path = "搜索设置";
 			sourceTree = "<group>";
 		};
+		F7FC9AE220FCE89600D0F4A2 /* 主题设置 */ = {
+			isa = PBXGroup;
+			children = (
+				F7FC9AE720FCEE2200D0F4A2 /* 锤子情怀@3x.png */,
+				F7FC9AE920FCEE2300D0F4A2 /* 圆环白@3x.png */,
+				F7FC9AE820FCEE2200D0F4A2 /* 圆环粉红@3x.png */,
+				F7FC9AE620FCEE2200D0F4A2 /* 圆环黑@3x.png */,
+				F7FC9AE320FCE96D00D0F4A2 /* ZhuTiViewController.h */,
+				F7FC9AE420FCE96D00D0F4A2 /* ZhuTiViewController.m */,
+			);
+			path = "主题设置";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2059,6 +2084,7 @@
 				1561A07A20CF560300F80F69 /* 反馈11@3x.png in Resources */,
 				1561A08420CF560300F80F69 /* 美国1@3x.png in Resources */,
 				1561A06B20CF560300F80F69 /* 云@3x.png in Resources */,
+				F7FC9AEB20FCEE2300D0F4A2 /* 锤子情怀@3x.png in Resources */,
 				1561A06420CF560300F80F69 /* 标签.png in Resources */,
 				1561A09120CF560300F80F69 /* 点赞11@3x.png in Resources */,
 				1561A12B20CF560300F80F69 /* 沙漏@3x.png in Resources */,
@@ -2128,6 +2154,7 @@
 				1561A12020CF560300F80F69 /* 增值服务2.png in Resources */,
 				1561A07F20CF560300F80F69 /* 个人111@3x.png in Resources */,
 				1561A06E20CF560300F80F69 /* beginButtonImage.png in Resources */,
+				F7FC9AED20FCEE2300D0F4A2 /* 圆环白@3x.png in Resources */,
 				1561A07320CF560300F80F69 /* 数字密码1@3x.png in Resources */,
 				1561A11B20CF560300F80F69 /* weibo.jpg in Resources */,
 				1561A06220CF560300F80F69 /* ng_bps_fuceng_duigou@2x.png in Resources */,
@@ -2141,8 +2168,10 @@
 				1561A11C20CF560300F80F69 /* iconcheng.png in Resources */,
 				1561A07D20CF560300F80F69 /* dkw_完成@3x.png in Resources */,
 				1561A09520CF560300F80F69 /* 主题前@3x.png in Resources */,
+				F7FC9AEA20FCEE2300D0F4A2 /* 圆环黑@3x.png in Resources */,
 				1561A0E720CF560300F80F69 /* gesture_unlock@2x.png in Resources */,
 				1561A08720CF560300F80F69 /* 密码@3x.png in Resources */,
+				F7FC9AEC20FCEE2300D0F4A2 /* 圆环粉红@3x.png in Resources */,
 				15619E5720CF54CA00F80F69 /* Assets.xcassets in Resources */,
 				1561A12220CF560300F80F69 /* 关闭2.png in Resources */,
 				1561A06F20CF560300F80F69 /* 灵感-2.png in Resources */,
@@ -2322,6 +2351,7 @@
 				1561A0B520CF560300F80F69 /* MFSideMenuContainerViewController.m in Sources */,
 				1561A09820CF560300F80F69 /* UIViewController+InteractivePushGesture.m in Sources */,
 				1561A04C20CF560300F80F69 /* JXPopoverView.m in Sources */,
+				F7FC9AE520FCE96D00D0F4A2 /* ZhuTiViewController.m in Sources */,
 				1561A13620CF560300F80F69 /* STImageVIew.m in Sources */,
 				1561A0C920CF560300F80F69 /* LZBaseNavigationController.m in Sources */,
 				1561A05C20CF560300F80F69 /* ShanNianMiMaView.m in Sources */,

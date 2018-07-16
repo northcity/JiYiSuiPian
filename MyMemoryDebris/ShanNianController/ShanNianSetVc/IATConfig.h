@@ -35,6 +35,7 @@
 @property (nonatomic, copy) NSString *sousuoyinqin;
 @property (nonatomic, copy) NSString *icoloudShiJianChuo;
 @property (nonatomic, copy) NSString *laterIcoloudShiJianChuo;
+@property (nonatomic, copy) NSString *zhuTiSheZhi;
 
 
 @property (nonatomic, strong) NSString *dot;

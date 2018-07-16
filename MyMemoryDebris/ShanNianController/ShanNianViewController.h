@@ -47,8 +47,8 @@ typedef NS_ENUM(NSUInteger, ShangYiPaiClickActionTag) {
 @property(nonatomic,strong)UIView *titleView;
 @property(nonatomic,strong)UIButton *backBtn;
 
-@property(nonatomic,strong)UIImageView *smartImage;
-@property(nonatomic,strong)UIImageView *blurImageView;
+@property(nonatomic,strong) UIImageView *smartImage;
+@property(nonatomic,strong) UIImageView *blurImageView;
 
 - (void)startBtnHandler:(id)sender;
 

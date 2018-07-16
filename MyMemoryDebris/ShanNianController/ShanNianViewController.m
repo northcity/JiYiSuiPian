@@ -276,9 +276,30 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeZhuTiDefault) name:@"CHANGEZHUTIDEFAULT" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeZhiTi) name:@"CHANGEZHUTI" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeZhiTiBaiSe) name:@"CHANGEZHUTIBAISE" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeZhiTiHeiSe) name:@"CHANGEZHUTIHEISE" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeZhiTiFenHong) name:@"CHANGEZHUTIFENHONG" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeZhiTiQingHuai) name:@"CHANGEZHUTIQINGHUAI" object:nil];
+
 
 }
 
+- (void)changeZhiTiBaiSe{
+    self.view.backgroundColor = [UIColor whiteColor];
+}
+- (void)changeZhiTiHeiSe{
+    self.view.backgroundColor = [UIColor blackColor];
+
+}
+- (void)changeZhiTiFenHong{
+    self.view.backgroundColor = PNCColorWithHex(0xbc8f8f);
+
+}
+- (void)changeZhiTiQingHuai{
+    self.view.backgroundColor = [UIColor whiteColor];
+
+}
 #pragma mark - Button Handling
 
 /**
@@ -301,6 +322,7 @@
     [self.waveView Animating];
     [self chuLiSuoYouView];
     [self createSpeakView];
+    [self createImageView];
     [self createSpeakViewAnimation];
     
     if ([IATConfig sharedInstance].haveView == NO) {
@@ -1120,7 +1142,6 @@
     self.speakTextView.textColor = [UIColor whiteColor];
     self.speakTextView.text = @"";
     
-    [self createImageView];
     [self.view addSubview:self.speakView];
     [self.speakView addSubview:self.speakTextView];
     
@@ -2007,16 +2028,21 @@
 
 - (void)createImageView{
 
-    self.smartImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
-    [self.view addSubview:self.smartImage];
-    [self.view insertSubview:self.smartImage atIndex:0];
-    self.smartImage.image = [UIImage imageNamed:@"smart"];
-    
+    if (!self.smartImage) {
+        self.smartImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
+        [self.view addSubview:self.smartImage];
+        [self.view insertSubview:self.smartImage atIndex:0];
+        self.smartImage.image = [UIImage imageNamed:@"smart"];
+    }
+   
+    if (!self.blurImageView) {
+        self.blurImageView = [[UIImageView alloc]initWithFrame:self.smartImage.bounds];
+        self.blurImageView.image = [self blur:[UIImage imageNamed:@"smart"]];
+        [self.smartImage addSubview:self.blurImageView];
+        
+    }
     //方法二：Core Image
-    self.blurImageView = [[UIImageView alloc]initWithFrame:self.smartImage.bounds];
-    self.blurImageView.image = [self blur:[UIImage imageNamed:@"smart"]];
-    [self.smartImage addSubview:self.blurImageView];
-    
+
     //    iconImage.center = self.view.center;
     //    iconImage.image = [UIImage imageNamed:@""];
     //    iconImage.layer.cornerRadius = kAUTOHEIGHT(8);

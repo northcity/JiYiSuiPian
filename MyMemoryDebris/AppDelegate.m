@@ -127,6 +127,7 @@
     [self chuShiHuaBomb];
     [self verifyPassword];
     [self chuShiShuaSouSuoYinQing];
+    [self chuShiShuaZhuTi];
 //    dispatch_queue_t queue=dispatch_get_main_queue();
 //    dispatch_async(queue, ^{
         [self updateFromiCloud];
@@ -163,6 +164,25 @@
     
     if ([[[NSUserDefaults standardUserDefaults] objectForKey:current_SS] isEqualToString:@"谷歌搜索"]) {
         config.sousuoyinqin = @"谷歌搜索";
+    }
+}
+
+- (void)chuShiShuaZhuTi{
+    IATConfig *config = [IATConfig sharedInstance];
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:current_ZHUTI] isEqualToString:@"白色主题"]) {
+        config.zhuTiSheZhi = @"白色主题";
+    }
+    
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:current_ZHUTI] isEqualToString:@"黑色主题"]) {
+        config.zhuTiSheZhi = @"黑色主题";
+    }
+    
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:current_ZHUTI] isEqualToString:@"粉红主题"]) {
+        config.zhuTiSheZhi = @"粉红主题";
+    }
+    
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:current_ZHUTI] isEqualToString:@"情怀主题"]) {
+        config.zhuTiSheZhi = @"情怀主题";
     }
 }
 
