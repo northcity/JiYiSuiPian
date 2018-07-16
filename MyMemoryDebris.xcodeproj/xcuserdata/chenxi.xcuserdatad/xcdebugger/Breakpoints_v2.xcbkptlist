@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMemoryDebris/ShanNianController/ShanNianViewController.m"
-            timestampString = "552276524.790843"
+            timestampString = "553428109.9307359"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "101"
-            endingLineNumber = "101"
-            landmarkName = "-changeZhiTi"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "-dealloc"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -26,13 +26,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMemoryDebris/ShanNianController/ShanNianViewController.m"
-            timestampString = "552276524.791293"
+            timestampString = "553428109.931187"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1411"
-            endingLineNumber = "1411"
-            landmarkName = "-shareImage"
-            landmarkType = "7">
+            startingLineNumber = "1430"
+            endingLineNumber = "1430"
+            landmarkName = "ShanNianViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -42,12 +42,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMemoryDebris/ShanNianController/ShanNianViewController.m"
-            timestampString = "552276524.7915601"
+            timestampString = "553428109.931576"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1417"
-            endingLineNumber = "1417"
-            landmarkName = "-shareImage"
+            startingLineNumber = "1436"
+            endingLineNumber = "1436"
+            landmarkName = "-createFolder:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -97,38 +97,102 @@
             endingLineNumber = "49"
             landmarkName = "-pushMatherApp"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMemoryDebris/ShanNianController/ShanNianViewController.m"
+            timestampString = "553428109.932024"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1548"
+            endingLineNumber = "1548"
+            landmarkName = "-dataPickViewSureBtnClicked"
+            landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "-[TodayViewController pushMatherApp]"
-                  moduleName = "Today"
+                  symbolName = "-[ShanNianViewController dataPickViewSureBtnClicked]"
+                  moduleName = "MyMemoryDebris"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/chenxi/Desktop/%E6%88%91%E7%9A%84%E5%B7%A5%E7%A8%8BGIT/%E6%88%91%E7%9A%84%E5%9B%9E%E5%BF%86%E7%A2%8E%E7%89%87/JiYiSuiPian/Today/TodayViewController.m"
-                  timestampString = "552279142.482852"
+                  urlString = "file:///Users/chenxi/Desktop/%E6%88%91%E7%9A%84%E5%B7%A5%E7%A8%8BGIT/%E6%88%91%E7%9A%84%E5%9B%9E%E5%BF%86%E7%A2%8E%E7%89%87/JiYiSuiPian/MyMemoryDebris/ShanNianController/ShanNianViewController.m"
+                  timestampString = "553428110.050511"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "43"
-                  endingLineNumber = "43"
-                  offsetFromSymbolStart = "84">
+                  startingLineNumber = "1549"
+                  endingLineNumber = "1549"
+                  offsetFromSymbolStart = "400">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__36-[TodayViewController pushMatherApp]_block_invoke"
-                  moduleName = "Today"
+                  symbolName = "__52-[ShanNianViewController dataPickViewSureBtnClicked]_block_invoke"
+                  moduleName = "MyMemoryDebris"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/chenxi/Desktop/%E6%88%91%E7%9A%84%E5%B7%A5%E7%A8%8BGIT/%E6%88%91%E7%9A%84%E5%9B%9E%E5%BF%86%E7%A2%8E%E7%89%87/JiYiSuiPian/Today/TodayViewController.m"
-                  timestampString = "552279142.484889"
+                  urlString = "file:///Users/chenxi/Desktop/%E6%88%91%E7%9A%84%E5%B7%A5%E7%A8%8BGIT/%E6%88%91%E7%9A%84%E5%9B%9E%E5%BF%86%E7%A2%8E%E7%89%87/JiYiSuiPian/MyMemoryDebris/ShanNianController/ShanNianViewController.m"
+                  timestampString = "553428110.052516"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "45"
-                  endingLineNumber = "45"
+                  startingLineNumber = "1550"
+                  endingLineNumber = "1550"
                   offsetFromSymbolStart = "24">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMemoryDebris/ShanNianController/ShanNianViewController.m"
+            timestampString = "553428109.9323829"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1601"
+            endingLineNumber = "1601"
+            landmarkName = "-addnewEvent"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMemoryDebris/ShanNianController/ShanNianViewController.m"
+            timestampString = "553428109.932734"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1603"
+            endingLineNumber = "1603"
+            landmarkName = "-addEvent"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMemoryDebris/ShanNianController/ShanNianViewController.m"
+            timestampString = "553428109.933079"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1046"
+            endingLineNumber = "1046"
+            landmarkName = "-createDismissSpeakViewAnimation"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

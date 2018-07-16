@@ -10,7 +10,6 @@
 #import "ShanNianVoiceSetCell.h"
 #import "IATConfig.h"
 
-#define SOU_SUO  @"SOUSUO"
 
 @interface SouSuoSheZhiViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (strong, nonatomic)UITableView *tableView;
@@ -225,15 +224,27 @@
     if (indexPath.section == 1) {
         if (indexPath.row == 0) {
             instance.sousuoyinqin = @"百度搜索";
+            
+            [[NSUserDefaults standardUserDefaults] setObject:@"百度搜索" forKey:current_SS];
+            [[NSUserDefaults standardUserDefaults] synchronize];
         }
         if (indexPath.row == 1) {
             instance.sousuoyinqin = @"必应搜索";
+            
+            [[NSUserDefaults standardUserDefaults] setObject:@"必应搜索" forKey:current_SS];
+            [[NSUserDefaults standardUserDefaults] synchronize];
         }
         if (indexPath.row == 2) {
             instance.sousuoyinqin = @"搜狗搜索";
+            
+            [[NSUserDefaults standardUserDefaults] setObject:@"搜狗搜索" forKey:current_SS];
+            [[NSUserDefaults standardUserDefaults] synchronize];
         }
         if (indexPath.row == 3) {
             instance.sousuoyinqin = @"谷歌搜索";
+            
+            [[NSUserDefaults standardUserDefaults] setObject:@"谷歌搜索" forKey:current_SS];
+            [[NSUserDefaults standardUserDefaults] synchronize];
         }
     }
     

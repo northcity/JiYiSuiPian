@@ -50,7 +50,7 @@
         UILabel * titleLab = [[UILabel alloc]init];
         [toolView addSubview:titleLab];
         titleLab.frame = CGRectMake((ScreenWidth-220)/2, 12, 220, 17);
-        titleLab.text = NSLocalizedString(@"请选择送达日期", nil) ;
+        titleLab.text = NSLocalizedString(@"请选择添加提醒的时间", nil) ;
         titleLab.font = [UIFont systemFontOfSize:13];
         titleLab.textColor = PNCColorWithHex(0x061631);
         titleLab.textAlignment = NSTextAlignmentCenter;
@@ -61,7 +61,7 @@
         
         
         _datePickerView = [[UIDatePicker alloc]init];
-         [_datePickerView setDatePickerMode:UIDatePickerModeDate];
+         [_datePickerView setDatePickerMode:UIDatePickerModeDateAndTime];
         _datePickerView.locale = [[NSLocale alloc]
                              initWithLocaleIdentifier:@"zh_CN"];
         _datePickerView.frame = CGRectMake(0, 52, ScreenWidth, 195);
@@ -83,7 +83,7 @@
 {
     NSDate *selected = [self.datePickerView date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy/MM/dd"];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSString *currentOlderOneDateStr = [dateFormatter stringFromDate:selected];
     return currentOlderOneDateStr;
 }

@@ -20,12 +20,15 @@
 #import "PcmPlayer.h"
 #import "LZSqliteTool.h"
 #import "LZiCloud.h"
+#import "EventCalendar.h"
+#import "DatePickerView.h"
 
 #import<AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
 #import <Foundation/Foundation.h>
 #import <WebKit/WebKit.h>
 #import <StoreKit/StoreKit.h>
+#import <EventKit/EventKit.h>
 
 
 #define SPEAKVIEW_HEIZGHT   kAUTOHEIGHT(170)
@@ -42,7 +45,9 @@
 #define NAME        @"userwords"
 #define USERWORDS   @"{\"userword\":[{\"name\":\"我的常用词\",\"words\":[\"佳晨实业\",\"蜀南庭苑\",\"高兰路\",\"复联二\"]},{\"name\":\"我的好友\",\"words\":[\"李馨琪\",\"鹿晓雷\",\"张集栋\",\"周家莉\",\"叶震珂\",\"熊泽萌\"]}]}"
 
-@interface ShanNianViewController ()<IFlySpeechRecognizerDelegate,IFlyRecognizerViewDelegate,UIActionSheetDelegate,IFlyPcmRecorderDelegate,PcmPlayerDelegate,AVAudioPlayerDelegate,WKNavigationDelegate,WKUIDelegate,UIViewControllerInteractivePushGestureDelegate>
+@interface ShanNianViewController ()<IFlySpeechRecognizerDelegate,IFlyRecognizerViewDelegate,UIActionSheetDelegate,IFlyPcmRecorderDelegate,PcmPlayerDelegate,AVAudioPlayerDelegate,WKNavigationDelegate,WKUIDelegate,UIViewControllerInteractivePushGestureDelegate,DatePickerViewDelegate>{
+    UIView * _backWindowView;
+}
 
 
 
@@ -68,6 +73,11 @@
 @property (nonatomic, strong) UIBlurEffect *effect;//模糊视图
 @property (nonatomic, strong) WaveView *miniWaveView;//波纹动画
 @property (nonatomic,strong) UIButton *playBtn;
+
+@property(nonatomic,strong)DatePickerView * pikerView;
+@property(nonatomic,copy)NSString * selectValue;
+@property(nonatomic,copy)NSString * laterselectValue;
+
 @end
 
 @implementation ShanNianViewController
@@ -593,8 +603,14 @@
     
     if (isLast) {
         [self.waveView stopAnimating];
-        [self createWebView];
-        [self createWebViewAnimation];
+        
+        if ([[BCUserDeafaults objectForKey:SOU_SUO] isEqualToString:@"0"]) {
+            
+        }else{
+            [self createWebView];
+            [self createWebViewAnimation];
+        }
+    
         
 //        https://cn.bing.com/search?q=%E4%BD%A0%E5%A5%BD&qs=n&form=QBLH&sp=-1&pq=%E4%BD%A0%E5%A5%BD&sc=8-6&sk=&cvid=E6B95787A8F7430BA283E4431CF77526
         
@@ -1027,6 +1043,10 @@
             
         } completion:^(BOOL finished) {
             [self.speakView removeFromSuperview];
+            [self.smartImage removeFromSuperview];
+            self.smartImage = nil;
+            [self.blurImageView removeFromSuperview];
+            self.blurImageView = nil;
             [UIView animateWithDuration:AnimationTime animations:^{
                 self.titleView.alpha = 1;
             }];
@@ -1100,6 +1120,7 @@
     self.speakTextView.textColor = [UIColor whiteColor];
     self.speakTextView.text = @"";
     
+    [self createImageView];
     [self.view addSubview:self.speakView];
     [self.speakView addSubview:self.speakTextView];
     
@@ -1178,7 +1199,7 @@
             [button setImage:[UIImage imageNamed:@"分享new"] forState:UIControlStateNormal];
             button.backgroundColor = PNCColor(255, 120, 159);
         } else if (i == 2){
-            [button setImage:[UIImage imageNamed:@"文档"] forState:UIControlStateNormal];
+            [button setImage:[UIImage imageNamed:@"日历"] forState:UIControlStateNormal];
             button.backgroundColor = PNCColor(255, 172, 94);
         } else if (i == 3){
             [button setImage:[UIImage imageNamed:@"编辑"] forState:UIControlStateNormal];
@@ -1440,6 +1461,7 @@
     switch (button.tag) {
         case XiaYiPaiClickActionShanChu:
             [self createDismissSpeakViewAnimation];
+           
             break;
         case XiaYiPaiClickActionBaoCun:
             
@@ -1452,13 +1474,20 @@
             }
             
             [self createDismissSpeakViewAnimation];
+//            [self.smartImage removeFromSuperview];
+//            self.smartImage = nil;
             [self saveDataToiCloud];
             break;
         case XiaYiPaiClickActionRiLi:
             [self shareImage];
+//            [self addEvent];
+            
+//            [self addnewEvent];
             break;
         case XiaYiPaiClickActionShouCang:
-            [self copyStringToUIPasteboard];
+            [self datePickShow];
+
+//            [self copyStringToUIPasteboard];
             break;
         case XiaYiPaiClickActionBianJi:
             [self.speakTextView becomeFirstResponder];
@@ -1466,6 +1495,209 @@
         default:
             break;
     }
+}
+
+- (void)datePickShow{
+  
+        if(_pikerView==nil){
+            _backWindowView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
+            [[UIApplication sharedApplication].keyWindow addSubview:_backWindowView];
+            _backWindowView.backgroundColor = [UIColor blackColor];
+            
+            _pikerView = [DatePickerView datePickerView];
+            _pikerView.frame= CGRectMake(0, ScreenHeight, ScreenWidth, 257);
+            _backWindowView.alpha = 0.5;
+            _pikerView.delegate = self;
+            _pikerView.type = 1;
+            
+            NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+            NSDate *currentDate = [NSDate date];
+            NSDateComponents *comps1 = [[NSDateComponents alloc] init];
+            [comps1 setYear:100];//设置最大时间为：当前时间推后十年
+            NSDate *maxDate = [calendar dateByAddingComponents:comps1 toDate:currentDate options:0];
+            NSDateComponents *comps2 = [[NSDateComponents alloc] init];
+            [comps2 setDay:0];//设置最大时间为：当前时间推后十年
+            NSDate *minDate = [calendar dateByAddingComponents:comps2 toDate:currentDate options:0];
+            _pikerView.datePickerView.minimumDate = minDate;
+            _pikerView.datePickerView.maximumDate = maxDate;
+            
+            [[UIApplication sharedApplication].keyWindow addSubview:_pikerView];
+            [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+                _pikerView.frame = CGRectMake(0, ScreenHeight-257, ScreenWidth, 257);
+            } completion:nil];
+            [_pikerView.sureBtn addTarget:self action:@selector(dataPickViewSureBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+            [_pikerView.cannelBtn addTarget:self action:@selector(dataPickViewCancleBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+        }else{
+            [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+                _pikerView.frame = CGRectMake(0, ScreenHeight, ScreenWidth, 257);
+                [_backWindowView removeFromSuperview];
+                _backWindowView = nil;
+            } completion:^(BOOL finished) {
+                [self.pikerView removeFromSuperview];
+                self.pikerView = nil;
+            }];
+        
+    }
+}
+
+- (void)dataPickViewSureBtnClicked{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    _selectValue = [dateFormatter stringFromDate:self.pikerView.datePickerView.date];
+    NSLog(@"确定 = %@",_selectValue);
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        [_backWindowView removeFromSuperview];
+        _backWindowView = nil;
+        _pikerView.frame = CGRectMake(0, ScreenHeight, ScreenWidth, 257);
+    } completion:^(BOOL finished) {
+        [self addnewEvent];
+    }];
+}
+
+-(void)dataPickViewCancleBtnClicked{
+    [_backWindowView removeFromSuperview];
+    [self.pikerView removeFromSuperview];
+    self.pikerView = nil;
+    NSLog(@"取消");
+}
+
+//字符串转日期格式
+- (NSDate *)stringToDate:(NSString *)dateString withDateFormat:(NSString *)format
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:format];
+    
+    NSDate *date = [dateFormatter dateFromString:dateString];
+    return [self worldTimeToChinaTime:date];
+}
+
+//将世界时间转化为中国区时间
+- (NSDate *)worldTimeToChinaTime:(NSDate *)date
+{
+    NSTimeZone *timeZone = [NSTimeZone systemTimeZone];
+    NSInteger interval = [timeZone secondsFromGMTForDate:date];
+    NSDate *localeDate = [date  dateByAddingTimeInterval:interval];
+    return localeDate;
+}
+
+- (void) addnewEvent {
+    EventCalendar *calendar = [EventCalendar sharedEventCalendar];
+//
+//    NSString *str = [self dateToString:nowDate withDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+//    NSLog(@"%@",str);
+    
+//    NSDate *newdate = [self stringToDate:_selectValue withDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    
+ 
+    
+    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    format.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+    NSDate *newdate = [format dateFromString:_selectValue];
+
+    NSLog(@"%@",newdate);
+
+    [calendar createEventCalendarTitle:@"闪念-日程" location:_speakTextView.text startDate:[NSDate dateWithTimeInterval:60 sinceDate:newdate] endDate:[NSDate dateWithTimeInterval:300 sinceDate:newdate] allDay:NO alarmArray:@[@"-30"]];
+}
+
+- (void)addEvent{
+    EKEventStore *eventStore = [[EKEventStore alloc] init];
+    //6.0及以上通过下面方式写入事件
+    if ([eventStore respondsToSelector:@selector(requestAccessToEntityType:completion:)])
+    {
+        // the selector is available, so we must be on iOS 6 or newer
+        [eventStore requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (error)
+                {
+                    //错误细心
+                    // display error message here
+                }
+                else if (!granted)
+                {
+                    //被用户拒绝，不允许访问日历
+                    // display access denied error message here
+                }
+                else
+                {
+                    // access granted
+                    // ***** do the important stuff here *****
+                    
+                    //事件保存到日历
+                    
+                    
+                    //创建事件
+                    EKEvent *event  = [EKEvent eventWithEventStore:eventStore];
+                    event.title     = @"哈哈哈，我是日历事件啊";
+                    event.location = @"我在上海市普陀区";
+                    
+                    NSDateFormatter *tempFormatter = [[NSDateFormatter alloc]init];
+                    [tempFormatter setDateFormat:@"dd.MM.yyyy HH:mm"];
+                    
+                    event.startDate = [[NSDate alloc]init ];
+                    event.endDate   = [[NSDate alloc]init ];
+                    event.allDay = YES;
+                    
+                    //添加提醒
+                    [event addAlarm:[EKAlarm alarmWithRelativeOffset:60.0f * -60.0f * 24]];
+                    [event addAlarm:[EKAlarm alarmWithRelativeOffset:60.0f * -15.0f]];
+                    
+                    [event setCalendar:[eventStore defaultCalendarForNewEvents]];
+                    NSError *err;
+                    [eventStore saveEvent:event span:EKSpanThisEvent error:&err];
+                    
+                    UIAlertView *alert = [[UIAlertView alloc]
+                                          initWithTitle:@"Event Created"
+                                          message:@"Yay!?"
+                                          delegate:nil
+                                          cancelButtonTitle:@"Okay"
+                                          otherButtonTitles:nil];
+                    [alert show];
+                    
+                    NSLog(@"保存成功");
+                    
+                }
+            });
+        }];
+    }
+    else
+    {
+        // this code runs in iOS 4 or iOS 5
+        // ***** do the important stuff here *****
+        
+        //4.0和5.0通过下述方式添加
+        
+        //保存日历
+        EKEvent *event  = [EKEvent eventWithEventStore:eventStore];
+        event.title     = @"哈哈哈，我是日历事件啊";
+        event.location = @"我在上海市普陀区";
+        
+        NSDateFormatter *tempFormatter = [[NSDateFormatter alloc]init];
+        [tempFormatter setDateFormat:@"dd.MM.yyyy HH:mm"];
+        
+        event.startDate = [[NSDate alloc]init ];
+        event.endDate   = [[NSDate alloc]init ];
+        event.allDay = YES;
+        
+        
+        [event addAlarm:[EKAlarm alarmWithRelativeOffset:60.0f * -60.0f * 24]];
+        [event addAlarm:[EKAlarm alarmWithRelativeOffset:60.0f * -15.0f]];
+        
+        [event setCalendar:[eventStore defaultCalendarForNewEvents]];
+        NSError *err;
+        [eventStore saveEvent:event span:EKSpanThisEvent error:&err];
+        
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"Event Created"
+                              message:@"Yay!?"
+                              delegate:nil
+                              cancelButtonTitle:@"Okay"
+                              otherButtonTitles:nil];
+        [alert show];
+        
+        NSLog(@"保存成功");
+    }
+        
 }
 
 - (void)shareImage{
@@ -1753,6 +1985,81 @@
 //        [self closeNative];
 //    }
 //}
+
+
+//生成一张毛玻璃图片
+- (UIImage*)blur:(UIImage*)theImage
+{
+    CIContext *context = [CIContext contextWithOptions:nil];
+    CIImage *inputImage = [CIImage imageWithCGImage:theImage.CGImage];
+    
+    CIFilter *filter = [CIFilter filterWithName:@"CIGaussianBlur"];
+    [filter setValue:inputImage forKey:kCIInputImageKey];
+    [filter setValue:[NSNumber numberWithFloat:20.0f] forKey:@"inputRadius"];
+    CIImage *result = [filter valueForKey:kCIOutputImageKey];
+    
+    CGImageRef cgImage = [context createCGImage:result fromRect:[inputImage extent]];
+    
+    UIImage *returnImage = [UIImage imageWithCGImage:cgImage];
+    CGImageRelease(cgImage);
+    return returnImage;
+}
+
+- (void)createImageView{
+
+    self.smartImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
+    [self.view addSubview:self.smartImage];
+    [self.view insertSubview:self.smartImage atIndex:0];
+    self.smartImage.image = [UIImage imageNamed:@"smart"];
+    
+    //方法二：Core Image
+    self.blurImageView = [[UIImageView alloc]initWithFrame:self.smartImage.bounds];
+    self.blurImageView.image = [self blur:[UIImage imageNamed:@"smart"]];
+    [self.smartImage addSubview:self.blurImageView];
+    
+    //    iconImage.center = self.view.center;
+    //    iconImage.image = [UIImage imageNamed:@""];
+    //    iconImage.layer.cornerRadius = kAUTOHEIGHT(8);
+    //    //        iconImage.layer.borderWidth = 0.5f;
+    //    //        iconImage.layer.borderColor = [UIColor grayColor].CGColor;
+    //    iconImage.layer.masksToBounds = YES;
+    //    CALayer *subLayer=[CALayer layer];
+    //    CGRect fixframe=iconImage.layer.frame;
+    //    subLayer.frame = fixframe;
+    //    subLayer.cornerRadius = kAUTOHEIGHT(8);
+    //    subLayer.backgroundColor=[[UIColor grayColor] colorWithAlphaComponent:0.5].CGColor;
+    //    subLayer.masksToBounds=NO;
+    //    subLayer.shadowColor=[UIColor grayColor].CGColor;
+    //    subLayer.shadowOffset=CGSizeMake(0,5);
+    //    subLayer.shadowOpacity=0.5f;
+    //    subLayer.shadowRadius= 4;
+    //    [self.view.layer insertSublayer:subLayer below:iconImage.layer];
+    //
+    //    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1* NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    //        [UIView animateWithDuration:2 animations:^{
+    ////            iconImage.alpha = 0;
+    ////            subLayer.backgroundColor = [[UIColor grayColor] colorWithAlphaComponent:0].CGColor;
+    //        }];
+    //    });
+    //
+    UILabel * label = [Factory createLabelWithTitle:@"Create BY NorthCity" frame:CGRectMake(30, ScreenHeight - kAUTOHEIGHT(74), ScreenWidth - 60, 44)];
+    [self.view addSubview:label];
+    label.textColor = PNCColorWithHex(0xdcdcdc);
+    label.textAlignment = NSTextAlignmentCenter;
+    label.font = [UIFont fontWithName:@"Heiti SC" size:10.f];
+    
+    //    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1* NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    //        [UIView animateWithDuration:1 animations:^{
+    //            label.textColor = [UIColor whiteColor];
+    //            self.view.backgroundColor = [UIColor blackColor];
+    //        }];
+    //    });
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2* NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [UIView animateWithDuration:1 animations:^{
+            label.textColor = [UIColor clearColor];
+        }];
+    });
+}
 
 @end
 

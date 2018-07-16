@@ -181,6 +181,9 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 #define PCTopBarHeight                      (PNCisIPHONEX ?88.0f:((BuildWithIOS7Flag && PNCisIOS7Later) ?64.0f:44.0f))
 
 
+#define current_SS   @"currentSouSuo"
+
+#define SOU_SUO  @"SOUSUO"
 
 
 

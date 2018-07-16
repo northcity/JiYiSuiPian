@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		153F9C4F20E0C90500B0F260 /* iconoldd.png in Resources */ = {isa = PBXBuildFile; fileRef = 153F9C4E20E0C90500B0F260 /* iconoldd.png */; };
 		153F9C5220E0FAE500B0F260 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 153F9C5120E0F99A00B0F260 /* icon.png */; };
+		15465E1F20FC9928001771BF /* IntentHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 15465E1E20FC9928001771BF /* IntentHandler.m */; };
+		15465E2320FC9929001771BF /* SiriIntentsExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 15465E1B20FC9927001771BF /* SiriIntentsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		154CFD1520EA23B000432A62 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 155845A520D3A8DA00A08DA8 /* CloudKit.framework */; };
 		155845A620D3A8DA00A08DA8 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 155845A520D3A8DA00A08DA8 /* CloudKit.framework */; };
 		155845A720D3AD6500A08DA8 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15619E5B20CF54CA00F80F69 /* Info.plist */; };
@@ -279,6 +281,8 @@
 		157E469C20EA10F5005836B7 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 157E469B20EA10F5005836B7 /* NotificationCenter.framework */; };
 		157E46A020EA10F6005836B7 /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 157E469F20EA10F6005836B7 /* TodayViewController.m */; };
 		157E46A720EA10F7005836B7 /* Today.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 157E469A20EA10F4005836B7 /* Today.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		15B2080A20FC6AA10080F6FA /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15B2080920FC6AA10080F6FA /* EventKit.framework */; };
+		15B2080E20FC7BFE0080F6FA /* EventCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B2080D20FC7BF80080F6FA /* EventCalendar.m */; };
 		15B93E8D20EB152A0038FF32 /* 待完成.png in Resources */ = {isa = PBXBuildFile; fileRef = 15B93E8C20EB15220038FF32 /* 待完成.png */; };
 		F74C998A20FB462F000B794D /* SouSuoSheZhiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F74C998920FB462F000B794D /* SouSuoSheZhiViewController.m */; };
 		F74C998E20FB8C68000B794D /* 百度搜索@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F74C998D20FB8C68000B794D /* 百度搜索@3x.png */; };
@@ -288,6 +292,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		15465E2120FC9929001771BF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 15619E4220CF54C900F80F69 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 15465E1A20FC9927001771BF;
+			remoteInfo = SiriIntentsExtension;
+		};
 		15619E6320CF54CA00F80F69 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 15619E4220CF54C900F80F69 /* Project object */;
@@ -319,6 +330,7 @@
 			dstSubfolderSpec = 13;
 			files = (
 				157E46A720EA10F7005836B7 /* Today.appex in Embed App Extensions */,
+				15465E2320FC9929001771BF /* SiriIntentsExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -328,6 +340,10 @@
 /* Begin PBXFileReference section */
 		153F9C4E20E0C90500B0F260 /* iconoldd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconoldd.png; sourceTree = "<group>"; };
 		153F9C5120E0F99A00B0F260 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		15465E1B20FC9927001771BF /* SiriIntentsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SiriIntentsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		15465E1D20FC9928001771BF /* IntentHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntentHandler.h; sourceTree = "<group>"; };
+		15465E1E20FC9928001771BF /* IntentHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntentHandler.m; sourceTree = "<group>"; };
+		15465E2020FC9929001771BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		154CFD1420EA23AB00432A62 /* Today.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Today.entitlements; sourceTree = "<group>"; };
 		155845A520D3A8DA00A08DA8 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		155D951E20E08660002985D5 /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
@@ -754,6 +770,9 @@
 		157E469E20EA10F6005836B7 /* TodayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodayViewController.h; sourceTree = "<group>"; };
 		157E469F20EA10F6005836B7 /* TodayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TodayViewController.m; sourceTree = "<group>"; };
 		157E46A420EA10F7005836B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		15B2080920FC6AA10080F6FA /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
+		15B2080C20FC7BF80080F6FA /* EventCalendar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EventCalendar.h; sourceTree = "<group>"; };
+		15B2080D20FC7BF80080F6FA /* EventCalendar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EventCalendar.m; sourceTree = "<group>"; };
 		15B93E8C20EB15220038FF32 /* 待完成.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "待完成.png"; sourceTree = "<group>"; };
 		F74C998820FB462F000B794D /* SouSuoSheZhiViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SouSuoSheZhiViewController.h; sourceTree = "<group>"; };
 		F74C998920FB462F000B794D /* SouSuoSheZhiViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SouSuoSheZhiViewController.m; sourceTree = "<group>"; };
@@ -764,10 +783,18 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		15465E1820FC9927001771BF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		15619E4720CF54CA00F80F69 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15B2080A20FC6AA10080F6FA /* EventKit.framework in Frameworks */,
 				1561A16420CF7C5C00F80F69 /* Social.framework in Frameworks */,
 				1561A16020CF7C4E00F80F69 /* Security.framework in Frameworks */,
 				1561A15E20CF7C4800F80F69 /* libsqlite3.tbd in Frameworks */,
@@ -821,6 +848,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		15465E1C20FC9928001771BF /* SiriIntentsExtension */ = {
+			isa = PBXGroup;
+			children = (
+				15465E1D20FC9928001771BF /* IntentHandler.h */,
+				15465E1E20FC9928001771BF /* IntentHandler.m */,
+				15465E2020FC9929001771BF /* Info.plist */,
+			);
+			path = SiriIntentsExtension;
+			sourceTree = "<group>";
+		};
 		155D951D20E08660002985D5 /* Masonry */ = {
 			isa = PBXGroup;
 			children = (
@@ -861,6 +898,7 @@
 				15619E6520CF54CA00F80F69 /* MyMemoryDebrisTests */,
 				15619E7020CF54CA00F80F69 /* MyMemoryDebrisUITests */,
 				157E469D20EA10F6005836B7 /* Today */,
+				15465E1C20FC9928001771BF /* SiriIntentsExtension */,
 				15619E4B20CF54CA00F80F69 /* Products */,
 				1561A13820CF563E00F80F69 /* Frameworks */,
 			);
@@ -873,6 +911,7 @@
 				15619E6220CF54CA00F80F69 /* MyMemoryDebrisTests.xctest */,
 				15619E6D20CF54CA00F80F69 /* MyMemoryDebrisUITests.xctest */,
 				157E469A20EA10F4005836B7 /* Today.appex */,
+				15465E1B20FC9927001771BF /* SiriIntentsExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -947,6 +986,7 @@
 		15619E8B20CF560200F80F69 /* ShanNianController */ = {
 			isa = PBXGroup;
 			children = (
+				15B2080B20FC7BF80080F6FA /* EventCalendar */,
 				157E469220E9F610005836B7 /* APLTextView */,
 				15619EA220CF560200F80F69 /* ShanNianSetVc */,
 				15619E9620CF560200F80F69 /* JXPopoverView */,
@@ -1758,6 +1798,7 @@
 		1561A13820CF563E00F80F69 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				15B2080920FC6AA10080F6FA /* EventKit.framework */,
 				155845A520D3A8DA00A08DA8 /* CloudKit.framework */,
 				1561A16320CF7C5C00F80F69 /* Social.framework */,
 				1561A15F20CF7C4E00F80F69 /* Security.framework */,
@@ -1806,6 +1847,15 @@
 			path = Today;
 			sourceTree = "<group>";
 		};
+		15B2080B20FC7BF80080F6FA /* EventCalendar */ = {
+			isa = PBXGroup;
+			children = (
+				15B2080C20FC7BF80080F6FA /* EventCalendar.h */,
+				15B2080D20FC7BF80080F6FA /* EventCalendar.m */,
+			);
+			path = EventCalendar;
+			sourceTree = "<group>";
+		};
 		F74C998720FB45F0000B794D /* 搜索设置 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1822,6 +1872,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		15465E1A20FC9927001771BF /* SiriIntentsExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 15465E2420FC9929001771BF /* Build configuration list for PBXNativeTarget "SiriIntentsExtension" */;
+			buildPhases = (
+				15465E1720FC9927001771BF /* Sources */,
+				15465E1820FC9927001771BF /* Frameworks */,
+				15465E1920FC9927001771BF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SiriIntentsExtension;
+			productName = SiriIntentsExtension;
+			productReference = 15465E1B20FC9927001771BF /* SiriIntentsExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		15619E4920CF54CA00F80F69 /* MyMemoryDebris */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 15619E7620CF54CA00F80F69 /* Build configuration list for PBXNativeTarget "MyMemoryDebris" */;
@@ -1835,6 +1902,7 @@
 			);
 			dependencies = (
 				157E46A620EA10F7005836B7 /* PBXTargetDependency */,
+				15465E2220FC9929001771BF /* PBXTargetDependency */,
 			);
 			name = MyMemoryDebris;
 			productName = MyMemoryDebris;
@@ -1903,6 +1971,10 @@
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = chenxi;
 				TargetAttributes = {
+					15465E1A20FC9927001771BF = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+					};
 					15619E4920CF54CA00F80F69 = {
 						CreatedOnToolsVersion = 9.0;
 						ProvisioningStyle = Automatic;
@@ -1911,6 +1983,9 @@
 								enabled = 1;
 							};
 							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.Siri = {
 								enabled = 1;
 							};
 							com.apple.iCloud = {
@@ -1963,11 +2038,19 @@
 				15619E6120CF54CA00F80F69 /* MyMemoryDebrisTests */,
 				15619E6C20CF54CA00F80F69 /* MyMemoryDebrisUITests */,
 				157E469920EA10F4005836B7 /* Today */,
+				15465E1A20FC9927001771BF /* SiriIntentsExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		15465E1920FC9927001771BF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		15619E4820CF54CA00F80F69 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2116,6 +2199,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		15465E1720FC9927001771BF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15465E1F20FC9928001771BF /* IntentHandler.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		15619E4620CF54CA00F80F69 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2222,6 +2313,7 @@
 				1561A10720CF560300F80F69 /* LZiCloud.m in Sources */,
 				155D953A20E08660002985D5 /* MASCompositeConstraint.m in Sources */,
 				155D953D20E08660002985D5 /* NSArray+MASAdditions.m in Sources */,
+				15B2080E20FC7BFE0080F6FA /* EventCalendar.m in Sources */,
 				1561A11220CF560300F80F69 /* NSData+CommonCrypto.m in Sources */,
 				1561A0D520CF560300F80F69 /* GestureLockScreen.m in Sources */,
 				1561A04720CF560300F80F69 /* iCloudHandle.m in Sources */,
@@ -2281,6 +2373,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		15465E2220FC9929001771BF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 15465E1A20FC9927001771BF /* SiriIntentsExtension */;
+			targetProxy = 15465E2120FC9929001771BF /* PBXContainerItemProxy */;
+		};
 		15619E6420CF54CA00F80F69 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 15619E4920CF54CA00F80F69 /* MyMemoryDebris */;
@@ -2329,6 +2426,36 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		15465E2520FC9929001771BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = F7C352F4MW;
+				INFOPLIST_FILE = SiriIntentsExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.chenxi.shanniankapian.SiriIntentsExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		15465E2620FC9929001771BF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = F7C352F4MW;
+				INFOPLIST_FILE = SiriIntentsExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.chenxi.shanniankapian.SiriIntentsExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		15619E7420CF54CA00F80F69 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2580,6 +2707,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		15465E2420FC9929001771BF /* Build configuration list for PBXNativeTarget "SiriIntentsExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15465E2520FC9929001771BF /* Debug */,
+				15465E2620FC9929001771BF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		15619E4520CF54C900F80F69 /* Build configuration list for PBXProject "MyMemoryDebris" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

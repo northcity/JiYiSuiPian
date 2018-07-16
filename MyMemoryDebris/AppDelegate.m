@@ -21,6 +21,8 @@
 #import "BCShanNianKaPianManager.h"
 #import "ShanNianMuLuViewController.h"
 
+#import "IATConfig.h"
+
 @interface AppDelegate ()
 
 @end
@@ -124,7 +126,7 @@
     [self jumpViewController:launchOptions];
     [self chuShiHuaBomb];
     [self verifyPassword];
-    
+    [self chuShiShuaSouSuoYinQing];
 //    dispatch_queue_t queue=dispatch_get_main_queue();
 //    dispatch_async(queue, ^{
         [self updateFromiCloud];
@@ -145,7 +147,24 @@
     return YES;
 }
 
-
+- (void)chuShiShuaSouSuoYinQing{
+    IATConfig *config = [IATConfig sharedInstance];
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:current_SS] isEqualToString:@"百度搜索"]) {
+        config.sousuoyinqin = @"百度搜索";
+    }
+    
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:current_SS] isEqualToString:@"必应搜索"]) {
+        config.sousuoyinqin = @"必应搜索";
+    }
+    
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:current_SS] isEqualToString:@"搜狗搜索"]) {
+        config.sousuoyinqin = @"搜狗搜索";
+    }
+    
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:current_SS] isEqualToString:@"谷歌搜索"]) {
+        config.sousuoyinqin = @"谷歌搜索";
+    }
+}
 
 - (void)createSqlite {
     

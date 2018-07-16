@@ -164,11 +164,37 @@
     self.titleLabel.text = contentStr;
 }
 
+//生成一张毛玻璃图片
+- (UIImage*)blur:(UIImage*)theImage
+{
+    CIContext *context = [CIContext contextWithOptions:nil];
+    CIImage *inputImage = [CIImage imageWithCGImage:theImage.CGImage];
+    
+    CIFilter *filter = [CIFilter filterWithName:@"CIGaussianBlur"];
+    [filter setValue:inputImage forKey:kCIInputImageKey];
+    [filter setValue:[NSNumber numberWithFloat:15.0f] forKey:@"inputRadius"];
+    CIImage *result = [filter valueForKey:kCIOutputImageKey];
+    
+    CGImageRef cgImage = [context createCGImage:result fromRect:[inputImage extent]];
+    
+    UIImage *returnImage = [UIImage imageWithCGImage:cgImage];
+    CGImageRelease(cgImage);
+    return returnImage;
+}
+
 - (void)createImageView{
+    
+
     
     UIImageView *iconImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
     [self.view addSubview:iconImage];
     iconImage.image = [UIImage imageNamed:@"smart"];
+    
+    //方法二：Core Image
+    UIImageView *blurImageView = [[UIImageView alloc]initWithFrame:iconImage.bounds];
+    blurImageView.image = [self blur:[UIImage imageNamed:@"smart"]];
+    [iconImage addSubview:blurImageView];
+    
 //    iconImage.center = self.view.center;
 //    iconImage.image = [UIImage imageNamed:@""];
 //    iconImage.layer.cornerRadius = kAUTOHEIGHT(8);
