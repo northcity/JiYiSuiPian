@@ -17,5 +17,7 @@
 @property(nonatomic,strong)UIView *titleView;
 @property(nonatomic,strong)UIButton *backBtn;
 
+@property(nonatomic,strong) UIImageView *smartImage;
+@property(nonatomic,strong) UIImageView *blurImageView;
 
 @end

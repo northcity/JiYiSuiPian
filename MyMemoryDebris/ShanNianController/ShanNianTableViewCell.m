@@ -49,6 +49,10 @@
     self.titleLabel.textColor = [UIColor blackColor];
     self.titleLabel.font =  [UIFont fontWithName:@"FZSKBXKFW--GB1-0" size:13];
     self.titleLabel.numberOfLines = 0;
+    
+    self.baiSeMaskImageView = [[UIImageView alloc]initWithFrame:CGRectZero];
+    self.baiSeMaskImageView.image = [UIImage imageNamed:@"白色蒙层2"];
+    [_label addSubview:self.baiSeMaskImageView];
 }
 
 - (void)setContentModel:(LZDataModel *)model{
@@ -75,6 +79,9 @@
     }else{
         self.titleLabel.textColor = [UIColor blackColor];
     }
+    
+    _baiSeMaskImageView.frame = CGRectMake(4, 4, self.label.frame.size.width - 8, kAUTOHEIGHT(15));
+    _baiSeMaskImageView.alpha = 0.55;
 }
 
 - (WaveView *)waveView{

@@ -19,6 +19,8 @@
 
 @property(nonatomic,strong)UIButton *playBtn;
 
+@property(nonatomic, strong) UIImageView *baiSeMaskImageView;
+
 @property(nonatomic,copy)dispatch_block_t cellPlayBlock;
 @property (nonatomic,strong) WaveView *waveView;
 @property (nonatomic,strong) LZDataModel *model;

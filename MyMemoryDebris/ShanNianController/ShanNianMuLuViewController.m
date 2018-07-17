@@ -14,6 +14,8 @@
 #import "LZSqliteTool.h"
 #import "ShanNianMuLuDetailViewController.h"
 #import "MainTextViewController.h"
+#import "IATConfig.h"
+#import "ChuLiImageManager.h"
 
 @interface ShanNianMuLuViewController ()<UITableViewDataSource, UITableViewDelegate,PcmPlayerDelegate,UIViewControllerTransitioningDelegate>
 
@@ -23,22 +25,137 @@
 @property (nonatomic, strong) PcmPlayer *audioPlayer;
 
 @property(nonatomic,strong)NSMutableArray *dataSourceArray;
+@property(nonatomic,strong)NSMutableArray *dataSourceArrayUseToShow;
+
 @end
 
 @implementation ShanNianMuLuViewController
 
+#pragma mark ===主题设置===
+
+- (void)chuShiShuaZhuTi{
+    
+    IATConfig *config = [IATConfig sharedInstance];
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:current_ZHUTI] isEqualToString:@"白色主题"]) {
+        config.zhuTiSheZhi = @"白色主题";
+        
+        [[NSNotificationCenter defaultCenter ] postNotificationName:@"CHANGEZHUTIBAISE" object:self];
+        
+    }
+    
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:current_ZHUTI] isEqualToString:@"黑色主题"]) {
+        config.zhuTiSheZhi = @"黑色主题";
+        
+        [[NSNotificationCenter defaultCenter ] postNotificationName:@"CHANGEZHUTIHEISE" object:self];
+        
+    }
+    
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:current_ZHUTI] isEqualToString:@"粉红主题"]) {
+        config.zhuTiSheZhi = @"粉红主题";
+        
+        [[NSNotificationCenter defaultCenter ] postNotificationName:@"CHANGEZHUTIFENHONG" object:self];
+        
+    }
+    
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:current_ZHUTI] isEqualToString:@"情怀主题"]) {
+        config.zhuTiSheZhi = @"情怀主题";
+        
+        [[NSNotificationCenter defaultCenter ] postNotificationName:@"CHANGEZHUTIQINGHUAI" object:self];
+        
+    }
+}
+
+- (void)changeZhiTiBaiSe{
+    self.view.backgroundColor = [UIColor whiteColor];
+    
+}
+- (void)changeZhiTiHeiSe{
+    self.view.backgroundColor = [UIColor blackColor];
+    
+}
+- (void)changeZhiTiFenHong{
+    self.view.backgroundColor = PNCColor(247, 200, 207);
+    
+}
+- (void)changeZhiTiQingHuai{
+    self.view.backgroundColor = [UIColor whiteColor];
+    [self createImageView];
+}
+
+
+- (void)createImageView{
+    
+    if (!self.smartImage) {
+        self.smartImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
+
+        if ([[BCUserDeafaults objectForKey:current_ZHUTI] isEqualToString:@"情怀主题"]) {
+            [self.view addSubview:self.smartImage];
+            [self.view insertSubview:self.smartImage atIndex:0];
+        }
+        UIImage *image = [ChuLiImageManager decodeEchoImageBaseWith:[BCUserDeafaults objectForKey:current_BEIJING]];
+
+        self.smartImage.image = image;
+        
+    }
+    
+    if (!self.blurImageView) {
+        self.blurImageView = [[UIImageView alloc]initWithFrame:self.smartImage.bounds];
+//        UIImage *screenImage = [self imageWithScreenshot];
+        if ([[BCUserDeafaults objectForKey:current_ZHUTI] isEqualToString:@"情怀主题"]) {
+            UIImage *image = [ChuLiImageManager decodeEchoImageBaseWith:[BCUserDeafaults objectForKey:current_BEIJING]];
+
+            self.blurImageView.image = [self blur:image];
+            [self.smartImage addSubview:self.blurImageView];
+//            [self.view insertSubview:self.blurImageView atIndex:0];
+
+        }
+        
+    }
+}
+
+
+//生成一张毛玻璃图片
+- (UIImage*)blur:(UIImage*)theImage
+{
+    CIContext *context = [CIContext contextWithOptions:nil];
+    CIImage *inputImage = [CIImage imageWithCGImage:theImage.CGImage];
+    
+    CIFilter *filter = [CIFilter filterWithName:@"CIGaussianBlur"];
+    [filter setValue:inputImage forKey:kCIInputImageKey];
+    [filter setValue:[NSNumber numberWithFloat:20.0f] forKey:@"inputRadius"];
+    CIImage *result = [filter valueForKey:kCIOutputImageKey];
+    
+    CGImageRef cgImage = [context createCGImage:result fromRect:[inputImage extent]];
+    
+    UIImage *returnImage = [UIImage imageWithCGImage:cgImage];
+    CGImageRelease(cgImage);
+    return returnImage;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 //    [self setUpNotification];
-    [self createUI];
     self.view.backgroundColor = [UIColor whiteColor];
+
+    [self createUI];
 //    [self getData];
 //    [self loadData];
     [self initOtherUI];
+    
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeZhiTiBaiSe) name:@"CHANGEZHUTIBAISE" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeZhiTiHeiSe) name:@"CHANGEZHUTIHEISE" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeZhiTiFenHong) name:@"CHANGEZHUTIFENHONG" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeZhiTiQingHuai) name:@"CHANGEZHUTIQINGHUAI" object:nil];
+
+    
+    
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self loadData];
+    [self chuShiShuaZhuTi];
+
 }
 
 - (void)initOtherUI{
@@ -95,21 +212,35 @@
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    self.view.backgroundColor = [UIColor whiteColor];
+//    self.view.backgroundColor = [UIColor whiteColor];
 
 }
 - (void)loadData {
     
     self.dataSourceArray =[[NSMutableArray alloc]init];
-    
+    self.dataSourceArrayUseToShow =[[NSMutableArray alloc]init];
+
     NSArray* array = [LZSqliteTool LZSelectAllElementsFromTable:LZSqliteDataTableName];
     
 
     if (self.dataArr.count > 0) {
         [self.dataSourceArray removeAllObjects];
     }
+    
     self.dataSourceArray=(NSMutableArray *)[[array reverseObjectEnumerator] allObjects];
-
+    if ([[BCUserDeafaults objectForKey:current_XIANSHILIEBIAO] isEqualToString:@"1"]) {
+        self.dataSourceArrayUseToShow = self.dataSourceArray;
+    }else{
+        for (int i = 0; i < self.dataSourceArray.count; i ++ ) {
+            LZDataModel *model = self.dataSourceArray[i];
+            if ([model.nickName isEqualToString:@"0"]) {
+                [self.dataSourceArrayUseToShow addObject:model];
+            }
+        }
+    }
+    
+    
+    
 //    [self.dataSourceArray addObjectsFromArray:array];
     
     [self.tableView reloadData];
@@ -206,7 +337,7 @@
     return 55;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return _dataSourceArray.count;
+    return _dataSourceArrayUseToShow.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -220,7 +351,7 @@
     
     //
     
-    LZDataModel *model =  [_dataSourceArray objectAtIndex:row];
+    LZDataModel *model =  [_dataSourceArrayUseToShow objectAtIndex:row];
     NSString *content = model.titleString;
     
     //
@@ -249,7 +380,7 @@
 //    CKRecord *record = [self.dataArr objectAtIndex:indexPath.row];
 //    cell.textLabel.text = [record objectForKey:@"titleString"];
     
-    LZDataModel *model = self.dataSourceArray[indexPath.row];
+    LZDataModel *model = self.dataSourceArrayUseToShow[indexPath.row];
 //    cell.textLabel.text = model.titleString;
     NSData *pcmData =  [self decodeEchoImageBaseWith:model.pcmData];
     if (model.colorString.length > 0) {
@@ -306,7 +437,7 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    LZDataModel *model = self.dataSourceArray[indexPath.row];
+    LZDataModel *model = self.dataSourceArrayUseToShow[indexPath.row];
 //    self.modalPresentationStyle = UIModalPresentationCustom;
 //    self.transitioningDelegate = self;
     
@@ -357,14 +488,24 @@
 //    return YES;
 //}
 
+- (void)copyStringToUIPasteboardWithString :(NSString *)contentString{
+    UIPasteboard * pasteboard = [UIPasteboard generalPasteboard];
+    pasteboard.string = contentString;
+    [SVProgressHUD showInfoWithStatus:@"复制成功"];
+}
+
 - (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    //删除
-//    UITableViewRowAction *deleteRowAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
-//
-//        NSLog(@"点击了删除");
-//    }];
-//    deleteRowAction.backgroundColor = [UIColor greenColor];
+    //删除
+    UITableViewRowAction *copyRowAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"复制至剪切板" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+        LZDataModel *model = self.dataSourceArrayUseToShow[indexPath.row];
+
+        [self copyStringToUIPasteboardWithString:model.titleString];
+        NSLog(@"点击了复制");
+        [SVProgressHUD showSuccessWithStatus:@"复制成功"];
+
+    }];
+    copyRowAction.backgroundColor = [UIColor greenColor];
     //置顶
     UITableViewRowAction *topRowAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
         
@@ -374,8 +515,8 @@
             LZWeakSelf(ws)
             UIAlertAction *ok = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
-                [LZSqliteTool LZDeleteFromTable:LZSqliteDataTableName element:[ws.dataSourceArray objectAtIndex:indexPath.row]];
-                [ws.dataSourceArray removeObjectAtIndex:indexPath.row];
+                [LZSqliteTool LZDeleteFromTable:LZSqliteDataTableName element:[ws.dataSourceArrayUseToShow objectAtIndex:indexPath.row]];
+                [ws.dataSourceArrayUseToShow removeObjectAtIndex:indexPath.row];
         
                 [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         
@@ -396,7 +537,7 @@
     UITableViewRowAction *readedRowAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"切换完成状态" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
         
         NSLog(@"点击了标记为已读");
-        LZDataModel *model = self.dataSourceArray[indexPath.row];
+        LZDataModel *model = self.dataSourceArrayUseToShow[indexPath.row];
         if ([model.nickName isEqualToString:@"0"]) {
             model.nickName = @"1";
         }else if ([model.nickName isEqualToString:@"1"]){
@@ -425,7 +566,7 @@
 //    }
 //    else
 //    {
-        return @[ topRowAction, readedRowAction];
+        return @[ topRowAction, copyRowAction,readedRowAction];
 //    }
 }
 

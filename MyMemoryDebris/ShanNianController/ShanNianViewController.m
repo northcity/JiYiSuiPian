@@ -22,6 +22,7 @@
 #import "LZiCloud.h"
 #import "EventCalendar.h"
 #import "DatePickerView.h"
+#import "ChuLiImageManager.h"
 
 #import<AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
@@ -139,6 +140,7 @@
     [_titleView addSubview:_navTitleLabel];
     
     
+    
     _backBtn = [Factory createButtonWithTitle:@"" frame:CGRectMake(20, 28, 25, 25) backgroundColor:[UIColor clearColor] backgroundImage:[UIImage imageNamed:@""] target:self action:@selector(backAction)];
     [_backBtn setImage:[UIImage imageNamed:@"返回箭头2"] forState:UIControlStateNormal];
     if (PNCisIPHONEX) {
@@ -240,9 +242,19 @@
     [self initRecognizer];
     [_beginPlayButton setEnabled:YES];
     [_beginSpeakButton setEnabled:YES];
+    [self chuShiShuaZhuTi];
+    
+//    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+//        self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+//    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+
+//    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+//        self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+//    }
     NSLog(@"%s",__func__);
     if ([IATConfig sharedInstance].haveView == NO) {
         [_iFlySpeechRecognizer cancel];
@@ -255,7 +267,6 @@
         [_iflyRecognizerView setDelegate:nil];
         [_iflyRecognizerView setParameter:@"" forKey:[IFlySpeechConstant PARAMS]];
     }
-    [super viewWillDisappear:animated];
 }
 
 - (void)createUI{
@@ -285,20 +296,22 @@
 
 }
 
+#pragma mark ===主题设置===
 - (void)changeZhiTiBaiSe{
     self.view.backgroundColor = [UIColor whiteColor];
+     self.sloginLabel.textColor = [UIColor grayColor];
 }
 - (void)changeZhiTiHeiSe{
     self.view.backgroundColor = [UIColor blackColor];
-
+ self.sloginLabel.textColor = [UIColor whiteColor];
 }
 - (void)changeZhiTiFenHong{
-    self.view.backgroundColor = PNCColorWithHex(0xbc8f8f);
-
+    self.view.backgroundColor = PNCColor(247, 200, 207);
+ self.sloginLabel.textColor = [UIColor whiteColor];
 }
 - (void)changeZhiTiQingHuai{
     self.view.backgroundColor = [UIColor whiteColor];
-
+     self.sloginLabel.textColor = [UIColor grayColor];
 }
 #pragma mark - Button Handling
 
@@ -322,6 +335,9 @@
     [self.waveView Animating];
     [self chuLiSuoYouView];
     [self createSpeakView];
+//    if ([[BCUserDeafaults objectForKey:current_ZHUTI] isEqualToString:@"情怀主题"]) {
+//        [self createImageView];
+//    }
     [self createImageView];
     [self createSpeakViewAnimation];
     
@@ -1044,6 +1060,10 @@
                 upButton.alpha = 0;
                 downButton.alpha = 0;
                 self.shangViewLineView.alpha = 0;
+                self.baiSeMaskImageView.alpha = 0;
+                self.xiaLaShareView.frame = CGRectMake(kAUTOWIDTH(15), SPEAKVIEW_HEIZGHT - kAUTOWIDTH(44), SPEAKVIEW_WIDTH - kAUTOWIDTH(30), kAUTOHEIGHT(40));
+                self.xiaLaShareView.alpha = 0;
+                
             } completion:^(BOOL finished) {
                 upButton.hidden = YES;
                 downButton.hidden = YES;
@@ -1055,6 +1075,8 @@
             self.speakView.frame = CGRectMake(ScreenWidth, kAUTOHEIGHT(44) + SPEAKVIEW_HEIZGHT/2 - kAUTOHEIGHT(22),ScreenWidth/3, kAUTOHEIGHT(44));
             self.speakView.alpha = 0;
             
+           
+            
             [self.webViewSubLayer removeFromSuperlayer];
             self.webFatherView.frame = CGRectMake(kAUTOWIDTH(20), SPEAKVIEW_HEIZGHT - kAUTOHEIGHT(20), ScreenWidth - kAUTOWIDTH(40), ScreenHeight -SPEAKVIEW_HEIZGHT - kAUTOHEIGHT(44) - 50);
             [UIView animateWithDuration:AnimationTime animations:^{
@@ -1065,12 +1087,14 @@
             
         } completion:^(BOOL finished) {
             [self.speakView removeFromSuperview];
-            [self.smartImage removeFromSuperview];
-            self.smartImage = nil;
-            [self.blurImageView removeFromSuperview];
-            self.blurImageView = nil;
+           
             [UIView animateWithDuration:AnimationTime animations:^{
                 self.titleView.alpha = 1;
+                self.smartImage.alpha = 0;
+                self.blurImageView.alpha = 0;
+            }completion:^(BOOL finished) {
+                [self.smartImage removeFromSuperview];
+                [self.blurImageView removeFromSuperview];
             }];
             
         }];
@@ -1093,6 +1117,7 @@
             self.speakView.frame = CGRectMake(kAUTOWIDTH(20), kAUTOHEIGHT(64),SPEAKVIEW_WIDTH, SPEAKVIEW_HEIZGHT);
         }
         self.speakView.alpha = 1;
+        self.baiSeMaskImageView.alpha = 0.6;
     }completion:^(BOOL finished) {
         
         for (int i = 0; i < 5; i ++) {
@@ -1108,7 +1133,11 @@
                 upButton.transform = CGAffineTransformMakeScale(1, 1);
                 downButton.transform = CGAffineTransformMakeScale(1, 1);
                 self.shangViewLineView.hidden = NO;
+                
+                self.xiaLaShareView.frame = CGRectMake(kAUTOWIDTH(15), SPEAKVIEW_HEIZGHT, SPEAKVIEW_WIDTH - kAUTOWIDTH(30), kAUTOHEIGHT(40));
+                self.xiaLaShareView.alpha = 1;
             } completion:nil];
+            
             
         }
         
@@ -1134,6 +1163,16 @@
     self.speakView.transform = CGAffineTransformMakeScale(0.7, 0.7);
     self.speakView.backgroundColor = PNCColor(164, 185, 255);
     self.speakView.alpha = 0;
+    
+    self.xiaLaShareView = [[UIView alloc]initWithFrame:CGRectMake(kAUTOWIDTH(15), SPEAKVIEW_HEIZGHT - kAUTOHEIGHT(40), SPEAKVIEW_WIDTH - kAUTOWIDTH(30), kAUTOHEIGHT(40))];
+    self.xiaLaShareView.backgroundColor = [UIColor whiteColor];
+    self.xiaLaShareView.alpha = 0;
+//    [self.speakView addSubview:self.xiaLaShareView];
+    
+    self.baiSeMaskImageView = [[UIImageView alloc]initWithFrame:CGRectMake(4, 0, SPEAKVIEW_WIDTH - 8, kAUTOHEIGHT(15))];
+    self.baiSeMaskImageView.image = [UIImage imageNamed:@"白色蒙层2"];
+    [self.speakView addSubview:self.baiSeMaskImageView];
+    self.baiSeMaskImageView.alpha = 0;
     
     self.speakTextView = [[UITextView alloc]initWithFrame:CGRectMake(kAUTOWIDTH(30), kAUTOHEIGHT(35), SPEAKVIEW_WIDTH - kAUTOWIDTH(60), SPEAKVIEW_HEIZGHT - kAUTOHEIGHT(80))];
     self.speakTextView.font = [UIFont fontWithName:@"HeiTi SC" size:14];
@@ -1309,7 +1348,7 @@
 }
 
 - (void)pushSettingViewController:(UIButton *)sender{
-    
+    [BCShanNianKaPianManager maDaQingZhenDong];
     sender.transform = CGAffineTransformMakeScale(0.8, 0.8);    // 先缩小
     // 弹簧动画，参数分别为：时长，延时，弹性（越小弹性越大），初始速度
     [UIView animateWithDuration: 0.7 delay:0 usingSpringWithDamping:0.3 initialSpringVelocity:0.3 options:0 animations:^{
@@ -1317,6 +1356,7 @@
     } completion:nil];
     SettingViewController *svc = [[SettingViewController alloc]init];
     [self presentViewController:svc animated:YES completion:nil];
+//    [self.navigationController pushViewController:svc animated:YES];
 }
 
 #pragma mark - ======开始心跳动画Animation=======
@@ -1391,6 +1431,7 @@
 }
 
 - (void)pushMuLu{
+        [BCShanNianKaPianManager maDaQingZhenDong];
     ShanNianMuLuViewController *smlVc = [[ShanNianMuLuViewController alloc]init];
     [self.navigationController pushViewController:smlVc animated:YES];
 }
@@ -1724,7 +1765,10 @@
 - (void)shareImage{
     
     NSString *text = _speakTextView.text;
-    //    NSString *imageName = @"QQ20180311-1.jpg";
+    NSURL *urlToShare = [NSURL URLWithString:@"https://itunes.apple.com/cn/app/id1397149726?mt=8"];
+
+//    NSData *data = [NSData dataWithContentsOfURL:urlToShare];
+//        NSString *imageName = @"QQ20180311-1.jpg";
     //    NSString *path = [[NSBundle mainBundle] pathForResource:imageName ofType:nil];
     //    UIImage *image2 = nil;
     //
@@ -1751,7 +1795,9 @@
     //    imageView2.backgroundColor = [UIColor whiteColor];
     ////    UIImage *zuihouImage = [self convertImageViewToImage:imageView2];
     
-    NSArray *activityItems = @[text,text];
+    UIImage *iconImage = [UIImage imageNamed:@"icon.png"];
+    
+    NSArray *activityItems = @[text,urlToShare];
     
     UIActivityViewController *activityViewController =[[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
     activityViewController.popoverPresentationController.sourceView = self.view;
@@ -1852,6 +1898,24 @@
     //                                     content:_speakTextView.text
     //                                  photoImage:data];
     //
+    
+    [self saveDataByNSUserDefaultsWithTitle:_speakTextView.text withKey:@"widgetTitle"];
+    [self saveDataByNSUserDefaultsWithTitle:[ShanNianViewController getCurrentTimes] withKey:@"widgetTime"];
+
+    NSLog(@"======================%@===========",[self readDataFromNSUserDefaultsWithKey:@"widgetTitle"]);
+}
+
+//读取数据
+- (NSString *)readDataFromNSUserDefaultsWithKey:(NSString *)key{
+    NSUserDefaults *shared = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.xiaoshannian"];
+    NSString *value = [shared valueForKey:key];
+    return value;
+}
+//保存数据
+- (void)saveDataByNSUserDefaultsWithTitle:(NSString *)titleString withKey:(NSString *)key{
+    NSUserDefaults *shared = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.xiaoshannian"];
+    [shared setObject:titleString forKey:key];
+    [shared synchronize];
 }
 
 +(NSString*)getCurrentTimes{
@@ -2028,63 +2092,137 @@
 
 - (void)createImageView{
 
-    if (!self.smartImage) {
+//    if (!self.smartImage) {
         self.smartImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
-        [self.view addSubview:self.smartImage];
-        [self.view insertSubview:self.smartImage atIndex:0];
-        self.smartImage.image = [UIImage imageNamed:@"smart"];
-    }
+       
+        if ([[BCUserDeafaults objectForKey:current_ZHUTI] isEqualToString:@"情怀主题"]) {
+            [self.view addSubview:self.smartImage];
+            [self.view insertSubview:self.smartImage atIndex:0];
+        }
+    
+        UIImage *image = [ChuLiImageManager decodeEchoImageBaseWith:[BCUserDeafaults objectForKey:current_BEIJING]];
+        self.smartImage.image = image;
+//    }
    
-    if (!self.blurImageView) {
+//    if (!self.blurImageView) {
         self.blurImageView = [[UIImageView alloc]initWithFrame:self.smartImage.bounds];
-        self.blurImageView.image = [self blur:[UIImage imageNamed:@"smart"]];
-        [self.smartImage addSubview:self.blurImageView];
+        UIImage *screenImage = [self imageWithScreenshot];
+        if ([[BCUserDeafaults objectForKey:current_ZHUTI] isEqualToString:@"情怀主题"]) {
+            UIImage *image = [ChuLiImageManager decodeEchoImageBaseWith:[BCUserDeafaults objectForKey:current_BEIJING]];
+            self.blurImageView.image = [self blur:image];
+            [self.smartImage addSubview:self.blurImageView];
+        }else{
+            self.blurImageView.image = [self blur:screenImage];
+            [self.view addSubview:self.blurImageView];
+            [self.view insertSubview:self.blurImageView belowSubview:self.beginSpeakButton];
+            [self.view insertSubview:self.sloginLabel belowSubview:self.blurImageView];
+
+            
+        }
+    self.smartImage.alpha = 0;
+    self.blurImageView.alpha = 0;
+
+    [UIView animateWithDuration:0.3 animations:^{
+        self.smartImage.alpha = 1;
+        self.blurImageView.alpha = 1;
+    }];
+//    }
+}
+
+
+/**
+ *  截取当前屏幕
+ *
+ *  @return NSData *
+ */
+- (NSData *)dataWithScreenshotInPNGFormat
+{
+    CGSize imageSize = CGSizeZero;
+    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+    if (UIInterfaceOrientationIsPortrait(orientation))
+        imageSize = [UIScreen mainScreen].bounds.size;
+    else
+        imageSize = CGSizeMake([UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width);
+    
+    UIGraphicsBeginImageContextWithOptions(imageSize, NO, 0);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    for (UIWindow *window in [[UIApplication sharedApplication] windows])
+    {
+        CGContextSaveGState(context);
+        CGContextTranslateCTM(context, window.center.x, window.center.y);
+        CGContextConcatCTM(context, window.transform);
+        CGContextTranslateCTM(context, -window.bounds.size.width * window.layer.anchorPoint.x, -window.bounds.size.height * window.layer.anchorPoint.y);
+        if (orientation == UIInterfaceOrientationLandscapeLeft)
+        {
+            CGContextRotateCTM(context, M_PI_2);
+            CGContextTranslateCTM(context, 0, -imageSize.width);
+        }
+        else if (orientation == UIInterfaceOrientationLandscapeRight)
+        {
+            CGContextRotateCTM(context, -M_PI_2);
+            CGContextTranslateCTM(context, -imageSize.height, 0);
+        } else if (orientation == UIInterfaceOrientationPortraitUpsideDown) {
+            CGContextRotateCTM(context, M_PI);
+            CGContextTranslateCTM(context, -imageSize.width, -imageSize.height);
+        }
+        if ([window respondsToSelector:@selector(drawViewHierarchyInRect:afterScreenUpdates:)])
+        {
+            [window drawViewHierarchyInRect:window.bounds afterScreenUpdates:YES];
+        }
+        else
+        {
+            [window.layer renderInContext:context];
+        }
+        CGContextRestoreGState(context);
+    }
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return UIImagePNGRepresentation(image);
+}
+
+/**
+ *  返回截取到的图片
+ *
+ *  @return UIImage *
+ */
+- (UIImage *)imageWithScreenshot
+{
+    NSData *imageData = [self dataWithScreenshotInPNGFormat];
+    return [UIImage imageWithData:imageData];
+}
+
+
+- (void)chuShiShuaZhuTi{
+    IATConfig *config = [IATConfig sharedInstance];
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:current_ZHUTI] isEqualToString:@"白色主题"]) {
+        config.zhuTiSheZhi = @"白色主题";
+        
+        [[NSNotificationCenter defaultCenter ] postNotificationName:@"CHANGEZHUTIBAISE" object:self];
         
     }
-    //方法二：Core Image
-
-    //    iconImage.center = self.view.center;
-    //    iconImage.image = [UIImage imageNamed:@""];
-    //    iconImage.layer.cornerRadius = kAUTOHEIGHT(8);
-    //    //        iconImage.layer.borderWidth = 0.5f;
-    //    //        iconImage.layer.borderColor = [UIColor grayColor].CGColor;
-    //    iconImage.layer.masksToBounds = YES;
-    //    CALayer *subLayer=[CALayer layer];
-    //    CGRect fixframe=iconImage.layer.frame;
-    //    subLayer.frame = fixframe;
-    //    subLayer.cornerRadius = kAUTOHEIGHT(8);
-    //    subLayer.backgroundColor=[[UIColor grayColor] colorWithAlphaComponent:0.5].CGColor;
-    //    subLayer.masksToBounds=NO;
-    //    subLayer.shadowColor=[UIColor grayColor].CGColor;
-    //    subLayer.shadowOffset=CGSizeMake(0,5);
-    //    subLayer.shadowOpacity=0.5f;
-    //    subLayer.shadowRadius= 4;
-    //    [self.view.layer insertSublayer:subLayer below:iconImage.layer];
-    //
-    //    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1* NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-    //        [UIView animateWithDuration:2 animations:^{
-    ////            iconImage.alpha = 0;
-    ////            subLayer.backgroundColor = [[UIColor grayColor] colorWithAlphaComponent:0].CGColor;
-    //        }];
-    //    });
-    //
-    UILabel * label = [Factory createLabelWithTitle:@"Create BY NorthCity" frame:CGRectMake(30, ScreenHeight - kAUTOHEIGHT(74), ScreenWidth - 60, 44)];
-    [self.view addSubview:label];
-    label.textColor = PNCColorWithHex(0xdcdcdc);
-    label.textAlignment = NSTextAlignmentCenter;
-    label.font = [UIFont fontWithName:@"Heiti SC" size:10.f];
     
-    //    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1* NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-    //        [UIView animateWithDuration:1 animations:^{
-    //            label.textColor = [UIColor whiteColor];
-    //            self.view.backgroundColor = [UIColor blackColor];
-    //        }];
-    //    });
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2* NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [UIView animateWithDuration:1 animations:^{
-            label.textColor = [UIColor clearColor];
-        }];
-    });
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:current_ZHUTI] isEqualToString:@"黑色主题"]) {
+        config.zhuTiSheZhi = @"黑色主题";
+        
+        [[NSNotificationCenter defaultCenter ] postNotificationName:@"CHANGEZHUTIHEISE" object:self];
+        
+    }
+    
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:current_ZHUTI] isEqualToString:@"粉红主题"]) {
+        config.zhuTiSheZhi = @"粉红主题";
+        
+        [[NSNotificationCenter defaultCenter ] postNotificationName:@"CHANGEZHUTIFENHONG" object:self];
+        
+    }
+    
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:current_ZHUTI] isEqualToString:@"情怀主题"]) {
+        config.zhuTiSheZhi = @"情怀主题";
+        
+        [[NSNotificationCenter defaultCenter ] postNotificationName:@"CHANGEZHUTIQINGHUAI" object:self];
+        
+    }
 }
 
 @end

@@ -104,7 +104,7 @@
     if (section == 0) {
         return 1;
     }else{
-        return 5;
+        return 4;
     }
     return 1;
 }
@@ -259,10 +259,10 @@
     
     if (section == 0) {
         
-        return @"注意: 同步到iCloud操作, 会覆盖已在iCloud的备份!";
+        return @"注意: 关闭搜索开关后，闪念之后首页不会弹出搜索框";
     } else {
         
-        return @"注意: 从iCloud同步到本地操作, 会覆盖本地已有的数据!";
+        return @"注意: 谷歌搜索引擎需要科学上网";
     }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {

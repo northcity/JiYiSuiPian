@@ -235,6 +235,8 @@ const CGFloat kStatusBarHeight = 20;
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section == 0) {
         return 4;
+    }else if(section == 1){
+        return 2;
     }else{
         return 4;
     }
@@ -280,55 +282,66 @@ const CGFloat kStatusBarHeight = 20;
     }
     if (indexPath.section == 0 && indexPath.row == 3) {
         cell.imageView.image = [UIImage imageNamed:@"主题前.png"];
-        if (!_zhuTiKaiGuanButon) {
-            _zhuTiKaiGuanButon = [[UISwitch alloc]initWithFrame:CGRectMake(cell.bounds.size.width - kAUTOWIDTH(70), CGRectGetMinY(cell.label.frame) + 10, kAUTOWIDTH(50), 50)];
-            if (PNCisIPAD) {
-                _zhuTiKaiGuanButon.frame = CGRectMake(cell.bounds.size.width - 70, CGRectGetMinY(cell.label.frame) + 10, 50, 50);
-            }
-        }
-        [cell.contentView addSubview:_zhuTiKaiGuanButon];
-        [_zhuTiKaiGuanButon addTarget:self action:@selector(qieHuanZhuTiAction:) forControlEvents:UIControlEventTouchUpInside];
-        _zhuTiKaiGuanButon.transform = CGAffineTransformMakeScale(0.8,0.8);
-        _zhuTiKaiGuanButon.tintColor = [UIColor blackColor];
-        _zhuTiKaiGuanButon.onTintColor = [UIColor blackColor];
-        
-        if ([[BCUserDeafaults objectForKey:@"ZHUTI"] isEqualToString:@"1"]) {
-            _zhuTiKaiGuanButon.on = YES;
-            cell.textLabel.text = NSLocalizedString(@"白色主题", nil) ;
-            
-        }else if([[BCUserDeafaults objectForKey:@"ZHUTI"] isEqualToString:@"0"]){
-            _zhuTiKaiGuanButon.on = NO;
-            cell.textLabel.text = NSLocalizedString(@"黑色主题", nil) ;
-            
-        }else{
-            _zhuTiKaiGuanButon.on = YES;
-            cell.textLabel.text = NSLocalizedString(@"白色主题", nil) ;
-            
-        }
-        
-        if (!_zhuTiDetailLabel) {
-            _zhuTiDetailLabel = [Factory createLabelWithTitle:@"" frame:CGRectMake(cell.bounds.size.width - kAUTOWIDTH(195), 5, kAUTOWIDTH(120), 50)];
-            if (PNCisIPAD) {
-                _zhuTiDetailLabel.frame = CGRectMake(cell.bounds.size.width - 215, 5, 140, 50);
-            }
-//            _zhuTiDetailLabel.text =  NSLocalizedString(@"切换后需重启App生效", nil) ;
-            _zhuTiDetailLabel.font = [UIFont fontWithName:@"Heiti SC" size:10];
-            _zhuTiDetailLabel.textAlignment = NSTextAlignmentRight;
-            
-            if (ScreenWidth < 375) {
-                _zhuTiDetailLabel.font = [UIFont fontWithName:@"Heiti SC" size:8];
-            }
-        }
-        [cell.contentView addSubview:_zhuTiDetailLabel];
-        
-    
-//        cell.textLabel.text = @"主题设置";
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+
+        cell.textLabel.text = @"主题设置";
     }
     
     if (indexPath.section == 1 && indexPath.row == 0) {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.imageView.image = [UIImage imageNamed:@"new搜索"];
         cell.textLabel.text = @"搜索设置";
+    }
+    
+    if (indexPath.section == 1 && indexPath.row == 1) {
+//        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.imageView.image = [UIImage imageNamed:@"列表正常"];
+        cell.textLabel.text = @"显示列表中已完成项";
+
+                if (!_zhuTiKaiGuanButon) {
+                    _zhuTiKaiGuanButon = [[UISwitch alloc]initWithFrame:CGRectMake(cell.bounds.size.width - kAUTOWIDTH(70), CGRectGetMinY(cell.label.frame) + 10, kAUTOWIDTH(50), 50)];
+                    if (PNCisIPAD) {
+                        _zhuTiKaiGuanButon.frame = CGRectMake(cell.bounds.size.width - 70, CGRectGetMinY(cell.label.frame) + 10, 50, 50);
+                    }
+                }
+                [cell.contentView addSubview:_zhuTiKaiGuanButon];
+                [_zhuTiKaiGuanButon addTarget:self action:@selector(qieHuanZhuTiAction:) forControlEvents:UIControlEventTouchUpInside];
+                _zhuTiKaiGuanButon.transform = CGAffineTransformMakeScale(0.8,0.8);
+                _zhuTiKaiGuanButon.tintColor = [UIColor blackColor];
+                _zhuTiKaiGuanButon.onTintColor = [UIColor blackColor];
+        
+                if ([[BCUserDeafaults objectForKey:current_XIANSHILIEBIAO] isEqualToString:@"1"]) {
+                    _zhuTiKaiGuanButon.on = YES;
+                    cell.textLabel.text = NSLocalizedString(@"显示列表中已完成项", nil) ;
+                    cell.imageView.image = [UIImage imageNamed:@"列表正常"];
+
+                }else if([[BCUserDeafaults objectForKey:current_XIANSHILIEBIAO] isEqualToString:@"0"]){
+                    _zhuTiKaiGuanButon.on = NO;
+                    cell.textLabel.text = NSLocalizedString(@"不显示列表中已完成项", nil) ;
+                    cell.imageView.image = [UIImage imageNamed:@"列表灰色1"];
+
+                }else{
+                    _zhuTiKaiGuanButon.on = YES;
+                    cell.textLabel.text = NSLocalizedString(@"显示列表中已完成项", nil) ;
+                    cell.imageView.image = [UIImage imageNamed:@"列表正常"];
+
+                }
+        
+                if (!_zhuTiDetailLabel) {
+                    _zhuTiDetailLabel = [Factory createLabelWithTitle:@"" frame:CGRectMake(cell.bounds.size.width - kAUTOWIDTH(195), 5, kAUTOWIDTH(120), 50)];
+                    if (PNCisIPAD) {
+                        _zhuTiDetailLabel.frame = CGRectMake(cell.bounds.size.width - 215, 5, 140, 50);
+                    }
+        //            _zhuTiDetailLabel.text =  NSLocalizedString(@"切换后需重启App生效", nil) ;
+                    _zhuTiDetailLabel.font = [UIFont fontWithName:@"Heiti SC" size:10];
+                    _zhuTiDetailLabel.textAlignment = NSTextAlignmentRight;
+        
+                    if (ScreenWidth < 375) {
+                        _zhuTiDetailLabel.font = [UIFont fontWithName:@"Heiti SC" size:8];
+                    }
+                }
+                [cell.contentView addSubview:_zhuTiDetailLabel];
+        
     }
     
     if (indexPath.section == 2 && indexPath.row == 0) {
@@ -369,7 +382,7 @@ const CGFloat kStatusBarHeight = 20;
 
 - (void)qieHuanZhuTiAction:(UISwitch *)kaiGuanBtn{
     
-    NSIndexPath *path=[NSIndexPath indexPathForRow:3 inSection:0];
+    NSIndexPath *path=[NSIndexPath indexPathForRow:1 inSection:1];
     MainContentCell *cell = (MainContentCell *)[_tableView cellForRowAtIndexPath:path];
     
     CABasicAnimation *baseAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
@@ -377,21 +390,21 @@ const CGFloat kStatusBarHeight = 20;
     baseAnimation.repeatCount = 1;
     baseAnimation.fromValue = [NSNumber numberWithFloat:0.0]; // 起始角度
     baseAnimation.toValue = [NSNumber numberWithFloat:M_PI]; // 终止角度
-    [cell.imageView.layer addAnimation:baseAnimation forKey:@"rotate-layer"];
+//    [cell.imageView.layer addAnimation:baseAnimation forKey:@"rotate-layer"];
     
     
     if (kaiGuanBtn.on == YES) {
-        [BCUserDeafaults setObject:@"1" forKey:@"ZHUTI"];
+        [BCUserDeafaults setObject:@"1" forKey:current_XIANSHILIEBIAO];
         [BCUserDeafaults synchronize];
-        cell.textLabel.text =  NSLocalizedString(@"白色主题", nil) ;
-        [[NSNotificationCenter defaultCenter ] postNotificationName:@"CHANGEZHUTIDEFAULT" object:self];
-        
+        cell.textLabel.text =  NSLocalizedString(@"显示列表中已完成项", nil) ;
+//        [[NSNotificationCenter defaultCenter ] postNotificationName:@"CHANGEZHUTIDEFAULT" object:self];
+        cell.imageView.image = [UIImage imageNamed:@"列表正常"];
     }else{
-        [BCUserDeafaults setObject:@"0" forKey:@"ZHUTI"];
+        [BCUserDeafaults setObject:@"0" forKey:current_XIANSHILIEBIAO];
         [BCUserDeafaults synchronize];
-        
-        cell.textLabel.text = NSLocalizedString(@"黑色主题", nil) ;
-        [[NSNotificationCenter defaultCenter ] postNotificationName:@"CHANGEZHUTI" object:nil];
+        cell.imageView.image = [UIImage imageNamed:@"列表灰色1"];
+        cell.textLabel.text = NSLocalizedString(@"不显示列表中已完成项", nil) ;
+//        [[NSNotificationCenter defaultCenter ] postNotificationName:@"CHANGEZHUTI" object:nil];
 
     }
     

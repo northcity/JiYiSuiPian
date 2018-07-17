@@ -20,8 +20,10 @@
 #import "TouchIDScreen.h"
 #import "BCShanNianKaPianManager.h"
 #import "ShanNianMuLuViewController.h"
+#import "SettingViewController.h"
 
 #import "IATConfig.h"
+#import "ChuLiImageManager.h"
 
 @interface AppDelegate ()
 
@@ -100,9 +102,11 @@
 }
 
 -(void)updateFromiCloud{
+    
     if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstText"]){
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstText"];
         //第一次启动
+        [self chuShiHuaBeiJingTu];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1* NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [LZiCloud downloadFromiCloudWithBlock:^(id obj) {
                 
@@ -148,6 +152,16 @@
     return YES;
 }
 
+- (void)chuShiHuaBeiJingTu{
+    
+    UIImage *image = [UIImage imageNamed:@"smart"];
+    NSData * imageBackData = UIImageJPEGRepresentation(image, 0.5);
+    NSData * compressCardBackStrData = [ChuLiImageManager gzipData:imageBackData];
+    NSString *imageBackDataString = [compressCardBackStrData base64EncodedStringWithOptions:0];
+    
+    [BCUserDeafaults setObject:imageBackDataString forKey:current_BEIJING];
+}
+
 - (void)chuShiShuaSouSuoYinQing{
     IATConfig *config = [IATConfig sharedInstance];
     if ([[[NSUserDefaults standardUserDefaults] objectForKey:current_SS] isEqualToString:@"百度搜索"]) {
@@ -171,18 +185,30 @@
     IATConfig *config = [IATConfig sharedInstance];
     if ([[[NSUserDefaults standardUserDefaults] objectForKey:current_ZHUTI] isEqualToString:@"白色主题"]) {
         config.zhuTiSheZhi = @"白色主题";
+        
+        [[NSNotificationCenter defaultCenter ] postNotificationName:@"CHANGEZHUTIBAISE" object:self];
+
     }
     
     if ([[[NSUserDefaults standardUserDefaults] objectForKey:current_ZHUTI] isEqualToString:@"黑色主题"]) {
         config.zhuTiSheZhi = @"黑色主题";
+        
+        [[NSNotificationCenter defaultCenter ] postNotificationName:@"CHANGEZHUTIHEISE" object:self];
+
     }
     
     if ([[[NSUserDefaults standardUserDefaults] objectForKey:current_ZHUTI] isEqualToString:@"粉红主题"]) {
         config.zhuTiSheZhi = @"粉红主题";
+        
+        [[NSNotificationCenter defaultCenter ] postNotificationName:@"CHANGEZHUTIFENHONG" object:self];
+
     }
     
     if ([[[NSUserDefaults standardUserDefaults] objectForKey:current_ZHUTI] isEqualToString:@"情怀主题"]) {
         config.zhuTiSheZhi = @"情怀主题";
+        
+        [[NSNotificationCenter defaultCenter ] postNotificationName:@"CHANGEZHUTIQINGHUAI" object:self];
+
     }
 }
 
@@ -380,6 +406,21 @@
 
         [navigationVC pushViewController:mainTextVc animated:YES];
 //        [alert show];
+    }
+    
+    if ([[url absoluteString] hasPrefix:@"comchenxijiyisuipian://wode"])
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:[NSString stringWithFormat:@"你点击了%@按钮",[url host]] delegate:nil cancelButtonTitle:@"好的👌" otherButtonTitles:nil, nil];
+        
+         SettingViewController *mainTextVc = [[SettingViewController alloc] init];
+        //                UINavigationController *rootVC = (UINavigationController *)[UIApplication sharedApplication].delegate.window.rootViewController;
+        UINavigationController *navigationVC = (UINavigationController *)[UIApplication sharedApplication].delegate.window.rootViewController;
+        NSMutableArray *navContollers=[NSMutableArray arrayWithArray:navigationVC.viewControllers];
+
+        UIViewController *vc = navContollers[0];
+        [vc presentViewController:mainTextVc animated:YES completion:nil];
+//        [navigationVC pushViewController:mainTextVc animated:YES];
+        //        [alert show];
     }
     return  YES;
 }

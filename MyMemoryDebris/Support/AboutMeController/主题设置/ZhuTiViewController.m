@@ -9,9 +9,10 @@
 #import "ZhuTiViewController.h"
 #import "ShanNianVoiceSetCell.h"
 #import "IATConfig.h"
+#import <AssetsLibrary/AssetsLibrary.h>
+#import "ChuLiImageManager.h"
 
-
-@interface ZhuTiViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface ZhuTiViewController ()<UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property (strong, nonatomic)UITableView *tableView;
 
 @property(nonatomic,strong)UISwitch *zhuTiKaiGuanButon;
@@ -61,7 +62,7 @@
         [self.tableView registerNib:[UINib nibWithNibName:@"MainContentCell" bundle:nil] forCellReuseIdentifier:@"cellID"];
         [self.tableView registerNib:[UINib nibWithNibName:@"ShanNianVoiceSetCell" bundle:nil] forCellReuseIdentifier:@"cell"];
         
-        self.tableView.backgroundColor = [UIColor whiteColor];
+        self.tableView.backgroundColor = [UIColor clearColor];
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         
         IATConfig *instance = [IATConfig sharedInstance];
@@ -84,6 +85,7 @@
             [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]
                                         animated:YES
                                   scrollPosition:UITableViewScrollPositionNone];
+            
         }
         
         [table mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -100,19 +102,27 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (section == 0) {
         return 4;
+    }else{
+        return 1;
+    }
+    return 1;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return 2;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
  
+    
+    
+    if (indexPath.section == 0) {
         ShanNianVoiceSetCell * cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-        
         cell.backgroundColor = [UIColor clearColor];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
         
         if (indexPath.row == 0) {
             cell.imageView.image = [UIImage imageNamed:@"圆环白"];
@@ -135,6 +145,50 @@
             cell.textLabel.text = @"情怀主题";
         }
         return cell;
+    }
+    if (indexPath.section == 1) {
+        
+        MainContentCell * cell = [tableView dequeueReusableCellWithIdentifier:@"cellID" forIndexPath:indexPath];
+        cell.backgroundColor = [UIColor clearColor];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+
+        IATConfig *con = [IATConfig sharedInstance];
+        cell.imageView.image =  [UIImage imageNamed:@"锤子情怀"];
+        cell.imageView.hidden = YES;
+        
+        if (!self.selectedImageView) {
+            self.selectedImageView = [[UIImageView alloc]initWithFrame:CGRectMake(5, 10, 30, 30)];
+            self.selectedImageView.layer.cornerRadius = 15;
+            self.selectedImageView.contentMode = UIViewContentModeScaleAspectFill;
+            self.selectedImageView.layer.masksToBounds = YES;
+            self.selectedImageView.layer.borderColor = [UIColor whiteColor].CGColor;
+            self.selectedImageView.layer.borderWidth = 3;
+            self.selectedImageView.image = [ChuLiImageManager decodeEchoImageBaseWith:[BCUserDeafaults objectForKey:current_BEIJING]];
+            [cell.label addSubview:self.selectedImageView];
+
+            CALayer *subLayer = [CALayer layer];
+            CGRect fixframe = self.selectedImageView.frame;
+            subLayer.frame = fixframe;
+            subLayer.cornerRadius = 15;
+            subLayer.backgroundColor=[[UIColor grayColor] colorWithAlphaComponent:0.5].CGColor;
+            subLayer.masksToBounds=NO;
+            subLayer.shadowColor=[UIColor grayColor].CGColor;
+            subLayer.shadowOffset=CGSizeMake(0,5);
+            subLayer.shadowOpacity=0.5f;
+            subLayer.shadowRadius= 4;
+            
+            [cell.label.layer insertSublayer:subLayer below:self.selectedImageView.layer];
+        }
+        
+        cell.textLabel.text = @"选择背景图片";
+        if ([con.zhuTiSheZhi isEqualToString:@"情怀主题"]) {
+            cell.hidden = NO;
+        }else{
+            cell.hidden = YES;
+        }
+        return cell;
+    }
+        return nil;
 }
 
 - (void)qieHuanZhuTiAction:(UISwitch *)kaiGuanBtn{
@@ -179,7 +233,9 @@
             [[NSUserDefaults standardUserDefaults] synchronize];
             
             [[NSNotificationCenter defaultCenter ] postNotificationName:@"CHANGEZHUTIBAISE" object:self];
-
+            NSIndexPath *path=[NSIndexPath indexPathForRow:3 inSection:0];
+            ShanNianVoiceSetCell *cell = (ShanNianVoiceSetCell *)[_tableView cellForRowAtIndexPath:path];
+            cell.selected = NO;
         }
         if (indexPath.row == 1) {
             instance.zhuTiSheZhi = @"黑色主题";
@@ -188,7 +244,9 @@
             [[NSUserDefaults standardUserDefaults] synchronize];
             
             [[NSNotificationCenter defaultCenter ] postNotificationName:@"CHANGEZHUTIHEISE" object:self];
-
+            NSIndexPath *path=[NSIndexPath indexPathForRow:3 inSection:0];
+            ShanNianVoiceSetCell *cell = (ShanNianVoiceSetCell *)[_tableView cellForRowAtIndexPath:path];
+            cell.selected = NO;
         }
         if (indexPath.row == 2) {
             instance.zhuTiSheZhi = @"粉红主题";
@@ -197,19 +255,71 @@
             [[NSUserDefaults standardUserDefaults] synchronize];
             
             [[NSNotificationCenter defaultCenter ] postNotificationName:@"CHANGEZHUTIFENHONG" object:self];
-
+            NSIndexPath *path=[NSIndexPath indexPathForRow:3 inSection:0];
+            ShanNianVoiceSetCell *cell = (ShanNianVoiceSetCell *)[_tableView cellForRowAtIndexPath:path];
+            cell.selected = NO;
         }
         if (indexPath.row == 3) {
             instance.zhuTiSheZhi = @"情怀主题";
             
             [[NSUserDefaults standardUserDefaults] setObject:@"情怀主题" forKey:current_ZHUTI];
             [[NSUserDefaults standardUserDefaults] synchronize];
-            
             [[NSNotificationCenter defaultCenter ] postNotificationName:@"CHANGEZHUTIQINGHUAI" object:self];
 
+            NSIndexPath *path=[NSIndexPath indexPathForRow:0 inSection:1];
+            MainContentCell *cell = (MainContentCell *)[_tableView cellForRowAtIndexPath:path];
+            cell.hidden = NO;
+            
+            
+            
+        }else{
+            NSIndexPath *path=[NSIndexPath indexPathForRow:0 inSection:1];
+            MainContentCell *cell = (MainContentCell *)[_tableView cellForRowAtIndexPath:path];
+            cell.hidden = YES;
         }
+        
+        
     }
+    if (indexPath.section == 1 && indexPath.row == 0) {
+        NSIndexPath *path=[NSIndexPath indexPathForRow:3 inSection:0];
+        ShanNianVoiceSetCell *cell = (ShanNianVoiceSetCell *)[_tableView cellForRowAtIndexPath:path];
+        cell.selected = YES;
+        
+        [self selectedZhuTiImage];
+    }
+}
+
+- (void)selectedZhuTiImage{
+    //初始化UIImagePickerController类
+    UIImagePickerController * picker = [[UIImagePickerController alloc] init];
+    //判断数据来源为相册
+    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    //设置代理
+    picker.delegate = self;
+    //打开相册
+    [self presentViewController:picker animated:YES completion:nil];
+}
+
+#pragma mark ========== 图片代理回调 ===========
+//选择完成回调函数
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
+    //获取图片
+    UIImage *image = info[UIImagePickerControllerOriginalImage];
     
+    NSData * imageBackData = UIImageJPEGRepresentation(image, 0.5);
+    NSData * compressCardBackStrData = [ChuLiImageManager gzipData:imageBackData];
+    NSString *imageBackDataString = [compressCardBackStrData base64EncodedStringWithOptions:0];
+    
+    [BCUserDeafaults setObject:imageBackDataString forKey:current_BEIJING];
+    [BCUserDeafaults synchronize];
+    
+    NSIndexPath *path=[NSIndexPath indexPathForRow:0 inSection:1];
+    MainContentCell *cell = (MainContentCell *)[_tableView cellForRowAtIndexPath:path];
+    self.selectedImageView.image = image;
+    [self.tableView reloadData];
+    [self dismissViewControllerAnimated:YES completion:nil];
+
+
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
@@ -221,10 +331,10 @@
     
     if (section == 0) {
         
-        return @"注意: 同步到iCloud操作, 会覆盖已在iCloud的备份!";
+        return @"注意：情怀主题可以切换主页背景图";
     } else {
         
-        return @"注意: 从iCloud同步到本地操作, 会覆盖本地已有的数据!";
+        return @"";
     }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {

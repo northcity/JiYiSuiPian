@@ -37,6 +37,11 @@ typedef NS_ENUM(NSUInteger, ShangYiPaiClickActionTag) {
 @property(nonatomic, strong) UITextView *speakTextView;//弹出的显示识别文字的视图
 @property(nonatomic, strong) UIView *webFatherView;//弹出的webView的父视图
 @property(nonatomic, strong) UIView *speakView;//弹出的识别文字视图的父视图
+
+@property(nonatomic, strong) UIImageView *baiSeMaskImageView;
+@property(nonatomic, strong) UIView *xiaLaShareView;
+
+
 @property(nonatomic, strong) UIView *shangViewLineView;//弹出视图分割线
 @property(nonatomic, strong) NSData *pcmData;//用于存储录音文件的二进制
 @property(nonatomic, copy) NSString *nowColor;//当前弹出视图的颜色标记

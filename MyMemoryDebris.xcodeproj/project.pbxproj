@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		153F9C4F20E0C90500B0F260 /* iconoldd.png in Resources */ = {isa = PBXBuildFile; fileRef = 153F9C4E20E0C90500B0F260 /* iconoldd.png */; };
 		153F9C5220E0FAE500B0F260 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 153F9C5120E0F99A00B0F260 /* icon.png */; };
-		15465E1F20FC9928001771BF /* IntentHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 15465E1E20FC9928001771BF /* IntentHandler.m */; };
-		15465E2320FC9929001771BF /* SiriIntentsExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 15465E1B20FC9927001771BF /* SiriIntentsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		154CFD1520EA23B000432A62 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 155845A520D3A8DA00A08DA8 /* CloudKit.framework */; };
 		155845A620D3A8DA00A08DA8 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 155845A520D3A8DA00A08DA8 /* CloudKit.framework */; };
 		155845A720D3AD6500A08DA8 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15619E5B20CF54CA00F80F69 /* Info.plist */; };
@@ -289,21 +287,21 @@
 		F74C999020FB8CC1000B794D /* 必应@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F74C998F20FB8CC1000B794D /* 必应@3x.png */; };
 		F74C999220FB8CC8000B794D /* 谷歌搜索@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F74C999120FB8CC8000B794D /* 谷歌搜索@3x.png */; };
 		F74C999420FB8CCE000B794D /* 搜狗搜索@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F74C999320FB8CCE000B794D /* 搜狗搜索@3x.png */; };
+		F7EF254820FDF55200B727B1 /* 笔记本.png in Resources */ = {isa = PBXBuildFile; fileRef = F7EF254720FDF55200B727B1 /* 笔记本.png */; };
+		F7EF254B20FDF67D00B727B1 /* 首页.png in Resources */ = {isa = PBXBuildFile; fileRef = F7EF254920FDF67C00B727B1 /* 首页.png */; };
+		F7EF254C20FDF67D00B727B1 /* 目录.png in Resources */ = {isa = PBXBuildFile; fileRef = F7EF254A20FDF67D00B727B1 /* 目录.png */; };
 		F7FC9AE520FCE96D00D0F4A2 /* ZhuTiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7FC9AE420FCE96D00D0F4A2 /* ZhuTiViewController.m */; };
 		F7FC9AEA20FCEE2300D0F4A2 /* 圆环黑@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F7FC9AE620FCEE2200D0F4A2 /* 圆环黑@3x.png */; };
 		F7FC9AEB20FCEE2300D0F4A2 /* 锤子情怀@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F7FC9AE720FCEE2200D0F4A2 /* 锤子情怀@3x.png */; };
 		F7FC9AEC20FCEE2300D0F4A2 /* 圆环粉红@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F7FC9AE820FCEE2200D0F4A2 /* 圆环粉红@3x.png */; };
 		F7FC9AED20FCEE2300D0F4A2 /* 圆环白@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F7FC9AE920FCEE2300D0F4A2 /* 圆环白@3x.png */; };
+		F7FC9AF120FDC65900D0F4A2 /* ChuLiImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F7FC9AF020FDC65800D0F4A2 /* ChuLiImageManager.m */; };
+		F7FC9AF620FDE3A300D0F4A2 /* 列表灰色@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F7FC9AF420FDE3A300D0F4A2 /* 列表灰色@3x.png */; };
+		F7FC9AF720FDE3A300D0F4A2 /* 列表正常@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F7FC9AF520FDE3A300D0F4A2 /* 列表正常@3x.png */; };
+		F7FC9AF920FDE46B00D0F4A2 /* 列表灰色1@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F7FC9AF820FDE46B00D0F4A2 /* 列表灰色1@3x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		15465E2120FC9929001771BF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 15619E4220CF54C900F80F69 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 15465E1A20FC9927001771BF;
-			remoteInfo = SiriIntentsExtension;
-		};
 		15619E6320CF54CA00F80F69 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 15619E4220CF54C900F80F69 /* Project object */;
@@ -335,7 +333,6 @@
 			dstSubfolderSpec = 13;
 			files = (
 				157E46A720EA10F7005836B7 /* Today.appex in Embed App Extensions */,
-				15465E2320FC9929001771BF /* SiriIntentsExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -345,10 +342,6 @@
 /* Begin PBXFileReference section */
 		153F9C4E20E0C90500B0F260 /* iconoldd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconoldd.png; sourceTree = "<group>"; };
 		153F9C5120E0F99A00B0F260 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
-		15465E1B20FC9927001771BF /* SiriIntentsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SiriIntentsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		15465E1D20FC9928001771BF /* IntentHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntentHandler.h; sourceTree = "<group>"; };
-		15465E1E20FC9928001771BF /* IntentHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntentHandler.m; sourceTree = "<group>"; };
-		15465E2020FC9929001771BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		154CFD1420EA23AB00432A62 /* Today.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Today.entitlements; sourceTree = "<group>"; };
 		155845A520D3A8DA00A08DA8 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		155D951E20E08660002985D5 /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
@@ -785,22 +778,23 @@
 		F74C998F20FB8CC1000B794D /* 必应@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "必应@3x.png"; sourceTree = "<group>"; };
 		F74C999120FB8CC8000B794D /* 谷歌搜索@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "谷歌搜索@3x.png"; sourceTree = "<group>"; };
 		F74C999320FB8CCE000B794D /* 搜狗搜索@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "搜狗搜索@3x.png"; sourceTree = "<group>"; };
+		F7EF254720FDF55200B727B1 /* 笔记本.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "笔记本.png"; sourceTree = "<group>"; };
+		F7EF254920FDF67C00B727B1 /* 首页.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "首页.png"; sourceTree = "<group>"; };
+		F7EF254A20FDF67D00B727B1 /* 目录.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "目录.png"; sourceTree = "<group>"; };
 		F7FC9AE320FCE96D00D0F4A2 /* ZhuTiViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZhuTiViewController.h; sourceTree = "<group>"; };
 		F7FC9AE420FCE96D00D0F4A2 /* ZhuTiViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZhuTiViewController.m; sourceTree = "<group>"; };
 		F7FC9AE620FCEE2200D0F4A2 /* 圆环黑@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "圆环黑@3x.png"; sourceTree = "<group>"; };
 		F7FC9AE720FCEE2200D0F4A2 /* 锤子情怀@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "锤子情怀@3x.png"; sourceTree = "<group>"; };
 		F7FC9AE820FCEE2200D0F4A2 /* 圆环粉红@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "圆环粉红@3x.png"; sourceTree = "<group>"; };
 		F7FC9AE920FCEE2300D0F4A2 /* 圆环白@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "圆环白@3x.png"; sourceTree = "<group>"; };
+		F7FC9AEF20FDC65800D0F4A2 /* ChuLiImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChuLiImageManager.h; sourceTree = "<group>"; };
+		F7FC9AF020FDC65800D0F4A2 /* ChuLiImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChuLiImageManager.m; sourceTree = "<group>"; };
+		F7FC9AF420FDE3A300D0F4A2 /* 列表灰色@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "列表灰色@3x.png"; sourceTree = "<group>"; };
+		F7FC9AF520FDE3A300D0F4A2 /* 列表正常@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "列表正常@3x.png"; sourceTree = "<group>"; };
+		F7FC9AF820FDE46B00D0F4A2 /* 列表灰色1@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "列表灰色1@3x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		15465E1820FC9927001771BF /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		15619E4720CF54CA00F80F69 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -859,16 +853,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		15465E1C20FC9928001771BF /* SiriIntentsExtension */ = {
-			isa = PBXGroup;
-			children = (
-				15465E1D20FC9928001771BF /* IntentHandler.h */,
-				15465E1E20FC9928001771BF /* IntentHandler.m */,
-				15465E2020FC9929001771BF /* Info.plist */,
-			);
-			path = SiriIntentsExtension;
-			sourceTree = "<group>";
-		};
 		155D951D20E08660002985D5 /* Masonry */ = {
 			isa = PBXGroup;
 			children = (
@@ -909,7 +893,6 @@
 				15619E6520CF54CA00F80F69 /* MyMemoryDebrisTests */,
 				15619E7020CF54CA00F80F69 /* MyMemoryDebrisUITests */,
 				157E469D20EA10F6005836B7 /* Today */,
-				15465E1C20FC9928001771BF /* SiriIntentsExtension */,
 				15619E4B20CF54CA00F80F69 /* Products */,
 				1561A13820CF563E00F80F69 /* Frameworks */,
 			);
@@ -922,7 +905,6 @@
 				15619E6220CF54CA00F80F69 /* MyMemoryDebrisTests.xctest */,
 				15619E6D20CF54CA00F80F69 /* MyMemoryDebrisUITests.xctest */,
 				157E469A20EA10F4005836B7 /* Today.appex */,
-				15465E1B20FC9927001771BF /* SiriIntentsExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1055,7 +1037,6 @@
 		15619EA220CF560200F80F69 /* ShanNianSetVc */ = {
 			isa = PBXGroup;
 			children = (
-				15619EA320CF560200F80F69 /* ShanNianVoiceSetCell.h */,
 				15619EA420CF560200F80F69 /* SettingView */,
 				15619EAB20CF560200F80F69 /* IATConfigViewController.m */,
 				15619EAC20CF560200F80F69 /* ISRDataHelper.m */,
@@ -1064,6 +1045,7 @@
 				15619EB320CF560200F80F69 /* ShanNianVoiceSetViewController.h */,
 				15619EAE20CF560200F80F69 /* ShanNianVoiceSetViewController.m */,
 				15619EAF20CF560200F80F69 /* IATConfigViewController.h */,
+				15619EA320CF560200F80F69 /* ShanNianVoiceSetCell.h */,
 				15619EB020CF560200F80F69 /* ShanNianVoiceSetCell.m */,
 				15619EB220CF560200F80F69 /* ISRDataHelper.h */,
 				15619EB420CF560200F80F69 /* ShanNianVoiceSetCell.xib */,
@@ -1097,6 +1079,9 @@
 		15619EBE20CF560200F80F69 /* ShanNianImageResource */ = {
 			isa = PBXGroup;
 			children = (
+				F7FC9AF820FDE46B00D0F4A2 /* 列表灰色1@3x.png */,
+				F7FC9AF420FDE3A300D0F4A2 /* 列表灰色@3x.png */,
+				F7FC9AF520FDE3A300D0F4A2 /* 列表正常@3x.png */,
 				155D954420E087AE002985D5 /* 人脸对比icon.png */,
 				155D954320E087AE002985D5 /* 指纹icon.png */,
 				15619EBF20CF560200F80F69 /* 沟通.png */,
@@ -1850,6 +1835,9 @@
 		157E469D20EA10F6005836B7 /* Today */ = {
 			isa = PBXGroup;
 			children = (
+				F7EF254A20FDF67D00B727B1 /* 目录.png */,
+				F7EF254920FDF67C00B727B1 /* 首页.png */,
+				F7EF254720FDF55200B727B1 /* 笔记本.png */,
 				15B93E8C20EB15220038FF32 /* 待完成.png */,
 				154CFD1420EA23AB00432A62 /* Today.entitlements */,
 				157E469E20EA10F6005836B7 /* TodayViewController.h */,
@@ -1884,6 +1872,8 @@
 		F7FC9AE220FCE89600D0F4A2 /* 主题设置 */ = {
 			isa = PBXGroup;
 			children = (
+				F7FC9AEF20FDC65800D0F4A2 /* ChuLiImageManager.h */,
+				F7FC9AF020FDC65800D0F4A2 /* ChuLiImageManager.m */,
 				F7FC9AE720FCEE2200D0F4A2 /* 锤子情怀@3x.png */,
 				F7FC9AE920FCEE2300D0F4A2 /* 圆环白@3x.png */,
 				F7FC9AE820FCEE2200D0F4A2 /* 圆环粉红@3x.png */,
@@ -1897,23 +1887,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		15465E1A20FC9927001771BF /* SiriIntentsExtension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 15465E2420FC9929001771BF /* Build configuration list for PBXNativeTarget "SiriIntentsExtension" */;
-			buildPhases = (
-				15465E1720FC9927001771BF /* Sources */,
-				15465E1820FC9927001771BF /* Frameworks */,
-				15465E1920FC9927001771BF /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = SiriIntentsExtension;
-			productName = SiriIntentsExtension;
-			productReference = 15465E1B20FC9927001771BF /* SiriIntentsExtension.appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
 		15619E4920CF54CA00F80F69 /* MyMemoryDebris */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 15619E7620CF54CA00F80F69 /* Build configuration list for PBXNativeTarget "MyMemoryDebris" */;
@@ -1927,7 +1900,6 @@
 			);
 			dependencies = (
 				157E46A620EA10F7005836B7 /* PBXTargetDependency */,
-				15465E2220FC9929001771BF /* PBXTargetDependency */,
 			);
 			name = MyMemoryDebris;
 			productName = MyMemoryDebris;
@@ -1996,13 +1968,9 @@
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = chenxi;
 				TargetAttributes = {
-					15465E1A20FC9927001771BF = {
-						CreatedOnToolsVersion = 9.0;
-						ProvisioningStyle = Automatic;
-					};
 					15619E4920CF54CA00F80F69 = {
 						CreatedOnToolsVersion = 9.0;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -2011,7 +1979,7 @@
 								enabled = 1;
 							};
 							com.apple.Siri = {
-								enabled = 1;
+								enabled = 0;
 							};
 							com.apple.iCloud = {
 								enabled = 1;
@@ -2030,7 +1998,7 @@
 					};
 					157E469920EA10F4005836B7 = {
 						CreatedOnToolsVersion = 9.0;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -2063,19 +2031,11 @@
 				15619E6120CF54CA00F80F69 /* MyMemoryDebrisTests */,
 				15619E6C20CF54CA00F80F69 /* MyMemoryDebrisUITests */,
 				157E469920EA10F4005836B7 /* Today */,
-				15465E1A20FC9927001771BF /* SiriIntentsExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		15465E1920FC9927001771BF /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		15619E4820CF54CA00F80F69 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2107,6 +2067,7 @@
 				1561A06D20CF560300F80F69 /* 数字密码@3x.png in Resources */,
 				1561A09420CF560300F80F69 /* 指纹2@3x.png in Resources */,
 				1561A11020CF560300F80F69 /* LICENSE in Resources */,
+				F7FC9AF720FDE3A300D0F4A2 /* 列表正常@3x.png in Resources */,
 				1561A07C20CF560300F80F69 /* newbeginSpeakButton.png in Resources */,
 				1561A0A720CF560300F80F69 /* houtui@2x.png in Resources */,
 				1561A0AE20CF560300F80F69 /* home_@2x.png in Resources */,
@@ -2163,6 +2124,7 @@
 				1561A07020CF560300F80F69 /* ng_bps_fuceng_duigou@3x.png in Resources */,
 				1561A12920CF560300F80F69 /* 增值服务1@3x.png in Resources */,
 				1561A0B320CF560300F80F69 /* arrow_up@2x.png in Resources */,
+				F7FC9AF920FDE46B00D0F4A2 /* 列表灰色1@3x.png in Resources */,
 				1561A0E920CF560300F80F69 /* gesture_introduce@2x.png in Resources */,
 				1561A07120CF560300F80F69 /* 中文@3x.png in Resources */,
 				1561A11C20CF560300F80F69 /* iconcheng.png in Resources */,
@@ -2179,6 +2141,7 @@
 				1561A0C420CF560300F80F69 /* address_select@2x.png in Resources */,
 				1561A0E420CF560300F80F69 /* gesture_circle_pre.png in Resources */,
 				1561A0AB20CF560300F80F69 /* showPSW@2x.png in Resources */,
+				F7FC9AF620FDE3A300D0F4A2 /* 列表灰色@3x.png in Resources */,
 				155D954620E087B5002985D5 /* 指纹icon.png in Resources */,
 				1561A07520CF560300F80F69 /* 下载.png in Resources */,
 				1561A07420CF560300F80F69 /* 笔记本.png in Resources */,
@@ -2221,6 +2184,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7EF254C20FDF67D00B727B1 /* 目录.png in Resources */,
+				F7EF254820FDF55200B727B1 /* 笔记本.png in Resources */,
+				F7EF254B20FDF67D00B727B1 /* 首页.png in Resources */,
 				15B93E8D20EB152A0038FF32 /* 待完成.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2228,14 +2194,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		15465E1720FC9927001771BF /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				15465E1F20FC9928001771BF /* IntentHandler.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		15619E4620CF54CA00F80F69 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2355,6 +2313,7 @@
 				1561A13620CF560300F80F69 /* STImageVIew.m in Sources */,
 				1561A0C920CF560300F80F69 /* LZBaseNavigationController.m in Sources */,
 				1561A05C20CF560300F80F69 /* ShanNianMiMaView.m in Sources */,
+				F7FC9AF120FDC65900D0F4A2 /* ChuLiImageManager.m in Sources */,
 				1561A10820CF560300F80F69 /* ChineseToPinyin.m in Sources */,
 				155D954020E08660002985D5 /* MASViewConstraint.m in Sources */,
 				155D953F20E08660002985D5 /* MASConstraint.m in Sources */,
@@ -2403,11 +2362,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		15465E2220FC9929001771BF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 15465E1A20FC9927001771BF /* SiriIntentsExtension */;
-			targetProxy = 15465E2120FC9929001771BF /* PBXContainerItemProxy */;
-		};
 		15619E6420CF54CA00F80F69 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 15619E4920CF54CA00F80F69 /* MyMemoryDebris */;
@@ -2456,36 +2410,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		15465E2520FC9929001771BF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = F7C352F4MW;
-				INFOPLIST_FILE = SiriIntentsExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.chenxi.shanniankapian.SiriIntentsExtension;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		15465E2620FC9929001771BF /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = F7C352F4MW;
-				INFOPLIST_FILE = SiriIntentsExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.chenxi.shanniankapian.SiriIntentsExtension;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 		15619E7420CF54CA00F80F69 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2597,8 +2521,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MyMemoryDebris/MyMemoryDebris.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = F7C352F4MW;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2611,8 +2535,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.chenxi.shanniankapian;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "81700a09-3d59-4d9a-9f96-943d1dcf43e3";
+				PROVISIONING_PROFILE_SPECIFIER = newnewnewnenwenweewewewewew;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -2622,8 +2546,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MyMemoryDebris/MyMemoryDebris.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = F7C352F4MW;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2636,8 +2560,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.chenxi.shanniankapian;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "81700a09-3d59-4d9a-9f96-943d1dcf43e3";
+				PROVISIONING_PROFILE_SPECIFIER = newnewnewnenwenweewewewewew;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -2700,16 +2624,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Today/Today.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = F7C352F4MW;
 				INFOPLIST_FILE = Today/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.chenxi.shanniankapian.Today;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "cbdc42bd-8157-45c7-ae73-300bebdf1b20";
+				PROVISIONING_PROFILE_SPECIFIER = xiaoshanniannewewewewewewewe;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2719,16 +2643,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Today/Today.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = F7C352F4MW;
 				INFOPLIST_FILE = Today/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.chenxi.shanniankapian.Today;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "cbdc42bd-8157-45c7-ae73-300bebdf1b20";
+				PROVISIONING_PROFILE_SPECIFIER = xiaoshanniannewewewewewewewe;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2737,15 +2661,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		15465E2420FC9929001771BF /* Build configuration list for PBXNativeTarget "SiriIntentsExtension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				15465E2520FC9929001771BF /* Debug */,
-				15465E2620FC9929001771BF /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		15619E4520CF54C900F80F69 /* Build configuration list for PBXProject "MyMemoryDebris" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

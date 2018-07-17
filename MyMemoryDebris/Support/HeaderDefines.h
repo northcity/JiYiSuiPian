@@ -187,7 +187,9 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 #define current_ZHUTI   @"currentzhuti"
 
+#define current_BEIJING @"ZHUTIBEIJING"
 
+#define current_XIANSHILIEBIAO @"daiwanchengliebiao"
 
 
 

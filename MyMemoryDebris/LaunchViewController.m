@@ -55,6 +55,18 @@
    
     });
     [self startAnimation];
+    
+   UILabel * chuBuQuLabel = [[UILabel alloc]initWithFrame:CGRectMake(kAUTOWIDTH(20), CGRectGetMaxY(self.titleLabel.frame) + kAUTOHEIGHT(5),ScreenWidth - kAUTOWIDTH(40), kAUTOHEIGHT(20))];
+    chuBuQuLabel.textColor = PNCColor(132, 133, 135);
+    chuBuQuLabel.textAlignment = NSTextAlignmentCenter;
+    chuBuQuLabel.text = @"你出不去啦，重启App吧。";
+    chuBuQuLabel.font = [UIFont fontWithName:@"FZSKBXKFW--GB1-0" size:11];
+    chuBuQuLabel.numberOfLines = 0;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.view addSubview:chuBuQuLabel];
+    });
+    
+    
 }
 - (void)startAnimation{
     

@@ -10,4 +10,5 @@
 
 @interface ZhuTiViewController : LZBaseViewController
 
+@property (nonatomic, strong)UIImageView *selectedImageView;
 @end

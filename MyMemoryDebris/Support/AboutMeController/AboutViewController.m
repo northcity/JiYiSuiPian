@@ -154,8 +154,7 @@
         [cell.contentView addSubview:qianMingLabel];
         
         UILabel *nameLabel = [Factory createLabelWithTitle:@"北城以北" frame:CGRectMake(ScreenWidth - 180,74,150, 44)];
-//       nameLabel.font = [UIFont fontWithName:@"HiraMinProN-W6" size:20];
-        nameLabel.font = [UIFont boldSystemFontOfSize:20.f];
+        nameLabel.font = [UIFont fontWithName:@"FZSKBXKFW--GB1-0" size:20];
         nameLabel.textAlignment = NSTextAlignmentRight;
         [cell.contentView addSubview:nameLabel];
         nameLabel.textColor = [UIColor whiteColor];

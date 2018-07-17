@@ -9,7 +9,11 @@
 #import "TodayViewController.h"
 #import <NotificationCenter/NotificationCenter.h>
 
-@interface TodayViewController () <NCWidgetProviding>
+@interface TodayViewController () <NCWidgetProviding,UITableViewDataSource, UITableViewDelegate>
+
+@property (nonatomic, strong) UITableView *tableView;
+@property(nonatomic, strong)NSMutableArray *dataSourceArray;
+@property(nonatomic, strong)UILabel *titleLabel;
 
 @end
 
@@ -30,25 +34,59 @@
     self.preferredContentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, 100);
 
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 74, 10, 44, 44);
-    
+    button.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 88 , 10, 44, 44);
     button.backgroundColor = [UIColor clearColor];
-    [button setImage:[UIImage imageNamed:@"待完成"] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:@"目录"] forState:UIControlStateNormal];
     [self.view addSubview:button];
     [button addTarget:self action:@selector(pushMatherApp) forControlEvents:UIControlEventTouchUpInside];
     
+    UIButton *woDeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    woDeButton.frame = CGRectMake(44, 10, 44, 44);
+    woDeButton.backgroundColor = [UIColor clearColor];
+    [woDeButton setImage:[UIImage imageNamed:@"首页"] forState:UIControlStateNormal];
+    [self.view addSubview:woDeButton];
+    [woDeButton addTarget:self action:@selector(pushMatherAppWoDe) forControlEvents:UIControlEventTouchUpInside];
+    
+    
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(button.frame), CGRectGetMaxY(button.frame) + 2, 44, 30)];
-    label.text = @"待完成";
+    label.text = @"我的碎片";
     label.textAlignment = NSTextAlignmentCenter;
-    label.font = [UIFont fontWithName:@"HeiTi SC" size:12];
+    label.font = [UIFont fontWithName:@"HeiTi SC" size:10];
     [self.view addSubview:label];
+    
+    UILabel *wodeLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(woDeButton.frame), CGRectGetMaxY(button.frame) + 2, 44, 30)];
+    wodeLabel.text = @"关于";
+    wodeLabel.textAlignment = NSTextAlignmentCenter;
+    wodeLabel.font = [UIFont fontWithName:@"HeiTi SC" size:10];
+    [self.view addSubview:wodeLabel];
+    
+    self.titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 15, [UIScreen mainScreen].bounds.size.width - 40, 30)];
+    self.titleLabel.text = [self readDataFromNSUserDefaultsWithKey:@"widgetTitle"];
+    self.titleLabel.backgroundColor = [UIColor whiteColor];
+    self.titleLabel.textColor = [UIColor blackColor];
+    self.titleLabel.textAlignment = NSTextAlignmentCenter;
+    self.titleLabel.font = [UIFont fontWithName:@"HeiTi SC" size:12];
+//    [self.view addSubview:self.titleLabel];
+    
+    NSLog(@"%@ =============", [self readDataFromNSUserDefaultsWithKey:@"widgetTitle"]);
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.titleLabel.text = [self readDataFromNSUserDefaultsWithKey:@"widgetTitle"];
+
+}
 - (void)pushMatherApp{
     NSURL *url = [NSURL URLWithString:@"comchenxijiyisuipian://red"];
-    
     [self.extensionContext openURL:url completionHandler:^(BOOL success) {
-        
+        NSLog(@"isSuccessed %d",success);
+    }];
+    
+}
+
+- (void)pushMatherAppWoDe{
+    NSURL *url = [NSURL URLWithString:@"comchenxijiyisuipian://wode"];
+    [self.extensionContext openURL:url completionHandler:^(BOOL success) {
         NSLog(@"isSuccessed %d",success);
     }];
     
@@ -66,9 +104,9 @@
     [shared synchronize];
 }
 //读取数据
-- (NSString *)readDataFromNSUserDefaults{
+- (NSString *)readDataFromNSUserDefaultsWithKey:(NSString *)key{
     NSUserDefaults *shared = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.xiaoshannian"];
-    NSString *value = [shared valueForKey:@"widget"];
+    NSString *value = [shared valueForKey:key];
     return value;
 }
 

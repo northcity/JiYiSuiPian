@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMemoryDebris/ShanNianController/ShanNianViewController.m"
-            timestampString = "553448863.994077"
+            timestampString = "553517245.477826"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "292"
-            endingLineNumber = "292"
-            landmarkName = "-changeZhiTiHeiSe"
+            startingLineNumber = "1918"
+            endingLineNumber = "1918"
+            landmarkName = "-saveDataByNSUserDefaultsWithTitle:withKey:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MyMemoryDebris/Support/AboutMeController/&#x4e3b;&#x9898;&#x8bbe;&#x7f6e;/ZhuTiViewController.m"
-            timestampString = "553448863.994167"
+            filePath = "MyMemoryDebris/ShanNianController/ShanNianViewController.m"
+            timestampString = "553517245.477924"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "199"
-            endingLineNumber = "199"
-            landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            startingLineNumber = "1905"
+            endingLineNumber = "1905"
+            landmarkName = "-saveDataToiCloud"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
